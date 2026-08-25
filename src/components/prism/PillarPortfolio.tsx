@@ -65,7 +65,7 @@ export function PillarPortfolio() {
               onClick={() => setI(idx)}
               aria-label={p.name}
               aria-pressed={on}
-              className="group relative pt-4 text-left focus:outline-none"
+              className="group relative flex w-full flex-col items-stretch justify-start pt-4 text-left focus:outline-none"
             >
               <span
                 className="block h-[3px] w-full rounded-full transition-all duration-500"
