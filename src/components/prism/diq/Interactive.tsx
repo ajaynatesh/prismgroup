@@ -73,7 +73,7 @@ function TabButton({
 const toneColour = { good: "oklch(0.72 0.14 155)", warn: "oklch(0.78 0.14 85)", bad: "oklch(0.65 0.19 25)" };
 
 export function PersonaLens() {
-  const [id, setId] = useState(personas[0].id);
+  const [id, setId] = useState(personas[0]!.id);
   const p = personas.find((x) => x.id === id)!;
   return (
     <div>
@@ -211,7 +211,7 @@ export function Copilot() {
 
 export function SignatureAsk() {
   const [i, setI] = useState(0);
-  const q = signatureQuestions[i];
+  const q = signatureQuestions[i]!;
   return (
     <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
       <div className="flex flex-col gap-2">
@@ -456,7 +456,7 @@ const statusColour: Record<string, string> = {
 };
 
 export function HealthScore() {
-  const [name, setName] = useState<string>(healthDimensions[1].name);
+  const [name, setName] = useState<string>(healthDimensions[1]!.name);
   const d = healthDimensions.find((x) => x.name === name)!;
   const reduce = useReducedMotion();
   return (
@@ -532,7 +532,7 @@ export function HealthScore() {
 
 export function ArchitectureExplorer() {
   const [i, setI] = useState(0);
-  const layer = architecture[i];
+  const layer = architecture[i]!;
   return (
     <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
       <ol className="flex flex-col gap-2">
@@ -652,7 +652,7 @@ export function OpportunityBoard() {
 /* ------------------------------------------- 8. enterprise map + use cases */
 
 export function EnterpriseMap() {
-  const [role, setRole] = useState(enterpriseMap[0].role);
+  const [role, setRole] = useState(enterpriseMap[0]!.role);
   const active = enterpriseMap.find((x) => x.role === role)!;
   return (
     <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-3">
@@ -687,7 +687,7 @@ export function EnterpriseMap() {
 }
 
 export function UseCaseGrid() {
-  const [open, setOpen] = useState<string | null>(useCases[0].group);
+  const [open, setOpen] = useState<string | null>(useCases[0]!.group);
   return (
     <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
       {useCases.map((u) => {
