@@ -147,7 +147,7 @@ export function IntelligenceLayer({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: 0.5 + i * 0.06 }}
-              className="flex items-center gap-3 rounded-md border px-3.5 py-2.5 text-xs font-medium tracking-tight md:text-[0.8125rem]"
+              className="flex items-center gap-3 rounded-md border px-3.5 py-2.5 text-xs font-medium tracking-tight text-foreground md:text-[0.8125rem]"
               style={{
                 borderColor: `color-mix(in oklab, var(--prism-colour-${i + 3}) 40%, transparent)`,
                 background: `color-mix(in oklab, var(--prism-colour-${i + 3}) 7%, transparent)`,
