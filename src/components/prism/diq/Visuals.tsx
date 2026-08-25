@@ -411,7 +411,7 @@ export function FlywheelVisual() {
           stroke={accent}
           strokeOpacity="0.7"
           strokeDasharray="40 790"
-          animate={reduce ? undefined : { rotate: 360 }}
+          animate={reduce ? { rotate: 0 } : { rotate: 360 }}
           transition={{ duration: 14, repeat: reduce ? 0 : Infinity, ease: "linear" }}
           style={{ originX: "180px", originY: "180px" }}
         />
