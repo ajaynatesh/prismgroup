@@ -639,7 +639,6 @@ function Page() {
             <Reveal
               delay={0.08}
               className="rounded-xl border border-border-strong bg-background p-7 md:p-9"
-              style-data="siq"
             >
               <p className="eyebrow">SpectraIQ</p>
               <ul className="mt-5 space-y-3">
