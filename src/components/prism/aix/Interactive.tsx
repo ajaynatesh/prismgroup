@@ -345,11 +345,11 @@ export function ValueCalculator() {
   const [sliders, setSliders] = useState({ automation: 35, productivity: 20, revenueUplift: 2 });
 
   const result = useMemo(() => {
-    const annualManualCost = v.manualHours! * 52 * v.labourCost!;
-    const costOpportunity = annualManualCost * (sliders.automation / 100) + v.opex! * (sliders.automation / 100) * 0.01;
-    const capacityHours = v.manualHours! * 52 * (sliders.productivity / 100);
-    const productivityValue = capacityHours * v.labourCost!;
-    const revenueOpportunity = v.revenue! * (sliders.revenueUplift / 100);
+    const annualManualCost = v['manualHours']! * 52 * v['labourCost']!;
+    const costOpportunity = annualManualCost * (sliders.automation / 100) + v['opex']! * (sliders.automation / 100) * 0.01;
+    const capacityHours = v['manualHours']! * 52 * (sliders.productivity / 100);
+    const productivityValue = capacityHours * v['labourCost']!;
+    const revenueOpportunity = v['revenue']! * (sliders.revenueUplift / 100);
     const annualValue = costOpportunity + productivityValue + revenueOpportunity * 0.35;
     const investment = Math.max(120_000, annualValue * 0.3);
     const paybackMonths = annualValue > 0 ? Math.max(2, Math.round((investment / annualValue) * 12)) : 0;
