@@ -33,6 +33,15 @@ function Home() {
     <>
       {/* 02 — HERO */}
       <section className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-36">
+        {/* the prism sits in a black studio void that dissolves into the page */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden="true"
+          style={{
+            background:
+              "radial-gradient(58% 80% at 78% 46%, oklch(0 0 0) 0%, oklch(0 0 0 / 85%) 42%, transparent 78%)",
+          }}
+        />
         <div className="shell relative grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
           <div className="relative z-10">
             <Reveal>

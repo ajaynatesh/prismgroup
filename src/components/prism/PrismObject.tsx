@@ -38,17 +38,7 @@ export function PrismObject({ className }: { className?: string }) {
         />
       </motion.div>
 
-      <motion.div
-        style={{
-          ...base,
-          mixBlendMode: "screen",
-          maskImage:
-            "radial-gradient(78% 72% at 52% 50%, black 55%, transparent 92%)",
-          WebkitMaskImage:
-            "radial-gradient(78% 72% at 52% 50%, black 55%, transparent 92%)",
-        }}
-        className="relative"
-      >
+      <motion.div style={base} className="relative">
         {/* achromatic base render */}
         <img
           src={prismObject}
