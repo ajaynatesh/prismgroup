@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as CapabilitiesIndexRouteImport } from './routes/capabilities.index'
 import { Route as CapabilitiesAiTransformationRouteImport } from './routes/capabilities.ai-transformation'
 import { Route as CapabilitiesEnterpriseTechnologyRouteImport } from './routes/capabilities.enterprise-technology'
 import { Route as VenturesAlwaysonRouteImport } from './routes/ventures.alwayson'
@@ -27,6 +28,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CapabilitiesIndexRoute = CapabilitiesIndexRouteImport.update({
+  id: '/capabilities/',
+  path: '/capabilities/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CapabilitiesAiTransformationRoute =
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
   '/ventures/spectraiq': typeof VenturesSpectraiqRoute
   '/ventures/tradelink': typeof VenturesTradelinkRoute
+  '/capabilities/': typeof CapabilitiesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
   '/ventures/spectraiq': typeof VenturesSpectraiqRoute
   '/ventures/tradelink': typeof VenturesTradelinkRoute
+  '/capabilities': typeof CapabilitiesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
   '/ventures/spectraiq': typeof VenturesSpectraiqRoute
   '/ventures/tradelink': typeof VenturesTradelinkRoute
+  '/capabilities/': typeof CapabilitiesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/ventures/prism-diagnostics'
     | '/ventures/spectraiq'
     | '/ventures/tradelink'
+    | '/capabilities/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
     | '/ventures/prism-diagnostics'
     | '/ventures/spectraiq'
     | '/ventures/tradelink'
+    | '/capabilities'
   id:
     | '__root__'
     | '/'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
     | '/ventures/prism-diagnostics'
     | '/ventures/spectraiq'
     | '/ventures/tradelink'
+    | '/capabilities/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -148,6 +160,7 @@ export interface RootRouteChildren {
   VenturesPrismDiagnosticsRoute: typeof VenturesPrismDiagnosticsRoute
   VenturesSpectraiqRoute: typeof VenturesSpectraiqRoute
   VenturesTradelinkRoute: typeof VenturesTradelinkRoute
+  CapabilitiesIndexRoute: typeof CapabilitiesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -164,6 +177,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capabilities/': {
+      id: '/capabilities/'
+      path: '/capabilities'
+      fullPath: '/capabilities/'
+      preLoaderRoute: typeof CapabilitiesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/capabilities/ai-transformation': {
@@ -228,6 +248,7 @@ const rootRouteChildren: RootRouteChildren = {
   VenturesPrismDiagnosticsRoute: VenturesPrismDiagnosticsRoute,
   VenturesSpectraiqRoute: VenturesSpectraiqRoute,
   VenturesTradelinkRoute: VenturesTradelinkRoute,
+  CapabilitiesIndexRoute: CapabilitiesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
