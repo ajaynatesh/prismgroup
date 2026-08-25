@@ -15,10 +15,12 @@ export function PillarPage({
   pillar,
   journeyLabel = "How it works",
   extra,
+  lockup,
 }: {
   pillar: Pillar;
   journeyLabel?: string;
   extra?: React.ReactNode;
+  lockup?: React.ReactNode;
 }) {
   return (
     <>
@@ -42,9 +44,13 @@ export function PillarPage({
               <span className="eyebrow">{pillar.kind}</span>
               {pillar.kind === "Owned venture" ? <VentureLabel /> : null}
             </div>
-            <p className="mt-8 font-display text-sm font-medium tracking-tight text-muted-foreground">
-              {pillar.name}
-            </p>
+            {lockup ? (
+              <div className="mt-9">{lockup}</div>
+            ) : (
+              <p className="mt-8 font-display text-sm font-medium tracking-tight text-muted-foreground">
+                {pillar.name}
+              </p>
+            )}
             <h1 className="display-xl mt-3 max-w-4xl">{pillar.headline}</h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">{pillar.copy}</p>
             <div className="mt-10 flex flex-wrap gap-3">
