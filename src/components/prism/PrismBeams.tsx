@@ -1,6 +1,7 @@
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { useRef } from "react";
 import { pillars, type PrismColour } from "@/lib/prism";
+import prismMark from "@/assets/prism-mark.png.asset.json";
 
 function Beam({
   colour,
@@ -92,13 +93,13 @@ export function PrismBeams({ activeColour = null }: { activeColour?: number | nu
           transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           style={{ transformOrigin: "520px 350px" }}
         >
-          <path
-            d="M520 250 L600 470 L440 470 Z"
-            fill="currentColor"
-            fillOpacity="0.04"
-            stroke="currentColor"
-            strokeOpacity="0.35"
-            strokeWidth="1.5"
+          <image
+            href={prismMark.url}
+            x="415"
+            y="258"
+            width="210"
+            height="184"
+            preserveAspectRatio="xMidYMid meet"
           />
         </motion.g>
 
