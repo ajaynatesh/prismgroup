@@ -23,7 +23,7 @@ export function PrismObject({ className }: { className?: string }) {
   const base = reduce ? {} : { scale, rotate, y };
 
   return (
-    <div ref={ref} className={cn("relative isolate", className)} aria-hidden="true">
+    <div ref={ref} className={cn("relative", className)} aria-hidden="true">
       {/* ambient refraction glow behind the glass */}
       <motion.div
         style={{ opacity: reduce ? 0.3 : glow }}
