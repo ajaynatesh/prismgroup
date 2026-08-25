@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as CapabilitiesAiTransformationRouteImport } from './routes/capabilities.ai-transformation'
 import { Route as CapabilitiesEnterpriseTechnologyRouteImport } from './routes/capabilities.enterprise-technology'
 import { Route as VenturesAlwaysonRouteImport } from './routes/ventures.alwayson'
@@ -21,6 +22,11 @@ import { Route as VenturesTradelinkRouteImport } from './routes/ventures.tradeli
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CapabilitiesAiTransformationRoute =
@@ -64,6 +70,7 @@ const VenturesTradelinkRoute = VenturesTradelinkRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
@@ -85,6 +93,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/ventures/alwayson'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/ventures/alwayson'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/ventures/alwayson'
@@ -128,6 +140,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   CapabilitiesAiTransformationRoute: typeof CapabilitiesAiTransformationRoute
   CapabilitiesEnterpriseTechnologyRoute: typeof CapabilitiesEnterpriseTechnologyRoute
   VenturesAlwaysonRoute: typeof VenturesAlwaysonRoute
@@ -144,6 +157,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/capabilities/ai-transformation': {
@@ -200,6 +220,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   CapabilitiesAiTransformationRoute: CapabilitiesAiTransformationRoute,
   CapabilitiesEnterpriseTechnologyRoute: CapabilitiesEnterpriseTechnologyRoute,
   VenturesAlwaysonRoute: VenturesAlwaysonRoute,
