@@ -14,21 +14,21 @@ export function TransformationEngine({ className }: { className?: string }) {
   return (
     <div className={cn("relative", className)} aria-hidden="true">
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-5">
-        <ul className="space-y-2">
+        <ul className="space-y-3">
           {engineInputs.map((i, idx) => (
             <motion.li
               key={i}
               initial={reduce ? { opacity: 1 } : { opacity: 0, x: -14 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-md border border-border bg-surface/50 px-3 py-2 text-right text-[0.7rem] tracking-tight text-muted-foreground sm:text-xs"
+              className="rounded-md border border-border bg-surface/50 px-3 py-2 text-right text-[0.75rem] tracking-tight text-muted-foreground sm:text-sm"
             >
               {i}
             </motion.li>
           ))}
         </ul>
 
-        <div className="relative flex h-56 w-24 items-center justify-center sm:h-72 sm:w-32">
+        <div className="relative flex h-72 w-32 items-center justify-center sm:h-[26rem] sm:w-52">
           <svg viewBox="0 0 120 240" className="h-full w-full">
             <defs>
               <linearGradient id="aix-glass" x1="0" y1="0" x2="1" y2="1">
@@ -103,14 +103,14 @@ export function TransformationEngine({ className }: { className?: string }) {
           </svg>
         </div>
 
-        <ul className="space-y-2">
+        <ul className="space-y-3">
           {engineOutputs.map((o, idx) => (
             <motion.li
               key={o}
               initial={reduce ? { opacity: 1 } : { opacity: 0, x: 14 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.5 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-md border px-3 py-2 text-[0.7rem] font-medium tracking-tight sm:text-xs"
+              className="rounded-md border px-3 py-2.5 text-[0.75rem] font-medium tracking-tight sm:text-sm"
               style={{
                 borderColor: `color-mix(in oklab, ${accent} 40%, transparent)`,
                 background: `color-mix(in oklab, ${accent} 9%, transparent)`,
