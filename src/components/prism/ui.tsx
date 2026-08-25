@@ -75,7 +75,7 @@ export function PrimaryLink({
 }) {
   return (
     <Link
-      to={to}
+      to={to as never}
       className={cn(btnBase, "bg-primary text-primary-foreground hover:opacity-90", className)}
     >
       {children}
@@ -95,7 +95,7 @@ export function GhostLink({
 }) {
   return (
     <Link
-      to={to}
+      to={to as never}
       className={cn(btnBase, "border border-border-strong text-foreground hover:bg-accent", className)}
     >
       {children}
