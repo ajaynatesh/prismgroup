@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { PrismObject } from "@/components/prism/PrismObject";
 import { PillarPortfolio, PillarLedger } from "@/components/prism/PillarPortfolio";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";
