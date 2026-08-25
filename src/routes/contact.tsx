@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { toast } from "sonner";
 import { Reveal } from "@/components/prism/Reveal";
 import { Section } from "@/components/prism/ui";
-import { ArrowRight } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 const title = "Contact Prism Group — Start with the problem";
 const description =
@@ -24,23 +22,7 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-const topics = [
-  "AI Transformation",
-  "Enterprise Technology",
-  "Decision Intelligence",
-  "SpectraIQ.ai",
-  "TradeLink",
-  "AlwaysOn AI",
-  "Prism Diagnostics",
-  "Other",
-];
-
-const fieldClass =
-  "w-full rounded-md border border-input bg-surface px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring";
-
 function Contact() {
-  const [sent, setSent] = useState(false);
-
   return (
     <>
       <header className="relative overflow-hidden pt-32 pb-12 md:pt-44 md:pb-16">
@@ -91,75 +73,38 @@ function Contact() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <form
-              className="panel p-6 md:p-9"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSent(true);
-                toast.success("Thanks — your enquiry has been captured.", {
-                  description: "A member of the Prism team will be in touch.",
-                });
-              }}
-            >
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div className="sm:col-span-1">
-                  <label htmlFor="name" className="eyebrow">
-                    Name
-                  </label>
-                  <input id="name" name="name" required className={`${fieldClass} mt-2.5`} autoComplete="name" />
-                </div>
-                <div className="sm:col-span-1">
-                  <label htmlFor="company" className="eyebrow">
-                    Company
-                  </label>
-                  <input id="company" name="company" className={`${fieldClass} mt-2.5`} autoComplete="organization" />
-                </div>
-                <div className="sm:col-span-1">
-                  <label htmlFor="email" className="eyebrow">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    className={`${fieldClass} mt-2.5`}
-                    autoComplete="email"
-                  />
-                </div>
-                <div className="sm:col-span-1">
-                  <label htmlFor="phone" className="eyebrow">
-                    Phone
-                  </label>
-                  <input id="phone" name="phone" type="tel" className={`${fieldClass} mt-2.5`} autoComplete="tel" />
-                </div>
-                <div className="sm:col-span-2">
-                  <label htmlFor="topic" className="eyebrow">
-                    What can we help you with?
-                  </label>
-                  <select id="topic" name="topic" defaultValue={topics[0]} className={`${fieldClass} mt-2.5`}>
-                    {topics.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="sm:col-span-2">
-                  <label htmlFor="message" className="eyebrow">
-                    Message
-                  </label>
-                  <textarea id="message" name="message" rows={5} required className={`${fieldClass} mt-2.5`} />
-                </div>
+            <div className="panel p-6 md:p-9">
+              <p className="eyebrow">Direct contact</p>
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
+                Reach out directly to start a conversation. We typically respond the same business day.
+              </p>
+              <div className="mt-8 space-y-4">
+                <a
+                  href="tel:+61408065993"
+                  className="group flex items-center gap-4 rounded-lg border border-border bg-background p-4 transition-colors hover:bg-surface"
+                >
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground/80">
+                    <Phone className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Mobile</p>
+                    <p className="mt-0.5 font-display text-lg font-medium tracking-tight">+61 408 065 993</p>
+                  </div>
+                </a>
+                <a
+                  href="mailto:ajay@spectraiq.ai"
+                  className="group flex items-center gap-4 rounded-lg border border-border bg-background p-4 transition-colors hover:bg-surface"
+                >
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground/80">
+                    <Mail className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Email</p>
+                    <p className="mt-0.5 font-display text-lg font-medium tracking-tight">ajay@spectraiq.ai</p>
+                  </div>
+                </a>
               </div>
-              <button
-                type="submit"
-                className="group mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:w-auto"
-              >
-                {sent ? "Enquiry received" : "Start a Conversation"}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
-            </form>
+            </div>
           </Reveal>
         </div>
       </Section>
