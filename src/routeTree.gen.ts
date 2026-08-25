@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as CapabilitiesIndexRouteImport } from './routes/capabilities.index'
 import { Route as CapabilitiesAiTransformationRouteImport } from './routes/capabilities.ai-transformation'
 import { Route as CapabilitiesEnterpriseTechnologyRouteImport } from './routes/capabilities.enterprise-technology'
@@ -35,6 +36,11 @@ const AboutRoute = AboutRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CapabilitiesIndexRoute = CapabilitiesIndexRouteImport.update({
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/insights': typeof InsightsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/insights': typeof InsightsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/insights': typeof InsightsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/insights'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/ventures/alwayson'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/insights'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/ventures/alwayson'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/insights'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/ventures/alwayson'
@@ -178,6 +190,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  InsightsRoute: typeof InsightsRoute
   CapabilitiesAiTransformationRoute: typeof CapabilitiesAiTransformationRoute
   CapabilitiesEnterpriseTechnologyRoute: typeof CapabilitiesEnterpriseTechnologyRoute
   VenturesAlwaysonRoute: typeof VenturesAlwaysonRoute
@@ -210,6 +223,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/capabilities/': {
@@ -282,6 +302,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  InsightsRoute: InsightsRoute,
   CapabilitiesAiTransformationRoute: CapabilitiesAiTransformationRoute,
   CapabilitiesEnterpriseTechnologyRoute: CapabilitiesEnterpriseTechnologyRoute,
   VenturesAlwaysonRoute: VenturesAlwaysonRoute,
