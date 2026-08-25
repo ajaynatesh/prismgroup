@@ -339,11 +339,11 @@ function Page() {
             },
           ].map((s, i) => (
             <div key={s.id} className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
-              <Reveal className={i % 2 === 1 ? "lg:order-2" : undefined}>
+              <Reveal className={i % 2 === 1 ? "lg:order-2" : ""}>
                 <h3 className="display-md uppercase">{s.head}</h3>
                 <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">{s.copy}</p>
               </Reveal>
-              <Reveal delay={0.1} className={i % 2 === 1 ? "lg:order-1" : undefined}>
+              <Reveal delay={0.1} className={i % 2 === 1 ? "lg:order-1" : ""}>
                 <Panel>
                   <p className="eyebrow">{personas[i]?.role} lens</p>
                   <p className="mt-5 text-sm font-medium">“{personas[i]?.question}”</p>
