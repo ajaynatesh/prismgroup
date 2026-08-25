@@ -10,33 +10,248 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as TechnologyRouteImport } from './routes/technology'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as CapabilitiesIndexRouteImport } from './routes/capabilities.index'
+import { Route as CapabilitiesAiTransformationRouteImport } from './routes/capabilities.ai-transformation'
+import { Route as CapabilitiesEnterpriseTechnologyRouteImport } from './routes/capabilities.enterprise-technology'
+import { Route as VenturesIndexRouteImport } from './routes/ventures.index'
+import { Route as VenturesAlwaysonRouteImport } from './routes/ventures.alwayson'
+import { Route as VenturesDecisioniqRouteImport } from './routes/ventures.decisioniq'
+import { Route as VenturesPrismDiagnosticsRouteImport } from './routes/ventures.prism-diagnostics'
+import { Route as VenturesSpectraiqRouteImport } from './routes/ventures.spectraiq'
+import { Route as VenturesTradelinkRouteImport } from './routes/ventures.tradelink'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TechnologyRoute = TechnologyRouteImport.update({
+  id: '/technology',
+  path: '/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CapabilitiesIndexRoute = CapabilitiesIndexRouteImport.update({
+  id: '/capabilities/',
+  path: '/capabilities/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CapabilitiesAiTransformationRoute =
+  CapabilitiesAiTransformationRouteImport.update({
+    id: '/capabilities/ai-transformation',
+    path: '/capabilities/ai-transformation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CapabilitiesEnterpriseTechnologyRoute =
+  CapabilitiesEnterpriseTechnologyRouteImport.update({
+    id: '/capabilities/enterprise-technology',
+    path: '/capabilities/enterprise-technology',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const VenturesIndexRoute = VenturesIndexRouteImport.update({
+  id: '/ventures/',
+  path: '/ventures/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenturesAlwaysonRoute = VenturesAlwaysonRouteImport.update({
+  id: '/ventures/alwayson',
+  path: '/ventures/alwayson',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenturesDecisioniqRoute = VenturesDecisioniqRouteImport.update({
+  id: '/ventures/decisioniq',
+  path: '/ventures/decisioniq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenturesPrismDiagnosticsRoute =
+  VenturesPrismDiagnosticsRouteImport.update({
+    id: '/ventures/prism-diagnostics',
+    path: '/ventures/prism-diagnostics',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const VenturesSpectraiqRoute = VenturesSpectraiqRouteImport.update({
+  id: '/ventures/spectraiq',
+  path: '/ventures/spectraiq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenturesTradelinkRoute = VenturesTradelinkRouteImport.update({
+  id: '/ventures/tradelink',
+  path: '/ventures/tradelink',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/insights': typeof InsightsRoute
+  '/privacy': typeof PrivacyRoute
+  '/security': typeof SecurityRoute
+  '/technology': typeof TechnologyRoute
+  '/terms': typeof TermsRoute
+  '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
+  '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/ventures/alwayson': typeof VenturesAlwaysonRoute
+  '/ventures/decisioniq': typeof VenturesDecisioniqRoute
+  '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
+  '/ventures/spectraiq': typeof VenturesSpectraiqRoute
+  '/ventures/tradelink': typeof VenturesTradelinkRoute
+  '/capabilities/': typeof CapabilitiesIndexRoute
+  '/ventures/': typeof VenturesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/insights': typeof InsightsRoute
+  '/privacy': typeof PrivacyRoute
+  '/security': typeof SecurityRoute
+  '/technology': typeof TechnologyRoute
+  '/terms': typeof TermsRoute
+  '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
+  '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/ventures/alwayson': typeof VenturesAlwaysonRoute
+  '/ventures/decisioniq': typeof VenturesDecisioniqRoute
+  '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
+  '/ventures/spectraiq': typeof VenturesSpectraiqRoute
+  '/ventures/tradelink': typeof VenturesTradelinkRoute
+  '/capabilities': typeof CapabilitiesIndexRoute
+  '/ventures': typeof VenturesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/insights': typeof InsightsRoute
+  '/privacy': typeof PrivacyRoute
+  '/security': typeof SecurityRoute
+  '/technology': typeof TechnologyRoute
+  '/terms': typeof TermsRoute
+  '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
+  '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/ventures/alwayson': typeof VenturesAlwaysonRoute
+  '/ventures/decisioniq': typeof VenturesDecisioniqRoute
+  '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
+  '/ventures/spectraiq': typeof VenturesSpectraiqRoute
+  '/ventures/tradelink': typeof VenturesTradelinkRoute
+  '/capabilities/': typeof CapabilitiesIndexRoute
+  '/ventures/': typeof VenturesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/insights'
+    | '/privacy'
+    | '/security'
+    | '/technology'
+    | '/terms'
+    | '/capabilities/ai-transformation'
+    | '/capabilities/enterprise-technology'
+    | '/ventures/alwayson'
+    | '/ventures/decisioniq'
+    | '/ventures/prism-diagnostics'
+    | '/ventures/spectraiq'
+    | '/ventures/tradelink'
+    | '/capabilities/'
+    | '/ventures/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/insights'
+    | '/privacy'
+    | '/security'
+    | '/technology'
+    | '/terms'
+    | '/capabilities/ai-transformation'
+    | '/capabilities/enterprise-technology'
+    | '/ventures/alwayson'
+    | '/ventures/decisioniq'
+    | '/ventures/prism-diagnostics'
+    | '/ventures/spectraiq'
+    | '/ventures/tradelink'
+    | '/capabilities'
+    | '/ventures'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/insights'
+    | '/privacy'
+    | '/security'
+    | '/technology'
+    | '/terms'
+    | '/capabilities/ai-transformation'
+    | '/capabilities/enterprise-technology'
+    | '/ventures/alwayson'
+    | '/ventures/decisioniq'
+    | '/ventures/prism-diagnostics'
+    | '/ventures/spectraiq'
+    | '/ventures/tradelink'
+    | '/capabilities/'
+    | '/ventures/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  InsightsRoute: typeof InsightsRoute
+  PrivacyRoute: typeof PrivacyRoute
+  SecurityRoute: typeof SecurityRoute
+  TechnologyRoute: typeof TechnologyRoute
+  TermsRoute: typeof TermsRoute
+  CapabilitiesAiTransformationRoute: typeof CapabilitiesAiTransformationRoute
+  CapabilitiesEnterpriseTechnologyRoute: typeof CapabilitiesEnterpriseTechnologyRoute
+  VenturesAlwaysonRoute: typeof VenturesAlwaysonRoute
+  VenturesDecisioniqRoute: typeof VenturesDecisioniqRoute
+  VenturesPrismDiagnosticsRoute: typeof VenturesPrismDiagnosticsRoute
+  VenturesSpectraiqRoute: typeof VenturesSpectraiqRoute
+  VenturesTradelinkRoute: typeof VenturesTradelinkRoute
+  CapabilitiesIndexRoute: typeof CapabilitiesIndexRoute
+  VenturesIndexRoute: typeof VenturesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +263,139 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/technology': {
+      id: '/technology'
+      path: '/technology'
+      fullPath: '/technology'
+      preLoaderRoute: typeof TechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capabilities/': {
+      id: '/capabilities/'
+      path: '/capabilities'
+      fullPath: '/capabilities/'
+      preLoaderRoute: typeof CapabilitiesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capabilities/ai-transformation': {
+      id: '/capabilities/ai-transformation'
+      path: '/capabilities/ai-transformation'
+      fullPath: '/capabilities/ai-transformation'
+      preLoaderRoute: typeof CapabilitiesAiTransformationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capabilities/enterprise-technology': {
+      id: '/capabilities/enterprise-technology'
+      path: '/capabilities/enterprise-technology'
+      fullPath: '/capabilities/enterprise-technology'
+      preLoaderRoute: typeof CapabilitiesEnterpriseTechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/': {
+      id: '/ventures/'
+      path: '/ventures'
+      fullPath: '/ventures/'
+      preLoaderRoute: typeof VenturesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/alwayson': {
+      id: '/ventures/alwayson'
+      path: '/ventures/alwayson'
+      fullPath: '/ventures/alwayson'
+      preLoaderRoute: typeof VenturesAlwaysonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/decisioniq': {
+      id: '/ventures/decisioniq'
+      path: '/ventures/decisioniq'
+      fullPath: '/ventures/decisioniq'
+      preLoaderRoute: typeof VenturesDecisioniqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/prism-diagnostics': {
+      id: '/ventures/prism-diagnostics'
+      path: '/ventures/prism-diagnostics'
+      fullPath: '/ventures/prism-diagnostics'
+      preLoaderRoute: typeof VenturesPrismDiagnosticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/spectraiq': {
+      id: '/ventures/spectraiq'
+      path: '/ventures/spectraiq'
+      fullPath: '/ventures/spectraiq'
+      preLoaderRoute: typeof VenturesSpectraiqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/tradelink': {
+      id: '/ventures/tradelink'
+      path: '/ventures/tradelink'
+      fullPath: '/ventures/tradelink'
+      preLoaderRoute: typeof VenturesTradelinkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  InsightsRoute: InsightsRoute,
+  PrivacyRoute: PrivacyRoute,
+  SecurityRoute: SecurityRoute,
+  TechnologyRoute: TechnologyRoute,
+  TermsRoute: TermsRoute,
+  CapabilitiesAiTransformationRoute: CapabilitiesAiTransformationRoute,
+  CapabilitiesEnterpriseTechnologyRoute: CapabilitiesEnterpriseTechnologyRoute,
+  VenturesAlwaysonRoute: VenturesAlwaysonRoute,
+  VenturesDecisioniqRoute: VenturesDecisioniqRoute,
+  VenturesPrismDiagnosticsRoute: VenturesPrismDiagnosticsRoute,
+  VenturesSpectraiqRoute: VenturesSpectraiqRoute,
+  VenturesTradelinkRoute: VenturesTradelinkRoute,
+  CapabilitiesIndexRoute: CapabilitiesIndexRoute,
+  VenturesIndexRoute: VenturesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
