@@ -31,18 +31,9 @@ function Home() {
   return (
     <>
       {/* 02 — HERO */}
-      <section className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-36">
-        {/* the prism sits in a black studio void that dissolves into the page */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          aria-hidden="true"
-          style={{
-            background:
-              "radial-gradient(58% 80% at 78% 46%, oklch(0 0 0) 0%, oklch(0 0 0 / 85%) 42%, transparent 78%)",
-          }}
-        />
-        <div className="shell relative grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
-          <div className="relative z-10">
+      <section className="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
+        <div className="shell relative flex flex-col items-center text-center">
+          <div className="relative z-10 max-w-4xl">
             <Reveal>
               <p className="eyebrow">Prism Group</p>
             </Reveal>
@@ -54,32 +45,30 @@ function Home() {
               </h1>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="mt-7 max-w-xl font-display text-lg font-medium leading-snug tracking-tight text-foreground/90 md:text-2xl">
+              <p className="mx-auto mt-7 max-w-2xl font-display text-lg font-medium leading-snug tracking-tight text-foreground/90 md:text-2xl">
                 Transform your business. Accelerate growth. Increase profitability.
               </p>
             </Reveal>
             <Reveal delay={0.18}>
-              <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground">
+              <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground">
                 Prism helps organisations move from AI ambition to measurable business impact —
                 identifying where AI can create value, building the right solutions and embedding
                 intelligence into the way businesses operate.
               </p>
             </Reveal>
             <Reveal delay={0.24}>
-              <div className="mt-10 flex flex-wrap gap-3">
+              <div className="mt-10 flex flex-wrap justify-center gap-3">
                 <PrimaryLink to="/ventures">Explore Our Portfolio</PrimaryLink>
                 <GhostLink to="/contact">Talk to Prism</GhostLink>
               </div>
             </Reveal>
             <Reveal delay={0.3}>
-              <p className="mt-12 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              <p className="mx-auto mt-12 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                 Most organisations know AI will change their business. Few know where to start, what to
                 prioritise, or how to turn AI into measurable commercial value.
               </p>
             </Reveal>
           </div>
-
-          <PrismObject className="relative -mx-8 lg:mx-0 lg:-mr-16" />
         </div>
       </section>
 
