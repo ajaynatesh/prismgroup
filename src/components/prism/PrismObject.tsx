@@ -38,7 +38,17 @@ export function PrismObject({ className }: { className?: string }) {
         />
       </motion.div>
 
-      <motion.div style={base} className="relative">
+      <motion.div
+        style={{
+          ...base,
+          mixBlendMode: "screen",
+          maskImage:
+            "radial-gradient(78% 72% at 52% 50%, black 55%, transparent 92%)",
+          WebkitMaskImage:
+            "radial-gradient(78% 72% at 52% 50%, black 55%, transparent 92%)",
+        }}
+        className="relative"
+      >
         {/* achromatic base render */}
         <img
           src={prismObject}
@@ -79,14 +89,6 @@ export function PrismObject({ className }: { className?: string }) {
         )}
       </motion.div>
 
-      {/* blend the plate into the page */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(75% 60% at 55% 50%, transparent 40%, var(--background) 100%)",
-        }}
-      />
     </div>
   );
 }
