@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CapabilitiesIndexRouteImport } from './routes/capabilities.index'
 import { Route as CapabilitiesAiTransformationRouteImport } from './routes/capabilities.ai-transformation'
 import { Route as CapabilitiesEnterpriseTechnologyRouteImport } from './routes/capabilities.enterprise-technology'
@@ -29,6 +30,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CapabilitiesIndexRoute = CapabilitiesIndexRouteImport.update({
@@ -83,6 +89,7 @@ const VenturesTradelinkRoute = VenturesTradelinkRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/contact'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/ventures/alwayson'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/contact'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/ventures/alwayson'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/contact'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/ventures/alwayson'
@@ -165,6 +177,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   CapabilitiesAiTransformationRoute: typeof CapabilitiesAiTransformationRoute
   CapabilitiesEnterpriseTechnologyRoute: typeof CapabilitiesEnterpriseTechnologyRoute
   VenturesAlwaysonRoute: typeof VenturesAlwaysonRoute
@@ -190,6 +203,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/capabilities/': {
@@ -261,6 +281,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   CapabilitiesAiTransformationRoute: CapabilitiesAiTransformationRoute,
   CapabilitiesEnterpriseTechnologyRoute: CapabilitiesEnterpriseTechnologyRoute,
   VenturesAlwaysonRoute: VenturesAlwaysonRoute,
