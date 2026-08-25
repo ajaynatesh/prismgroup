@@ -19,7 +19,6 @@ import {
   Autonomy,
   BeforeAfter,
   CaseStudyFormat,
-  CaseStudyFormat as _CS,
   DataFoundation,
   DimensionLadder,
   Flywheel,
