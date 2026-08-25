@@ -10,33 +10,131 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CapabilitiesAiTransformationRouteImport } from './routes/capabilities.ai-transformation'
+import { Route as CapabilitiesEnterpriseTechnologyRouteImport } from './routes/capabilities.enterprise-technology'
+import { Route as VenturesAlwaysonRouteImport } from './routes/ventures.alwayson'
+import { Route as VenturesDecisioniqRouteImport } from './routes/ventures.decisioniq'
+import { Route as VenturesPrismDiagnosticsRouteImport } from './routes/ventures.prism-diagnostics'
+import { Route as VenturesSpectraiqRouteImport } from './routes/ventures.spectraiq'
+import { Route as VenturesTradelinkRouteImport } from './routes/ventures.tradelink'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CapabilitiesAiTransformationRoute =
+  CapabilitiesAiTransformationRouteImport.update({
+    id: '/capabilities/ai-transformation',
+    path: '/capabilities/ai-transformation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CapabilitiesEnterpriseTechnologyRoute =
+  CapabilitiesEnterpriseTechnologyRouteImport.update({
+    id: '/capabilities/enterprise-technology',
+    path: '/capabilities/enterprise-technology',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const VenturesAlwaysonRoute = VenturesAlwaysonRouteImport.update({
+  id: '/ventures/alwayson',
+  path: '/ventures/alwayson',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenturesDecisioniqRoute = VenturesDecisioniqRouteImport.update({
+  id: '/ventures/decisioniq',
+  path: '/ventures/decisioniq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenturesPrismDiagnosticsRoute =
+  VenturesPrismDiagnosticsRouteImport.update({
+    id: '/ventures/prism-diagnostics',
+    path: '/ventures/prism-diagnostics',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const VenturesSpectraiqRoute = VenturesSpectraiqRouteImport.update({
+  id: '/ventures/spectraiq',
+  path: '/ventures/spectraiq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenturesTradelinkRoute = VenturesTradelinkRouteImport.update({
+  id: '/ventures/tradelink',
+  path: '/ventures/tradelink',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
+  '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/ventures/alwayson': typeof VenturesAlwaysonRoute
+  '/ventures/decisioniq': typeof VenturesDecisioniqRoute
+  '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
+  '/ventures/spectraiq': typeof VenturesSpectraiqRoute
+  '/ventures/tradelink': typeof VenturesTradelinkRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
+  '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/ventures/alwayson': typeof VenturesAlwaysonRoute
+  '/ventures/decisioniq': typeof VenturesDecisioniqRoute
+  '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
+  '/ventures/spectraiq': typeof VenturesSpectraiqRoute
+  '/ventures/tradelink': typeof VenturesTradelinkRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
+  '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/ventures/alwayson': typeof VenturesAlwaysonRoute
+  '/ventures/decisioniq': typeof VenturesDecisioniqRoute
+  '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
+  '/ventures/spectraiq': typeof VenturesSpectraiqRoute
+  '/ventures/tradelink': typeof VenturesTradelinkRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/capabilities/ai-transformation'
+    | '/capabilities/enterprise-technology'
+    | '/ventures/alwayson'
+    | '/ventures/decisioniq'
+    | '/ventures/prism-diagnostics'
+    | '/ventures/spectraiq'
+    | '/ventures/tradelink'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/capabilities/ai-transformation'
+    | '/capabilities/enterprise-technology'
+    | '/ventures/alwayson'
+    | '/ventures/decisioniq'
+    | '/ventures/prism-diagnostics'
+    | '/ventures/spectraiq'
+    | '/ventures/tradelink'
+  id:
+    | '__root__'
+    | '/'
+    | '/capabilities/ai-transformation'
+    | '/capabilities/enterprise-technology'
+    | '/ventures/alwayson'
+    | '/ventures/decisioniq'
+    | '/ventures/prism-diagnostics'
+    | '/ventures/spectraiq'
+    | '/ventures/tradelink'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CapabilitiesAiTransformationRoute: typeof CapabilitiesAiTransformationRoute
+  CapabilitiesEnterpriseTechnologyRoute: typeof CapabilitiesEnterpriseTechnologyRoute
+  VenturesAlwaysonRoute: typeof VenturesAlwaysonRoute
+  VenturesDecisioniqRoute: typeof VenturesDecisioniqRoute
+  VenturesPrismDiagnosticsRoute: typeof VenturesPrismDiagnosticsRoute
+  VenturesSpectraiqRoute: typeof VenturesSpectraiqRoute
+  VenturesTradelinkRoute: typeof VenturesTradelinkRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +146,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/capabilities/ai-transformation': {
+      id: '/capabilities/ai-transformation'
+      path: '/capabilities/ai-transformation'
+      fullPath: '/capabilities/ai-transformation'
+      preLoaderRoute: typeof CapabilitiesAiTransformationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capabilities/enterprise-technology': {
+      id: '/capabilities/enterprise-technology'
+      path: '/capabilities/enterprise-technology'
+      fullPath: '/capabilities/enterprise-technology'
+      preLoaderRoute: typeof CapabilitiesEnterpriseTechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/alwayson': {
+      id: '/ventures/alwayson'
+      path: '/ventures/alwayson'
+      fullPath: '/ventures/alwayson'
+      preLoaderRoute: typeof VenturesAlwaysonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/decisioniq': {
+      id: '/ventures/decisioniq'
+      path: '/ventures/decisioniq'
+      fullPath: '/ventures/decisioniq'
+      preLoaderRoute: typeof VenturesDecisioniqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/prism-diagnostics': {
+      id: '/ventures/prism-diagnostics'
+      path: '/ventures/prism-diagnostics'
+      fullPath: '/ventures/prism-diagnostics'
+      preLoaderRoute: typeof VenturesPrismDiagnosticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/spectraiq': {
+      id: '/ventures/spectraiq'
+      path: '/ventures/spectraiq'
+      fullPath: '/ventures/spectraiq'
+      preLoaderRoute: typeof VenturesSpectraiqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ventures/tradelink': {
+      id: '/ventures/tradelink'
+      path: '/ventures/tradelink'
+      fullPath: '/ventures/tradelink'
+      preLoaderRoute: typeof VenturesTradelinkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CapabilitiesAiTransformationRoute: CapabilitiesAiTransformationRoute,
+  CapabilitiesEnterpriseTechnologyRoute: CapabilitiesEnterpriseTechnologyRoute,
+  VenturesAlwaysonRoute: VenturesAlwaysonRoute,
+  VenturesDecisioniqRoute: VenturesDecisioniqRoute,
+  VenturesPrismDiagnosticsRoute: VenturesPrismDiagnosticsRoute,
+  VenturesSpectraiqRoute: VenturesSpectraiqRoute,
+  VenturesTradelinkRoute: VenturesTradelinkRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
