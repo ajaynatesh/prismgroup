@@ -436,8 +436,8 @@ export const insights = [
 
 export const navLinks = [
   { label: "About", to: "/about" },
-  { label: "What We Do", to: "/capabilities" },
-  { label: "Our Ventures", to: "/ventures" },
+  { label: "Portfolio", to: "/ventures" },
+  { label: "Capabilities", to: "/capabilities" },
   { label: "Technology", to: "/technology" },
   { label: "Insights", to: "/insights" },
   { label: "Contact", to: "/contact" },

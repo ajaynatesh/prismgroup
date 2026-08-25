@@ -1,30 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { useState } from "react";
-import { PrismBeams } from "@/components/prism/PrismBeams";
-import { Spectrum } from "@/components/prism/Spectrum";
+import { PrismObject } from "@/components/prism/PrismObject";
+import { PillarPortfolio, PillarLedger } from "@/components/prism/PillarPortfolio";
 import { Reveal } from "@/components/prism/Reveal";
-import {
-  FlowRail,
-  GhostLink,
-  PrimaryLink,
-  Section,
-  SectionHeading,
-  VentureLabel,
-} from "@/components/prism/ui";
-import {
-  ecosystemLayers,
-  industries,
-  insights,
-  principles,
-  valueSteps,
-  ventures,
-} from "@/lib/prism";
+import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";
+import { commercialOutcomes, methodology, whyPrism } from "@/lib/home";
+import { industries, insights } from "@/lib/prism";
 
-const title = "Prism Group — One Prism. Seven ways to transform what's possible.";
+const title = "Prism Group — Unleash the potential of AI";
 const description =
-  "Prism Group builds and scales intelligent businesses combining AI, technology, domain expertise and innovation across enterprise transformation, decision intelligence and healthcare diagnostics.";
+  "Prism Group helps organisations turn AI from ambition into measurable business impact — growing revenue, optimising cost and increasing profitability across seven strategic pillars.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,6 +21,7 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: description },
       { property: "og:url", content: "/" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -42,274 +29,333 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const [active, setActive] = useState<number | null>(null);
-
   return (
     <>
-      {/* 01 — HERO */}
-      <section className="relative flex min-h-[92svh] items-end overflow-hidden pb-16 pt-32 md:min-h-svh md:items-center md:pb-0">
-        <div className="absolute inset-0 text-foreground">
-          <PrismBeams activeColour={active} />
-        </div>
+      {/* 02 — HERO */}
+      <section className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-36">
+        {/* the prism sits in a black studio void that dissolves into the page */}
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/85 to-transparent"
+          className="pointer-events-none absolute inset-0"
           aria-hidden="true"
+          style={{
+            background:
+              "radial-gradient(58% 80% at 78% 46%, oklch(0 0 0) 0%, oklch(0 0 0 / 85%) 42%, transparent 78%)",
+          }}
         />
-        <div className="shell relative">
-          <Reveal>
-            <p className="eyebrow">Prism Group</p>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h1 className="display-xl mt-6 max-w-4xl">
-              One prism.
-              <br />
-              <span className="text-muted-foreground">Seven ways to transform</span>
-              <br />
-              what's possible.
-            </h1>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Prism Group builds and scales intelligent businesses that combine AI, technology, domain
-              expertise and innovation to transform how organisations operate, decide, connect and grow.
-            </p>
-          </Reveal>
-          <Reveal delay={0.24}>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <PrimaryLink to="/capabilities">Explore Prism</PrimaryLink>
-              <GhostLink to="/ventures">Meet Our Ventures</GhostLink>
-            </div>
-          </Reveal>
-          <Reveal delay={0.32}>
-            <div className="mt-14 flex flex-wrap gap-1.5" onMouseLeave={() => setActive(null)}>
-              {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-                <button
-                  key={n}
-                  type="button"
-                  aria-label={`Prism colour ${n}`}
-                  onMouseEnter={() => setActive(n)}
-                  onFocus={() => setActive(n)}
-                  onClick={() => setActive(n)}
-                  className="h-1 w-12 rounded-full transition-all duration-300 hover:h-1.5"
-                  style={{
-                    background: `var(--prism-colour-${n})`,
-                    opacity: active == null || active === n ? 1 : 0.3,
-                  }}
-                />
-              ))}
-            </div>
-          </Reveal>
+        <div className="shell relative grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+          <div className="relative z-10">
+            <Reveal>
+              <p className="eyebrow">Prism Group</p>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <h1 className="display-xl mt-6 uppercase">
+                Unleash the
+                <br />
+                potential of AI.
+              </h1>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mt-7 max-w-xl font-display text-lg font-medium leading-snug tracking-tight text-foreground/90 md:text-2xl">
+                Transform your business. Accelerate growth. Increase profitability.
+              </p>
+            </Reveal>
+            <Reveal delay={0.18}>
+              <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground">
+                Prism helps organisations move from AI ambition to measurable business impact —
+                identifying where AI can create value, building the right solutions and embedding
+                intelligence into the way businesses operate.
+              </p>
+            </Reveal>
+            <Reveal delay={0.24}>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <PrimaryLink to="/ventures">Explore Our Portfolio</PrimaryLink>
+                <GhostLink to="/contact">Talk to Prism</GhostLink>
+              </div>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <p className="mt-12 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                Most organisations know AI will change their business. Few know where to start, what to
+                prioritise, or how to turn AI into measurable commercial value.
+              </p>
+            </Reveal>
+          </div>
+
+          <PrismObject className="relative -mx-8 lg:mx-0 lg:-mr-16" />
         </div>
       </section>
 
-      {/* 02 — WHAT IS PRISM */}
-      <Section id="what" tone="raised">
-        <div className="shell grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-          <SectionHeading eyebrow="What is Prism" title="We build what's next." />
-          <Reveal delay={0.1}>
-            <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              <p>
-                Prism Group is a technology and innovation group building intelligent solutions across AI,
-                enterprise transformation, decision intelligence, mobile-first business platforms,
-                AI-powered customer engagement and healthcare diagnostics.
-              </p>
-              <p>
-                We combine strategic thinking with engineering capability and domain expertise to turn
-                complex problems into scalable solutions with measurable outcomes.
-              </p>
-            </div>
-            <div className="mt-10">
-              <FlowRail
-                steps={["Idea", "Intelligence", "Engineering", "Deployment", "Outcome", "Scale"]}
-                colour={4}
-              />
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* 03 + 04 — SEVEN COLOURS, ONE PRISM */}
-      <Section id="pillars">
+      {/* 03 — BUSINESS OUTCOME */}
+      <Section tone="raised" className="py-16 md:py-20 lg:py-24">
         <div className="shell">
-          <SectionHeading
-            eyebrow="The portfolio"
-            title={
-              <>
-                Seven colours.
-                <br />
-                One prism.
-              </>
-            }
-            copy="Seven businesses and capabilities. One shared philosophy: use intelligence, technology and innovation to create measurable outcomes."
-          />
-          <div className="mt-16">
-            <Spectrum />
-          </div>
-          <Reveal className="mt-12 grid gap-8 border-t border-border pt-10 md:grid-cols-3">
-            <div>
-              <p className="eyebrow">Parent company</p>
-              <p className="mt-3 font-display text-lg font-semibold tracking-tight">Prism Group</p>
-            </div>
-            <div>
-              <p className="eyebrow">Capabilities</p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                AI Transformation &amp; Automation · Enterprise AI &amp; Technology Transformation
-              </p>
-            </div>
-            <div>
-              <p className="eyebrow">Owned ventures</p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                SpectraIQ.ai · Prism DecisionIQ · Prism TradeLink · Prism AlwaysOn AI · Prism Diagnostics
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* 05 — VALUE */}
-      <Section tone="raised">
-        <div className="shell">
-          <SectionHeading
-            eyebrow="How Prism creates value"
-            title="From complexity to clarity."
-            copy="We don't pursue technology for technology's sake. We start with the problem, quantify the opportunity and build toward measurable outcomes."
-          />
-          <div className="mt-16 grid gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-5">
-            {valueSteps.map((s, i) => (
-              <div key={s.n} className="group bg-background p-6 md:p-7">
-                <span
-                  className="block h-px w-8 transition-all duration-500 group-hover:w-14"
-                  style={{ background: `var(--prism-colour-${i + 1})` }}
-                  aria-hidden="true"
-                />
-                <p className="mt-6 font-display text-xs text-muted-foreground">{s.n}</p>
-                <h3 className="mt-2 font-display text-base font-semibold tracking-tight">{s.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.copy}</p>
+          <div className="grid items-end gap-10 md:grid-cols-[auto_1fr_auto_1fr_auto_1.2fr] md:gap-8">
+            {[
+              { k: "Grow", sub: "Revenue & opportunity", colour: 2 },
+              { k: "Optimise", sub: "Cost & efficiency", colour: 5 },
+            ].map((o, i) => (
+              <div key={o.k} className="contents">
+                <Reveal delay={i * 0.08} className="hidden md:block">
+                  <span className="font-display text-3xl text-muted-foreground/40">{i === 0 ? "" : "+"}</span>
+                </Reveal>
+                <Reveal delay={i * 0.08 + 0.04}>
+                  <div>
+                    <span
+                      className="block h-px w-10"
+                      style={{ background: `var(--prism-colour-${o.colour})` }}
+                    />
+                    <h2 className="mt-5 font-display text-3xl font-semibold uppercase tracking-tight md:text-4xl">
+                      {o.k}
+                    </h2>
+                    <p className="mt-2 text-sm text-muted-foreground">{o.sub}</p>
+                  </div>
+                </Reveal>
               </div>
             ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* 06 — THE PRISM DIFFERENCE */}
-      <Section>
-        <div className="shell">
-          <SectionHeading
-            eyebrow="The Prism difference"
-            title="Technology is only valuable when it changes the outcome."
-          />
-          <div className="mt-16 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {principles.map((p, i) => (
-              <div key={p.title} className="bg-background p-7 transition-colors hover:bg-surface md:p-9">
-                <span
-                  className="inline-block h-2 w-2 rounded-full"
-                  style={{ background: `var(--prism-colour-${(i % 7) + 1})` }}
-                  aria-hidden="true"
-                />
-                <h3 className="mt-6 font-display text-lg font-semibold tracking-tight">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.copy}</p>
+            <Reveal delay={0.2} className="hidden md:block">
+              <span className="font-display text-3xl text-muted-foreground/40">=</span>
+            </Reveal>
+            <Reveal delay={0.24}>
+              <div>
+                <span className="spectrum-rule block w-24" />
+                <h2 className="mt-5 font-display text-4xl font-semibold uppercase tracking-tight md:text-5xl">
+                  Accelerate
+                </h2>
+                <p className="mt-2 text-sm text-foreground/80">Profitability &amp; growth</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* 07 — OWNED VENTURES */}
-      <Section tone="raised">
-        <div className="shell">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading
-              eyebrow="Owned ventures"
-              title="Built inside Prism."
-              copy="Proprietary Prism Group businesses and platforms — distinct from our advisory and engineering capabilities."
-            />
-            <Reveal>
-              <GhostLink to="/ventures">All ventures</GhostLink>
             </Reveal>
           </div>
-          <div className="mt-14 space-y-px overflow-hidden rounded-lg border border-border bg-border">
-            {ventures.map((v, i) => (
-              <Reveal key={v.index} delay={i * 0.04}>
-                <Link
-                  to={v.href as never}
-                  className="group flex flex-col gap-4 bg-background p-6 transition-colors hover:bg-surface md:flex-row md:items-center md:justify-between md:p-8"
-                >
-                  <div className="flex items-start gap-5">
+        </div>
+      </Section>
+
+      {/* 04 — PORTFOLIO */}
+      <Section id="portfolio">
+        <div className="shell">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+            <SectionHeading
+              eyebrow="The portfolio"
+              title={
+                <span className="uppercase">
+                  Seven pillars.
+                  <br />
+                  One prism.
+                </span>
+              }
+            />
+            <Reveal delay={0.1}>
+              <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                From AI transformation and enterprise technology to decision intelligence, customer
+                engagement and healthcare diagnostics, Prism brings together seven strategic capabilities
+                designed to help organisations unlock more value from technology and AI.
+              </p>
+            </Reveal>
+          </div>
+          <div className="mt-16 md:mt-20">
+            <PillarPortfolio />
+          </div>
+        </div>
+      </Section>
+
+      {/* 05 — PILLAR DETAIL */}
+      <Section tone="raised" id="pillars">
+        <div className="shell">
+          <SectionHeading
+            eyebrow="Pillar detail"
+            title="Depth behind every colour."
+            copy="Seven pillars, each with its own domain, technology and commercial thesis — and one shared objective: measurable business value."
+          />
+          <div className="mt-14">
+            <PillarLedger />
+          </div>
+        </div>
+      </Section>
+
+      {/* 06 — METHODOLOGY */}
+      <Section id="methodology">
+        <div className="shell">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-20">
+            <SectionHeading
+              eyebrow="The Prism method"
+              title={<span className="uppercase">From AI ambition to business impact.</span>}
+            />
+            <Reveal delay={0.1}>
+              <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+                The challenge isn't whether AI will transform business. The challenge is knowing where to
+                start, what to build and how to turn AI into measurable value.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.75rem] uppercase tracking-[0.16em] text-muted-foreground">
+                {["Business problem", "Opportunity", "AI", "Transformation", "Measurable outcome"].map(
+                  (s, i) => (
+                    <span key={s} className="inline-flex items-center gap-3">
+                      {i > 0 ? <span className="text-muted-foreground/40">→</span> : null}
+                      {s}
+                    </span>
+                  ),
+                )}
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="mt-16 grid gap-px overflow-hidden border-y border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {methodology.map((s, i) => (
+              <Reveal key={s.n} delay={i * 0.05}>
+                <div className="group h-full bg-background p-7 transition-colors hover:bg-surface md:p-9">
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-display text-xs tracking-[0.18em] text-muted-foreground">
+                      {s.n}
+                    </span>
                     <span
-                      className="mt-2 h-2 w-2 shrink-0 rounded-full transition-transform duration-500 group-hover:scale-150"
-                      style={{ background: `var(--prism-colour-${v.colour})` }}
-                      aria-hidden="true"
+                      className="h-px w-8 transition-all duration-500 group-hover:w-14"
+                      style={{ background: `var(--prism-colour-${i + 1})` }}
                     />
-                    <div>
-                      <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">
-                        {v.name}
-                      </h3>
-                      <p className="mt-1.5 text-sm text-muted-foreground">{v.headline}</p>
-                    </div>
                   </div>
-                  <div className="flex items-center gap-4 md:pl-8">
-                    <VentureLabel />
-                    <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
-                  </div>
-                </Link>
+                  <h3 className="mt-8 font-display text-2xl font-semibold uppercase tracking-tight">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.copy}</p>
+                </div>
               </Reveal>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* 08 — TECHNOLOGY ECOSYSTEM */}
-      <Section id="ecosystem">
-        <div className="shell grid gap-16 lg:grid-cols-2">
+      {/* 07 — COMMERCIAL IMPACT */}
+      <Section tone="raised">
+        <div className="shell">
           <SectionHeading
-            eyebrow="Technology ecosystem"
-            title="Data. AI. Intelligence. Automation. Outcomes."
-            copy="Cognitive engineering: the integration of domain expertise, data, artificial intelligence, automation and application engineering into systems that understand information, automate complex workflows, strengthen decision-making and continuously improve outcomes."
+            eyebrow="Commercial impact"
+            title={<span className="uppercase">AI should not be a cost centre.</span>}
+            copy='The objective is not to "do something with AI". The objective is to create measurable business value.'
           />
-          <Reveal delay={0.1}>
-            <ol className="relative">
-              <span
-                className="absolute left-[7px] top-2 bottom-2 w-px"
-                style={{ background: "var(--gradient-spectrum-v)", opacity: 0.65 }}
-                aria-hidden="true"
-              />
-              {ecosystemLayers.map((l, i) => (
-                <li key={l} className="relative flex items-center gap-5 py-4 pl-0">
-                  <motion.span
-                    className="relative z-10 h-3.5 w-3.5 shrink-0 rounded-full"
-                    style={{ background: `var(--prism-colour-${i + 1})` }}
-                    initial={{ scale: 0.6, opacity: 0.4 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08, duration: 0.5 }}
-                    aria-hidden="true"
+          <div className="mt-16 grid gap-8 lg:grid-cols-[1fr_1fr_1.4fr]">
+            {commercialOutcomes.map((o, i) => (
+              <Reveal key={o.label} delay={i * 0.08}>
+                <div className="h-full rounded-lg border border-border bg-background p-8">
+                  <span
+                    className="block h-px w-10"
+                    style={{ background: `var(--prism-colour-${o.colour})` }}
                   />
-                  <span className="font-display text-lg font-semibold tracking-tight md:text-xl">{l}</span>
-                </li>
-              ))}
-            </ol>
+                  <h3 className="mt-6 font-display text-2xl font-semibold uppercase tracking-tight">
+                    {o.label}
+                  </h3>
+                  <ul className="mt-6 space-y-2.5">
+                    {o.points.map((pt) => (
+                      <li key={pt} className="text-sm leading-relaxed text-muted-foreground">
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+            <Reveal delay={0.24}>
+              <div className="relative h-full overflow-hidden rounded-lg border border-border-strong bg-surface p-8 md:p-10">
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-[0.14]"
+                  style={{ background: "var(--gradient-spectrum)" }}
+                  aria-hidden="true"
+                />
+                <div className="relative">
+                  <span className="spectrum-rule block w-20" />
+                  <h3 className="display-md mt-6 uppercase">Increase profitability</h3>
+                  <p className="mt-6 max-w-md text-base leading-relaxed text-foreground/85">
+                    Revenue growth + cost optimisation + better decisions. Compounding, measurable and
+                    designed to scale across the organisation.
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[0.75rem] uppercase tracking-[0.16em] text-muted-foreground">
+                    <span>Revenue</span>
+                    <span>Cost</span>
+                    <span>Decisions</span>
+                    <span className="text-foreground">Profitability</span>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Core promise */}
+          <Reveal>
+            <div className="mt-20 grid gap-10 border-t border-border pt-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+              <h3 className="display-md uppercase">We start with the outcome.</h3>
+              <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+                We don't begin with technology. We begin with the business problem, quantify the
+                opportunity and then determine where AI, automation, data and technology can create the
+                greatest impact.
+              </p>
+            </div>
           </Reveal>
         </div>
       </Section>
 
-      {/* 09 — INDUSTRIES */}
-      <Section tone="raised">
+      {/* 08 — WHY PRISM */}
+      <Section>
         <div className="shell">
-          <SectionHeading eyebrow="Industries" title="Where we work." />
-          <div className="mt-12 flex flex-wrap gap-2.5">
-            {industries.map((s, i) => (
-              <Reveal key={s} delay={i * 0.03}>
-                <span className="panel inline-flex items-center gap-2.5 px-4 py-2.5 text-sm text-foreground/90">
+          <SectionHeading eyebrow="Why Prism" title={<span className="uppercase">Why Prism exists.</span>} />
+          <div className="mt-16 grid gap-px overflow-hidden border-y border-border bg-border md:grid-cols-2 lg:grid-cols-4">
+            {whyPrism.map((w, i) => (
+              <Reveal key={w.title} delay={i * 0.06}>
+                <div className="h-full bg-background p-8 transition-colors hover:bg-surface md:p-9">
                   <span
-                    className="h-1.5 w-1.5 rounded-full"
-                    style={{ background: `var(--prism-colour-${(i % 7) + 1})` }}
-                    aria-hidden="true"
+                    className="inline-block h-2 w-2 rounded-full"
+                    style={{ background: `var(--prism-colour-${i + 2})` }}
                   />
-                  {s}
-                </span>
+                  <h3 className="mt-8 font-display text-lg font-semibold uppercase tracking-tight">
+                    {w.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{w.copy}</p>
+                </div>
               </Reveal>
             ))}
           </div>
+        </div>
+      </Section>
+
+      {/* 09 — ABOUT PRISM */}
+      <Section tone="raised" id="about">
+        <div className="shell grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <SectionHeading
+            eyebrow="About Prism Group"
+            title={<span className="uppercase">Intelligence → impact.</span>}
+          />
+          <Reveal delay={0.08}>
+            <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p>
+                Prism Group is a technology and AI group that combines domain expertise, data, artificial
+                intelligence, automation and application engineering to create measurable outcomes across
+                seven strategic pillars.
+              </p>
+              <p className="text-foreground/90">
+                <span className="eyebrow block">Vision</span>
+                <span className="mt-3 block">
+                  A world where every organisation can unlock the full potential of artificial intelligence
+                  to operate smarter, grow faster and create greater value.
+                </span>
+              </p>
+              <p className="text-foreground/90">
+                <span className="eyebrow block">Mission</span>
+                <span className="mt-3 block">
+                  To help organisations turn AI from an ambition into measurable business impact —
+                  combining strategy, technology, intelligence and execution to accelerate growth,
+                  optimise costs and improve profitability.
+                </span>
+              </p>
+            </div>
+            <div className="mt-10 border-t border-border pt-8">
+              <p className="eyebrow">Industries</p>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {industries.map((ind) => (
+                  <li
+                    key={ind}
+                    className="rounded-full border border-border px-3 py-1.5 text-[0.75rem] text-muted-foreground"
+                  >
+                    {ind}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-10">
+              <GhostLink to="/about">More about Prism</GhostLink>
+            </div>
+          </Reveal>
         </div>
       </Section>
 
@@ -317,98 +363,76 @@ function Home() {
       <Section>
         <div className="shell">
           <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading eyebrow="Insights" title="Thinking from the group." />
+            <SectionHeading eyebrow="Insights" title="Prism thinking." />
             <Reveal>
               <GhostLink to="/insights">All insights</GhostLink>
             </Reveal>
           </div>
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-px overflow-hidden border-y border-border bg-border md:grid-cols-3">
             {insights.map((a, i) => (
               <Reveal key={a.slug} delay={i * 0.06}>
-                <article className="panel group h-full p-7 transition-all duration-500 hover:-translate-y-1 hover:border-border-strong">
+                <Link
+                  to="/insights"
+                  className="group flex h-full flex-col bg-background p-8 transition-colors hover:bg-surface md:p-9"
+                >
                   <span
-                    className="block h-px w-10 transition-all duration-500 group-hover:w-20"
-                    style={{ background: `var(--prism-colour-${a.colour})` }}
-                    aria-hidden="true"
-                  />
-                  <p className="mt-6 eyebrow">{a.category}</p>
-                  <h3 className="mt-4 font-display text-lg font-semibold leading-snug tracking-tight">
+                    className="text-[0.6875rem] uppercase tracking-[0.18em]"
+                    style={{ color: `var(--prism-colour-${a.colour})` }}
+                  >
+                    {a.category}
+                  </span>
+                  <h3 className="mt-6 font-display text-xl font-semibold leading-snug tracking-tight">
                     {a.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a.excerpt}</p>
-                  <p className="mt-6 text-xs text-muted-foreground">{a.read}</p>
-                </article>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{a.excerpt}</p>
+                  <span className="mt-auto pt-8 text-xs text-muted-foreground">{a.read}</span>
+                </Link>
               </Reveal>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* 11 — ABOUT */}
-      <Section tone="raised">
-        <div className="shell grid gap-14 lg:grid-cols-[1fr_1fr]">
-          <SectionHeading
-            eyebrow="About Prism"
-            title="We're building the intelligence layer for what comes next."
-          />
-          <Reveal delay={0.1} className="space-y-6">
-            <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-              Prism Group brings together entrepreneurs, technologists, AI specialists, domain experts,
-              engineers, healthcare innovators and transformation professionals — a group that builds and
-              scales solutions rather than advising from the sidelines.
-            </p>
-            <div className="hairline pt-8">
-              <p className="eyebrow">Built to think global</p>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                Prism builds technology and intellectual property with the ambition to solve problems that
-                exist across industries and markets.
-              </p>
-            </div>
-            <GhostLink to="/about">More about Prism</GhostLink>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* 12 — FINAL CTA */}
-      <Section className="overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.14]"
-          aria-hidden="true"
-          style={{
-            background:
-              "radial-gradient(50% 60% at 50% 100%, var(--prism-colour-5), transparent 70%), radial-gradient(40% 60% at 20% 100%, var(--prism-colour-7), transparent 70%)",
-          }}
-        />
-        <div className="shell relative text-center">
+      {/* 11 — FINAL CTA */}
+      <Section tone="raised" className="py-24 md:py-32">
+        <div className="shell">
           <Reveal>
-            <div className="spectrum-rule mx-auto max-w-40" />
-            <h2 className="display-lg mx-auto mt-10 max-w-3xl">Have a problem worth solving?</h2>
-            <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Whether you are looking to transform an operation, deploy AI, modernise technology, improve
-              decision-making or explore one of our ventures, let's start with the problem.
-            </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
-              <PrimaryLink to="/contact">Start a Conversation</PrimaryLink>
-              <GhostLink to="/ventures">Explore Our Ventures</GhostLink>
-            </div>
-            <div className="mt-14 flex flex-wrap justify-center gap-6 text-xs text-muted-foreground">
-              <a
-                href="https://spectraiq.ai/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-underline inline-flex items-center gap-1.5 hover:text-foreground"
-              >
-                spectraiq.ai <ArrowUpRight className="h-3 w-3" />
-              </a>
-              <a
-                href="https://prismdiagnostics.com.au/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-underline inline-flex items-center gap-1.5 hover:text-foreground"
-              >
-                prismdiagnostics.com.au <ArrowUpRight className="h-3 w-3" />
-              </a>
-            </div>
+            <motion.div className="relative overflow-hidden rounded-lg border border-border-strong bg-background p-10 md:p-16">
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 h-px"
+                style={{ background: "var(--gradient-spectrum)" }}
+                aria-hidden="true"
+              />
+              <h2 className="display-lg max-w-3xl uppercase">
+                Have an AI opportunity worth exploring?
+              </h2>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                Let's turn it into measurable value — starting with the outcome, the economics and the
+                opportunity.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <PrimaryLink to="/contact">Talk to Prism</PrimaryLink>
+                <a
+                  href="https://spectraiq.ai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-border-strong px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                >
+                  spectraiq.ai <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+              <div className="mt-12 flex flex-wrap items-center gap-6 border-t border-border pt-8 text-sm text-muted-foreground">
+                <Link to="/ventures" className="inline-flex items-center gap-1.5 hover:text-foreground">
+                  Portfolio <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link to="/capabilities" className="inline-flex items-center gap-1.5 hover:text-foreground">
+                  Capabilities <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link to="/technology" className="inline-flex items-center gap-1.5 hover:text-foreground">
+                  Technology <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </motion.div>
           </Reveal>
         </div>
       </Section>
