@@ -63,7 +63,7 @@ function Chain({ items }: { items: string[] }) {
           </motion.div>
           {i < items.length - 1 ? (
             <div className="flex h-4 items-center justify-center" aria-hidden="true">
-              <ArrowRight className="h-3 w-3 -rotate-90" style={{ color: soft(80) }} />
+              <ArrowRight className="h-3 w-3 rotate-90" style={{ color: soft(80) }} />
             </div>
           ) : null}
         </li>
