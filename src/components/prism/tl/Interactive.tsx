@@ -378,8 +378,8 @@ export function SegmentBuilder() {
           transition={{ duration: 0.3 }}
           className="mt-6 rounded-lg border border-border bg-surface/30 p-4"
         >
-          <p className="font-display text-sm font-semibold tracking-tight">{segments[active].title}</p>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{segments[active].copy}</p>
+          <p className="font-display text-sm font-semibold tracking-tight">{segments[active]!.title}</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{segments[active]!.copy}</p>
           <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
             <span>Segment matched</span>
             <ArrowRight className="h-3 w-3" style={{ color: tlAccent }} aria-hidden="true" />
