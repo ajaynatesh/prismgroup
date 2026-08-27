@@ -50,6 +50,7 @@ export function Chain({
       {items.map((item, i) => {
         const last = i === items.length - 1;
         const hot = highlightLast && last;
+        const accentStyle = hot ? { borderColor: soft(50), background: soft(12) } : {};
         return (
           <li key={item}>
             <motion.div
@@ -62,7 +63,7 @@ export function Chain({
                 dense ? "py-2" : "py-3",
                 hot ? "text-foreground" : "border-border bg-surface/40 text-foreground/90",
               )}
-              style={hot ? { borderColor: soft(50), background: soft(12) } : undefined}
+              style={accentStyle}
             >
               <span className="mr-2.5 text-[0.625rem] tabular-nums text-muted-foreground">
                 {String(i + 1).padStart(2, "0")}
