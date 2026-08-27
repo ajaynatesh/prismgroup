@@ -157,7 +157,7 @@ export function WhatsAppSimulator() {
 
 /** 15. Industry explorer. */
 export function IndustryExplorer() {
-  const [active, setActive] = useState(industries[0].key);
+  const [active, setActive] = useState(industries[0]!.key);
   const selected = industries.find((i) => i.key === active)!;
   const reduce = useReducedMotion();
 
