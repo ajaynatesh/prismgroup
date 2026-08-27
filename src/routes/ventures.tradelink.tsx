@@ -12,6 +12,7 @@ import {
   JobBoard,
   Manifesto,
   MarketProblem,
+  QualificationBlock,
   TeamRoles,
   ThesisBlocks,
   TrustPillars,
