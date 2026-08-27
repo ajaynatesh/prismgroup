@@ -148,7 +148,7 @@ export function WhatsAppSimulator() {
         transition={{ duration: 0.4 }}
       >
         <PhoneShell title="Prism TradeLink" subtitle="Business account · online">
-          <ChatThread thread={scenarios[scenario]} autoplay interval={1600} height="28rem" />
+          <ChatThread thread={scenarios[scenario]!} autoplay interval={1600} height="28rem" />
         </PhoneShell>
       </motion.div>
     </Reveal>
