@@ -171,22 +171,29 @@ export function CapabilityRing({ colour }: { colour: PrismColour }) {
       {/* Active detail card */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="max-w-[220px] text-center">
-          <motion.h4
-            key={capabilities[active].verb}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-2 text-xl font-semibold tracking-tight"
-          >
-            {capabilities[active].title}
-          </motion.h4>
-          <motion.p
-            key={capabilities[active].id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-sm leading-relaxed text-white/60"
-          >
-            {capabilities[active].description}
-          </motion.p>
+          {(() => {
+            const cap = capabilities[active]!;
+            return (
+              <>
+                <motion.h4
+                  key={cap.verb}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-2 text-xl font-semibold tracking-tight"
+                >
+                  {cap.title}
+                </motion.h4>
+                <motion.p
+                  key={cap.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-sm leading-relaxed text-white/60"
+                >
+                  {cap.description}
+                </motion.p>
+              </>
+            );
+          })()}
         </div>
       </div>
     </div>
