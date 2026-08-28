@@ -263,7 +263,7 @@ export function ArchitectureStack({ colour }: { colour: PrismColour }) {
   );
 }
 
-export function AvailabilityGap({ colour }: { colour: PrismColour }) }) {
+export function AvailabilityGap({ colour }: { colour: PrismColour }) {
   const hours = Array.from({ length: 24 }, (_, i) => i);
   const businessHours = hours.filter((h) => h >= 9 && h < 17);
   const afterHours = hours.filter((h) => !businessHours.includes(h));
