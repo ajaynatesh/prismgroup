@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "motion/react";
 import { Phone, MessageSquare, ArrowRight, TrendingUp, Clock, DollarSign, Users, Calendar, CreditCard, Headphones, Heart, Megaphone, Target, RefreshCw, Zap } from "lucide-react";
-import { agentTypes, industries, valueModel } from "@/lib/alwayson";
+import { agentTypes, industries, valueModel, maturityLevels } from "@/lib/alwayson";
 import { PrismColour } from "@/lib/prism";
 
 const soft = (n: PrismColour, l = 70) => `oklch(${l}% 0.14 var(--prism-hue-${n}))`;
