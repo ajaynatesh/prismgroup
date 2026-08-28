@@ -123,10 +123,10 @@ export function ROICalculator({ colour }: { colour: PrismColour }) {
   const [adminHours, setAdminHours] = useState(valueModel.baseline.adminHoursPerWeek);
 
   const missedCalls = Math.round(monthlyCalls * (missedRate / 100));
-  const recaptured = Math.round(missedCalls * valueModel.levers[0].rate);
-  const conversionLift = Math.round(monthlyCalls * (conversionRate / 100) * valueModel.levers[1].rate);
+  const recaptured = Math.round(missedCalls * valueModel.levers[0]!.rate);
+  const conversionLift = Math.round(monthlyCalls * (conversionRate / 100) * valueModel.levers[1]!.rate);
   const revenueUplift = (recaptured + conversionLift) * avgJobValue;
-  const adminSavings = adminHours * 4.33 * valueModel.baseline.hourlyAdminCost * valueModel.levers[2].rate;
+  const adminSavings = adminHours * 4.33 * valueModel.baseline.hourlyAdminCost * valueModel.levers[2]!.rate;
   const totalMonthlyImpact = revenueUplift + adminSavings;
 
   return (
