@@ -159,8 +159,8 @@ function Page() {
           <SectionHeading
             eyebrow="The 24-hour gap"
             title="Most businesses are only responsive one third of the day."
-            subtitle="Customers and opportunities do not follow office hours. AlwaysOn AI closes the gap."
-            centred
+            copy="Customers and opportunities do not follow office hours. AlwaysOn AI closes the gap."
+            align="center"
           />
           <div className="mt-10">
             <AvailabilityGap colour={colour} />
@@ -176,7 +176,7 @@ function Page() {
               <SectionHeading
                 eyebrow="Agent capabilities"
                 title="LISTEN. UNDERSTAND. REASON. RESPOND. ACT. FOLLOW UP. ESCALATE. LEARN."
-                subtitle="Eight capabilities that turn AI agents into a true workforce extension — not a simple bot."
+                copy="Eight capabilities that turn AI agents into a true workforce extension — not a simple bot."
               />
               <div className="mt-8 flex flex-wrap gap-3">
                 {[
@@ -215,7 +215,7 @@ function Page() {
               <SectionHeading
                 eyebrow="See it work"
                 title="A conversation that actually gets things done."
-                subtitle="Switch between voice and SMS to see how AlwaysOn AI handles a real customer journey — from first contact to booked job."
+                copy="Switch between voice and SMS to see how AlwaysOn AI handles a real customer journey — from first contact to booked job."
               />
               <div className="mt-8 space-y-3 text-sm text-white/60">
                 <p>• Answers naturally, with context from prior messages.</p>
@@ -235,8 +235,8 @@ function Page() {
           <SectionHeading
             eyebrow="Agent roles"
             title="One platform. Many specialised agents."
-            subtitle="Deploy the right AI agent for the job, or combine them into an end-to-end customer journey."
-            centred
+            copy="Deploy the right AI agent for the job, or combine them into an end-to-end customer journey."
+            align="center"
           />
           <div className="mt-10">
             <AgentSelector colour={colour} />
@@ -250,8 +250,8 @@ function Page() {
           <SectionHeading
             eyebrow="The decision loop"
             title="How an AI agent thinks and acts in real time."
-            subtitle="From trigger to learning — a closed loop that improves with every conversation."
-            centred
+            copy="From trigger to learning — a closed loop that improves with every conversation."
+            align="center"
           />
           <div className="mt-10">
             <DecisionLoopVisual colour={colour} />
@@ -272,8 +272,8 @@ function Page() {
           <SectionHeading
             eyebrow="Industry use cases"
             title="Built for businesses that live in the conversation."
-            subtitle="AlwaysOn AI adapts to the workflows, language and systems of each industry."
-            centred
+            copy="AlwaysOn AI adapts to the workflows, language and systems of each industry."
+            align="center"
           />
           <div className="mt-10">
             <IndustryExplorer colour={colour} />
@@ -287,8 +287,8 @@ function Page() {
           <SectionHeading
             eyebrow="Architecture"
             title="A full-stack AI workforce, not a point solution."
-            subtitle="Voice and SMS channels, conversation intelligence, memory, actions and governance — all connected."
-            centred
+            copy="Voice and SMS channels, conversation intelligence, memory, actions and governance — all connected."
+            align="center"
           />
           <div className="mt-10">
             <ArchitectureStack colour={colour} />
@@ -302,8 +302,8 @@ function Page() {
           <SectionHeading
             eyebrow="Commercial impact"
             title="What does an always-on workforce mean for the bottom line?"
-            subtitle="Adjust the assumptions to estimate recaptured revenue, conversion lift and admin savings."
-            centred
+            copy="Adjust the assumptions to estimate recaptured revenue, conversion lift and admin savings."
+            align="center"
           />
           <div className="mt-10">
             <ROICalculator colour={colour} />
@@ -317,8 +317,8 @@ function Page() {
           <SectionHeading
             eyebrow="Business value"
             title="Availability, capture, capacity and scale."
-            subtitle="The four value dimensions that make AlwaysOn AI a strategic investment, not a cost centre."
-            centred
+            copy="The four value dimensions that make AlwaysOn AI a strategic investment, not a cost centre."
+            align="center"
           />
           <div className="mt-10">
             <ValueBlocks colour={colour} />
@@ -332,8 +332,8 @@ function Page() {
           <SectionHeading
             eyebrow="Maturity model"
             title="From reactive answering to autonomous workforce."
-            subtitle="A five-stage journey that matches investment to business readiness and ambition."
-            centred
+            copy="A five-stage journey that matches investment to business readiness and ambition."
+            align="center"
           />
           <div className="mt-10">
             <MaturityLadder colour={colour} />
@@ -358,7 +358,7 @@ function Page() {
       {/* FAQ */}
       <Section>
         <div className="shell max-w-3xl">
-          <SectionHeading eyebrow="FAQ" title="Common questions" centred />
+          <SectionHeading eyebrow="FAQ" title="Common questions" align="center" />
           <div className="mt-10 space-y-4">
             {faqs.map((f, i) => (
               <details
