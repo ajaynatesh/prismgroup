@@ -4,7 +4,8 @@ import { Phone, MessageSquare, ArrowRight, TrendingUp, Clock, DollarSign, Users,
 import { agentTypes, industries, valueModel, maturityLevels } from "@/lib/alwayson";
 import { PrismColour } from "@/lib/prism";
 
-const soft = (n: PrismColour, l = 70) => `oklch(${l}% 0.14 var(--prism-hue-${n}))`;
+const soft = (n: PrismColour, pct = 70) =>
+  `color-mix(in oklab, var(--prism-colour-${n}) ${pct}%, white)`;
 const glow = (n: PrismColour) => `var(--prism-colour-${n})`;
 
 const iconMap: Record<string, React.ElementType> = {
