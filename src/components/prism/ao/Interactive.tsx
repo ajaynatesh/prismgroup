@@ -4,7 +4,8 @@ import { Phone, MessageSquare, ArrowRight, TrendingUp, Clock, DollarSign, Users,
 import { agentTypes, industries, valueModel, maturityLevels } from "@/lib/alwayson";
 import { PrismColour } from "@/lib/prism";
 
-const soft = (n: PrismColour, l = 70) => `oklch(${l}% 0.14 var(--prism-hue-${n}))`;
+const soft = (n: PrismColour, pct = 70) =>
+  `color-mix(in oklab, var(--prism-colour-${n}) ${pct}%, white)`;
 const glow = (n: PrismColour) => `var(--prism-colour-${n})`;
 
 const iconMap: Record<string, React.ElementType> = {
@@ -92,8 +93,8 @@ export function ConversationSimulator({ colour }: { colour: PrismColour }) {
                   initial={{ opacity: 0, y: 12, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0 }}
-                  className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${msg.speaker === "agent" ? "self-start rounded-tl-sm bg-white/10 text-white/90" : "self-end rounded-tr-sm"}`}
-                  style={msg.speaker === "agent" ? {} : { background: soft(colour, 75), color: "black" }}
+                  className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${msg.speaker === "agent" ? "self-start rounded-tl-sm bg-white/10 text-white/90" : "self-end rounded-tr-sm text-black"}`}
+                  style={msg.speaker === "agent" ? {} : { background: soft(colour, 85) }}
                 >
                   {msg.text}
                 </motion.div>
