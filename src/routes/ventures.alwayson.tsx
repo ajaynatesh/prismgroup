@@ -24,7 +24,7 @@ import {
   TrustPillars,
   ValueBlocks,
 } from "@/components/prism/ao/Blocks";
-import { faqs, headline, manifesto, subheadline, supportingStatement } from "@/lib/alwayson";
+import { faqs, headline, subheadline, supportingStatement } from "@/lib/alwayson";
 import { pillars } from "@/lib/prism";
 
 const pillar = pillars.find((p) => p.index === "06")!;
