@@ -126,7 +126,13 @@ export function ExternalCta({
   );
 }
 
-export function VentureLabel({ className }: { className?: string }) {
+export function VentureLabel({
+  className,
+  label = "A Prism Group venture",
+}: {
+  className?: string;
+  label?: string;
+}) {
   return (
     <span
       className={cn(
@@ -135,7 +141,7 @@ export function VentureLabel({ className }: { className?: string }) {
       )}
     >
       <span className="h-1.5 w-1.5 rounded-full bg-foreground/60" />
-      A Prism Group venture
+      {label}
     </span>
   );
 }
