@@ -52,7 +52,7 @@ export const homePillars: HomePillar[] = [
     name: "SpectraIQ.ai",
     statement: "Turn business data into commercial intelligence.",
     positioning:
-      "SpectraIQ.ai is Prism's AI-powered commercial intelligence platform, built to help organisations surface opportunity inside their own data, improve commercial performance and accelerate growth across the full revenue cycle.",
+      "SpectraIQ.ai is an independent, enterprise-grade AI commercial intelligence platform, built to help organisations surface opportunity inside their own data, improve commercial performance and accelerate growth across the full revenue cycle.",
     solves: [
       "Revenue opportunity buried in operational and CRM data",
       "Leads that go unworked, unqualified or cold",

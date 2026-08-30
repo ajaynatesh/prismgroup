@@ -2,11 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading, VentureLabel } from "@/components/prism/ui";
-import { ventures } from "@/lib/prism";
+import { relationshipCopy, ventures } from "@/lib/prism";
 
-const title = "Our Ventures — SpectraIQ.ai, DecisionIQ, TradeLink, AlwaysOn AI, Prism Diagnostics";
+const title = "Portfolio — SpectraIQ.ai, DecisionIQ, TradeLink, AlwaysOn AI, Prism Diagnostics";
 const description =
-  "Prism Group's owned ventures: SpectraIQ.ai commercial intelligence, Prism DecisionIQ decision intelligence, Prism TradeLink WhatsApp-first operations, Prism AlwaysOn AI voice & SMS, and Prism Diagnostics.";
+  "The Prism Group portfolio: SpectraIQ.ai commercial intelligence (an independent company), Prism DecisionIQ decision intelligence, Prism TradeLink WhatsApp-first operations, Prism AlwaysOn AI voice & SMS, and Prism Diagnostics.";
 
 export const Route = createFileRoute("/ventures/")({
   head: () => ({
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/ventures/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: "Prism Group owned ventures",
+          name: "Prism Group portfolio",
           itemListElement: ventures.map((v, i) => ({
             "@type": "ListItem",
             position: i + 1,
@@ -54,11 +54,12 @@ function Ventures() {
         />
         <div className="shell relative">
           <Reveal>
-            <p className="eyebrow">Owned ventures</p>
-            <h1 className="display-xl mt-6 max-w-4xl">Built inside Prism.</h1>
+            <p className="eyebrow">Portfolio</p>
+            <h1 className="display-xl mt-6 max-w-4xl">The Prism portfolio.</h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              Five proprietary businesses and platforms, each owned and operated by Prism Group — distinct
-              from our advisory and engineering capabilities, and connected by one intelligence philosophy.
+              Five platforms and businesses across the Prism portfolio — some built and operated by Prism
+              Group, others independent companies connected to Prism through its founder — distinct from our
+              advisory and engineering capabilities, and united by one intelligence philosophy.
             </p>
           </Reveal>
         </div>
@@ -82,7 +83,7 @@ function Ventures() {
                     />
                   </div>
                   <h2 className="display-md mt-5">{v.name}</h2>
-                  <VentureLabel className="mt-5" />
+                  <VentureLabel className="mt-5" label={relationshipCopy[v.kind] ?? undefined} />
                 </div>
                 <div>
                   <p className="font-display text-base font-semibold tracking-tight">{v.headline}</p>
@@ -102,8 +103,8 @@ function Ventures() {
         <div className="shell">
           <SectionHeading
             eyebrow="Brand architecture"
-            title="One parent. Two capabilities. Five ventures."
-            copy="Prism Group is the parent company. Capabilities describe how we work with organisations; ventures are the products and businesses we own and operate."
+            title="Two capabilities. Five portfolio companies."
+            copy="Capabilities describe how Prism Group works with organisations. Portfolio companies are the platforms and businesses Prism builds and operates, alongside independent companies — including SpectraIQ.ai, a Delaware C Corporation with multiple co-founders — where Prism's founder is a shareholder."
           />
         </div>
       </Section>
