@@ -44,7 +44,7 @@ import {
 
 const title = "SpectraIQ.ai — AI intelligence layer for Australian dealerships";
 const description =
-  "SpectraIQ.ai is a Prism Group intelligence platform for Australian franchised automotive dealerships — connecting leads, sales, service, parts, marketing and customer data through one AI intelligence layer.";
+  "SpectraIQ.ai is an independent enterprise AI intelligence platform for Australian franchised automotive dealerships — connecting leads, sales, service, parts, marketing and customer data through one AI intelligence layer.";
 
 export const Route = createFileRoute("/ventures/spectraiq")({
   head: () => ({
@@ -121,8 +121,8 @@ function Page() {
         <div className="shell relative grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:items-center">
           <Reveal>
             <div className="flex flex-wrap items-center gap-4">
-              <span className="eyebrow">Prism Group × SpectraIQ.ai</span>
-              <VentureLabel />
+              <span className="eyebrow">SpectraIQ.ai</span>
+              <VentureLabel label="Independent company · Prism founder is a shareholder" />
             </div>
             <img
               src={spectraiqLogo.url}
@@ -770,7 +770,7 @@ function Page() {
             <GhostLink to="/ventures">Explore the seven pillars</GhostLink>
           </div>
           <p className="mt-8 text-sm text-muted-foreground">
-            SpectraIQ.ai — a Prism Group intelligence platform.
+            SpectraIQ.ai — an independent enterprise intelligence company.
           </p>
         </div>
       </Section>

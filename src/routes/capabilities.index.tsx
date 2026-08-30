@@ -130,7 +130,7 @@ function Capabilities() {
 
       <Section tone="raised">
         <div className="shell">
-          <SectionHeading eyebrow="Owned ventures" title="Built inside Prism." />
+          <SectionHeading eyebrow="Portfolio" title="Platforms in the Prism portfolio." />
           <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
             {ventures.map((v) => (
               <Link
@@ -147,7 +147,7 @@ function Capabilities() {
                   {v.name}
                 </p>
                 <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{v.short}</p>
-                <VentureLabel className="mt-5" />
+                <VentureLabel className="mt-5" label={relationshipCopy[v.kind] ?? undefined} />
               </Link>
             ))}
           </div>
@@ -161,7 +161,7 @@ function Capabilities() {
             <h2 className="display-lg mx-auto mt-10 max-w-2xl">Have a problem worth solving?</h2>
             <div className="mt-10 flex flex-wrap justify-center gap-3">
               <PrimaryLink to="/contact">Start a Conversation</PrimaryLink>
-              <GhostLink to="/ventures">Explore Our Ventures</GhostLink>
+              <GhostLink to="/ventures">Explore the Portfolio</GhostLink>
             </div>
           </Reveal>
         </div>

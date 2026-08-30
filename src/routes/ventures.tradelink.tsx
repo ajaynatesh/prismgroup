@@ -558,7 +558,7 @@ function Page() {
             <h2 className="display-lg mx-auto mt-10 max-w-2xl">What could your business do if every message became a workflow?</h2>
             <div className="mt-10 flex flex-wrap justify-center gap-3">
               <PrimaryLink to="/contact">Talk to Prism</PrimaryLink>
-              <GhostLink to="/ventures">Explore Our Ventures</GhostLink>
+              <GhostLink to="/ventures">Explore the Portfolio</GhostLink>
             </div>
           </Reveal>
         </div>

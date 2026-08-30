@@ -111,7 +111,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             "Prism Group is a technology and innovation group building intelligent solutions across AI, enterprise transformation, decision intelligence, mobile-first business platforms, AI-powered customer engagement and healthcare diagnostics.",
           url: "/",
           subOrganization: [
-            { "@type": "Organization", name: "SpectraIQ.ai", url: "https://spectraiq.ai/" },
             { "@type": "Organization", name: "Prism Diagnostics", url: "https://prismdiagnostics.com.au/" },
           ],
         }),

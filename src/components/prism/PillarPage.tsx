@@ -9,7 +9,7 @@ import {
   SectionHeading,
   VentureLabel,
 } from "@/components/prism/ui";
-import type { Pillar } from "@/lib/prism";
+import { relationshipCopy, type Pillar } from "@/lib/prism";
 
 export function PillarPage({
   pillar,
@@ -42,7 +42,7 @@ export function PillarPage({
                 aria-hidden="true"
               />
               <span className="eyebrow">{pillar.kind}</span>
-              {pillar.kind === "Owned venture" ? <VentureLabel /> : null}
+              {relationshipCopy[pillar.kind] ? <VentureLabel label={relationshipCopy[pillar.kind]!} /> : null}
             </div>
             {lockup ? (
               <div className="mt-9">{lockup}</div>
@@ -59,7 +59,7 @@ export function PillarPage({
               ) : (
                 <PrimaryLink to="/contact">Start a Conversation</PrimaryLink>
               )}
-              <GhostLink to="/ventures">Explore Our Ventures</GhostLink>
+              <GhostLink to="/ventures">Explore the Portfolio</GhostLink>
             </div>
           </Reveal>
         </div>

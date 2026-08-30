@@ -7,7 +7,7 @@ export type Pillar = {
   colour: PrismColour;
   name: string;
   short: string;
-  kind: "Capability" | "Owned venture";
+  kind: "Capability" | "Owned venture" | "Independent company";
   headline: string;
   copy: string;
   href: string;
@@ -50,7 +50,7 @@ export const pillars: Pillar[] = [
     colour: 2,
     name: "SpectraIQ.ai",
     short: "SpectraIQ.ai",
-    kind: "Owned venture",
+    kind: "Independent company",
     headline: "Intelligence that moves business forward.",
     copy: "SpectraIQ.ai is an AI-powered commercial intelligence platform designed to help organisations turn operational data into actionable intelligence, identify opportunities and accelerate business performance.",
     href: "/ventures/spectraiq",
@@ -362,7 +362,17 @@ export const pillars: Pillar[] = [
   },
 ];
 
-export const ventures = pillars.filter((p) => p.kind === "Owned venture");
+export const ventures = pillars.filter((p) => p.kind !== "Capability");
+
+/** Accurate, neutral description of how a portfolio company relates to Prism. */
+export const relationshipCopy: Record<Pillar["kind"], string | null> = {
+  Capability: null,
+  "Owned venture": "A Prism Group venture",
+  "Independent company": "Independent company · Prism founder is a shareholder",
+};
+
+export const spectraiqRelationship =
+  "SpectraIQ.ai is an independent Delaware C Corporation founded and operated by a team of co-founders, with strategic participation from Prism's founder. Prism Group and SpectraIQ.ai are separate corporate entities.";
 export const capabilities = pillars.filter((p) => p.kind === "Capability");
 
 export const valueSteps = [

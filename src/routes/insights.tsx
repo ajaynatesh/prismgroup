@@ -92,7 +92,7 @@ function Insights() {
           />
           <Reveal className="mt-10 flex flex-wrap gap-3">
             <PrimaryLink to="/contact">Start a Conversation</PrimaryLink>
-            <GhostLink to="/ventures">Explore Our Ventures</GhostLink>
+            <GhostLink to="/ventures">Explore the Portfolio</GhostLink>
           </Reveal>
         </div>
       </Section>
