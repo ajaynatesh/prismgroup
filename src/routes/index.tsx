@@ -122,7 +122,7 @@ function Home() {
       {/* 03 — BUSINESS OUTCOME */}
       <Section tone="raised" className="py-16 md:py-20 lg:py-24">
         <div className="shell">
-          <div className="grid items-end gap-10 md:grid-cols-[auto_1fr_auto_1fr_auto_1.2fr] md:gap-8">
+          <div className="grid items-center gap-6 md:grid-cols-[auto_1fr_auto_1fr_auto_1.2fr] md:gap-6">
             {[
               { k: "Grow", sub: "Revenue & opportunity", colour: 2 },
               { k: "Optimise", sub: "Cost & efficiency", colour: 5 },
