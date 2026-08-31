@@ -31,44 +31,90 @@ function Home() {
   return (
     <>
       {/* 02 — HERO */}
-      <section className="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
-        <div className="shell relative flex flex-col items-center text-center">
-          <div className="relative z-10 max-w-4xl">
+      <section className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-36">
+        <div className="ambient-navy pointer-events-none absolute inset-0 opacity-90" aria-hidden="true" />
+        <div
+          className="grain-grid pointer-events-none absolute inset-0 opacity-40"
+          aria-hidden="true"
+          style={{ maskImage: "radial-gradient(70% 60% at 50% 0%, black, transparent)" }}
+        />
+        <div className="shell relative grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          <div className="relative z-10">
             <Reveal>
-              <p className="eyebrow">Prism Group</p>
+              <span className="inline-flex items-center gap-2.5 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-[0.6875rem] uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent-emerald)" }} />
+                Prism Group · Enterprise AI &amp; intelligence
+              </span>
             </Reveal>
             <Reveal delay={0.06}>
-              <h1 className="display-xl mt-6 uppercase">
+              <h1 className="display-xl mt-7 uppercase">
                 Unleash the
                 <br />
-                potential of AI.
+                potential of{" "}
+                <span
+                  style={{
+                    background: "var(--gradient-enterprise)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  AI
+                </span>
+                .
               </h1>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="mx-auto mt-7 max-w-2xl font-display text-lg font-medium leading-snug tracking-tight text-foreground/90 md:text-2xl">
+              <p className="mt-7 max-w-xl font-display text-lg font-medium leading-snug tracking-tight text-foreground/90 md:text-2xl">
                 Transform your business. Accelerate growth. Increase profitability.
               </p>
             </Reveal>
             <Reveal delay={0.18}>
-              <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
                 Prism helps organisations move from AI ambition to measurable business impact —
                 identifying where AI can create value, building the right solutions and embedding
                 intelligence into the way businesses operate.
               </p>
             </Reveal>
             <Reveal delay={0.24}>
-              <div className="mt-10 flex flex-wrap justify-center gap-3">
+              <div className="mt-10 flex flex-wrap gap-3">
                 <PrimaryLink to="/ventures">Explore Our Portfolio</PrimaryLink>
                 <GhostLink to="/contact">Talk to Prism</GhostLink>
               </div>
             </Reveal>
             <Reveal delay={0.3}>
-              <p className="mx-auto mt-12 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                Most organisations know AI will change their business. Few know where to start, what to
-                prioritise, or how to turn AI into measurable commercial value.
-              </p>
+              <dl className="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-border pt-8">
+                {[
+                  { k: "07", v: "Strategic pillars" },
+                  { k: "AI + Data", v: "Engineering depth" },
+                  { k: "ROI first", v: "Before we build" },
+                ].map((m) => (
+                  <div key={m.v}>
+                    <dt className="metric-figure text-foreground">{m.k}</dt>
+                    <dd className="mt-2 text-xs leading-relaxed text-muted-foreground">{m.v}</dd>
+                  </div>
+                ))}
+              </dl>
             </Reveal>
           </div>
+
+          <Reveal delay={0.16} className="relative z-10">
+            <HeroIntelligence />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 02b — PROBLEM FRAME */}
+      <section className="relative">
+        <div className="shell">
+          <div className="rule-fade" />
+          <Reveal>
+            <p className="mx-auto max-w-3xl py-10 text-center text-sm leading-relaxed text-muted-foreground md:text-base">
+              Most organisations know AI will change their business. Few know where to start, what to
+              prioritise, or how to turn AI into measurable commercial value.
+            </p>
+          </Reveal>
+          <div className="rule-fade" />
         </div>
       </section>
 
