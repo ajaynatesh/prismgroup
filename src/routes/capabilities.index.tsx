@@ -147,7 +147,7 @@ function Capabilities() {
                   {v.name}
                 </p>
                 <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{v.short}</p>
-                <VentureLabel className="mt-5" label={relationshipCopy[v.kind] ?? undefined} />
+                <VentureLabel className="mt-5" label={relationshipCopy[v.kind] || "A Prism Group venture"} />
               </Link>
             ))}
           </div>
