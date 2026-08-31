@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
+import { spectraiqRelationship } from "@/lib/prism";
 import spectraiqLogo from "@/assets/spectraiq-logo.png.asset.json";
 import { Reveal } from "@/components/prism/Reveal";
 import {
