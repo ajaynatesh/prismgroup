@@ -47,6 +47,10 @@
   --color-ink: var(--ink);
   --color-paper: var(--paper);
 
+  --color-emerald: var(--accent-emerald);
+  --color-electric: var(--accent-electric);
+  --color-midnight: var(--midnight);
+
   --color-prism-1: var(--prism-colour-1);
   --color-prism-2: var(--prism-colour-2);
   --color-prism-3: var(--prism-colour-3);
@@ -117,6 +121,18 @@
     var(--prism-colour-7)
   );
   --shadow-elevate: 0 1px 0 0 oklch(1 0 0 / 6%) inset, 0 24px 60px -30px oklch(0 0 0 / 70%);
+  --shadow-glow: 0 1px 0 0 oklch(1 0 0 / 8%) inset,
+    0 30px 80px -40px color-mix(in oklab, var(--accent-electric) 55%, black);
+
+  /* Enterprise accent system */
+  --accent-emerald: oklch(0.735 0.135 168);
+  --accent-electric: oklch(0.68 0.145 245);
+  --midnight: oklch(0.185 0.03 265);
+  --gradient-enterprise: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--accent-electric) 85%, transparent),
+    color-mix(in oklab, var(--accent-emerald) 85%, transparent)
+  );
 }
 
 @layer base {
@@ -254,4 +270,52 @@
     linear-gradient(to right, oklch(1 0 0 / 4%) 1px, transparent 1px),
     linear-gradient(to bottom, oklch(1 0 0 / 4%) 1px, transparent 1px);
   background-size: 72px 72px;
+}
+
+/* --- Enterprise depth layer (premium navy / emerald system) --- */
+
+@utility glass {
+  background: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--navy) 55%, transparent),
+    color-mix(in oklab, var(--surface) 70%, transparent) 60%,
+    transparent
+  );
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: var(--shadow-elevate);
+}
+
+@utility glass-hover {
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease;
+  &:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@utility ambient-navy {
+  background:
+    radial-gradient(120% 90% at 12% -10%, color-mix(in oklab, var(--navy) 88%, transparent) 0%, transparent 62%),
+    radial-gradient(90% 80% at 88% 0%, color-mix(in oklab, var(--accent-electric) 16%, transparent) 0%, transparent 60%),
+    radial-gradient(70% 60% at 50% 110%, color-mix(in oklab, var(--accent-emerald) 12%, transparent) 0%, transparent 65%);
+}
+
+@utility rule-fade {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--border-strong) 18%, var(--border-strong) 82%, transparent);
+}
+
+@utility metric-figure {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
 }
