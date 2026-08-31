@@ -164,7 +164,47 @@ function Home() {
         </div>
       </Section>
 
+
+      {/* 03b — CAPABILITY SPINE */}
+      <section className="relative border-y border-border py-10">
+        <div className="shell">
+          <Reveal>
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-center">
+              {["Domain expertise", "Data", "AI", "Automation", "Application engineering"].map((s, i) => (
+                <span key={s} className="inline-flex items-center gap-5">
+                  {i > 0 ? (
+                    <span aria-hidden="true" className="text-sm text-muted-foreground/40">
+                      +
+                    </span>
+                  ) : null}
+                  <span className="font-display text-sm font-medium tracking-tight text-foreground/85 md:text-base">
+                    {s}
+                  </span>
+                </span>
+              ))}
+              <span className="inline-flex items-center gap-5">
+                <span aria-hidden="true" className="text-sm text-muted-foreground/40">
+                  =
+                </span>
+                <span
+                  className="font-display text-sm font-semibold tracking-tight md:text-base"
+                  style={{
+                    background: "var(--gradient-enterprise)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  Measurable outcomes
+                </span>
+              </span>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* 04 — PORTFOLIO */}
+
       <Section id="portfolio">
         <div className="shell">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
