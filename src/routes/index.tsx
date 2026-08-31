@@ -48,7 +48,7 @@ function Home() {
               </span>
             </Reveal>
             <Reveal delay={0.06}>
-              <h1 className="display-xl mt-7 text-[clamp(2.4rem,5vw,4.4rem)] uppercase">
+              <h1 className="display-xl mt-7 uppercase" style={{ fontSize: "clamp(2.4rem, 4.6vw, 4.25rem)" }}>
                 Unleash the potential of{" "}
                 <span
                   style={{
