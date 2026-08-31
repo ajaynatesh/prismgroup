@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading, VentureLabel } from "@/components/prism/ui";
-import { capabilities, ventures, valueSteps } from "@/lib/prism";
+import { capabilities, relationshipCopy, ventures, valueSteps } from "@/lib/prism";
 
 const title = "What We Do — AI transformation & enterprise technology | Prism Group";
 const description =
@@ -147,7 +147,7 @@ function Capabilities() {
                   {v.name}
                 </p>
                 <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{v.short}</p>
-                <VentureLabel className="mt-5" label={relationshipCopy[v.kind] ?? undefined} />
+                <VentureLabel className="mt-5" label={relationshipCopy[v.kind] || "A Prism Group venture"} />
               </Link>
             ))}
           </div>

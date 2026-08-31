@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { PillarPortfolio, PillarLedger } from "@/components/prism/PillarPortfolio";
+import { HeroIntelligence } from "@/components/prism/HeroIntelligence";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";
 import { commercialOutcomes, methodology, whyPrism } from "@/lib/home";
@@ -31,51 +32,95 @@ function Home() {
   return (
     <>
       {/* 02 — HERO */}
-      <section className="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
-        <div className="shell relative flex flex-col items-center text-center">
-          <div className="relative z-10 max-w-4xl">
+      <section className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-36">
+        <div className="ambient-navy pointer-events-none absolute inset-0 opacity-90" aria-hidden="true" />
+        <div
+          className="grain-grid pointer-events-none absolute inset-0 opacity-40"
+          aria-hidden="true"
+          style={{ maskImage: "radial-gradient(70% 60% at 50% 0%, black, transparent)" }}
+        />
+        <div className="shell relative grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          <div className="relative z-10">
             <Reveal>
-              <p className="eyebrow">Prism Group</p>
+              <span className="inline-flex items-center gap-2.5 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-[0.6875rem] uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent-emerald)" }} />
+                Prism Group · Enterprise AI &amp; intelligence
+              </span>
             </Reveal>
             <Reveal delay={0.06}>
-              <h1 className="display-xl mt-6 uppercase">
-                Unleash the
-                <br />
-                potential of AI.
+              <h1 className="display-xl mt-7 uppercase" style={{ fontSize: "clamp(2.2rem, 3.7vw, 3.6rem)" }}>
+                Unleash the potential of{" "}
+                <span
+                  style={{
+                    background: "var(--gradient-enterprise)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  AI
+                </span>
+                .
               </h1>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="mx-auto mt-7 max-w-2xl font-display text-lg font-medium leading-snug tracking-tight text-foreground/90 md:text-2xl">
+              <p className="mt-7 max-w-xl font-display text-lg font-medium leading-snug tracking-tight text-foreground/90 md:text-2xl">
                 Transform your business. Accelerate growth. Increase profitability.
               </p>
             </Reveal>
             <Reveal delay={0.18}>
-              <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
                 Prism helps organisations move from AI ambition to measurable business impact —
                 identifying where AI can create value, building the right solutions and embedding
                 intelligence into the way businesses operate.
               </p>
             </Reveal>
             <Reveal delay={0.24}>
-              <div className="mt-10 flex flex-wrap justify-center gap-3">
+              <div className="mt-10 flex flex-wrap gap-3">
                 <PrimaryLink to="/ventures">Explore Our Portfolio</PrimaryLink>
                 <GhostLink to="/contact">Talk to Prism</GhostLink>
               </div>
             </Reveal>
             <Reveal delay={0.3}>
-              <p className="mx-auto mt-12 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                Most organisations know AI will change their business. Few know where to start, what to
-                prioritise, or how to turn AI into measurable commercial value.
-              </p>
+              <dl className="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-border pt-8">
+                {[
+                  { k: "07", v: "Strategic pillars" },
+                  { k: "AI + Data", v: "Engineering depth" },
+                  { k: "ROI first", v: "Before we build" },
+                ].map((m) => (
+                  <div key={m.v}>
+                    <dt className="metric-figure text-foreground">{m.k}</dt>
+                    <dd className="mt-2 text-xs leading-relaxed text-muted-foreground">{m.v}</dd>
+                  </div>
+                ))}
+              </dl>
             </Reveal>
           </div>
+
+          <Reveal delay={0.16} className="relative z-10">
+            <HeroIntelligence />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 02b — PROBLEM FRAME */}
+      <section className="relative">
+        <div className="shell">
+          <div className="rule-fade" />
+          <Reveal>
+            <p className="mx-auto max-w-3xl py-10 text-center text-sm leading-relaxed text-muted-foreground md:text-base">
+              Most organisations know AI will change their business. Few know where to start, what to
+              prioritise, or how to turn AI into measurable commercial value.
+            </p>
+          </Reveal>
+          <div className="rule-fade" />
         </div>
       </section>
 
       {/* 03 — BUSINESS OUTCOME */}
       <Section tone="raised" className="py-16 md:py-20 lg:py-24">
         <div className="shell">
-          <div className="grid items-end gap-10 md:grid-cols-[auto_1fr_auto_1fr_auto_1.2fr] md:gap-8">
+          <div className="grid items-center gap-6 md:grid-cols-[auto_1fr_auto_1fr_auto_1.2fr] md:gap-6">
             {[
               { k: "Grow", sub: "Revenue & opportunity", colour: 2 },
               { k: "Optimise", sub: "Cost & efficiency", colour: 5 },
@@ -85,7 +130,7 @@ function Home() {
                   <span className="font-display text-3xl text-muted-foreground/40">{i === 0 ? "" : "+"}</span>
                 </Reveal>
                 <Reveal delay={i * 0.08 + 0.04}>
-                  <div>
+                  <div className="glass glass-hover p-7 md:p-8">
                     <span
                       className="block h-px w-10"
                       style={{ background: `var(--prism-colour-${o.colour})` }}
@@ -102,8 +147,13 @@ function Home() {
               <span className="font-display text-3xl text-muted-foreground/40">=</span>
             </Reveal>
             <Reveal delay={0.24}>
-              <div>
-                <span className="spectrum-rule block w-24" />
+              <div className="glass glass-hover relative overflow-hidden p-7 md:p-8">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-[0.12]"
+                  style={{ background: "var(--gradient-enterprise)" }}
+                />
+                <span className="spectrum-rule relative block w-24" />
                 <h2 className="mt-5 font-display text-4xl font-semibold uppercase tracking-tight md:text-5xl">
                   Accelerate
                 </h2>
@@ -114,7 +164,47 @@ function Home() {
         </div>
       </Section>
 
+
+      {/* 03b — CAPABILITY SPINE */}
+      <section className="relative border-y border-border py-10">
+        <div className="shell">
+          <Reveal>
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-center">
+              {["Domain expertise", "Data", "AI", "Automation", "Application engineering"].map((s, i) => (
+                <span key={s} className="inline-flex items-center gap-5">
+                  {i > 0 ? (
+                    <span aria-hidden="true" className="text-sm text-muted-foreground/40">
+                      +
+                    </span>
+                  ) : null}
+                  <span className="font-display text-sm font-medium tracking-tight text-foreground/85 md:text-base">
+                    {s}
+                  </span>
+                </span>
+              ))}
+              <span className="inline-flex items-center gap-5">
+                <span aria-hidden="true" className="text-sm text-muted-foreground/40">
+                  =
+                </span>
+                <span
+                  className="font-display text-sm font-semibold tracking-tight md:text-base"
+                  style={{
+                    background: "var(--gradient-enterprise)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  Measurable outcomes
+                </span>
+              </span>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* 04 — PORTFOLIO */}
+
       <Section id="portfolio">
         <div className="shell">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
@@ -217,7 +307,7 @@ function Home() {
           <div className="mt-16 grid gap-8 lg:grid-cols-[1fr_1fr_1.4fr]">
             {commercialOutcomes.map((o, i) => (
               <Reveal key={o.label} delay={i * 0.08}>
-                <div className="h-full rounded-lg border border-border bg-background p-8">
+                <div className="glass glass-hover h-full p-8">
                   <span
                     className="block h-px w-10"
                     style={{ background: `var(--prism-colour-${o.colour})` }}
@@ -236,7 +326,7 @@ function Home() {
               </Reveal>
             ))}
             <Reveal delay={0.24}>
-              <div className="relative h-full overflow-hidden rounded-lg border border-border-strong bg-surface p-8 md:p-10">
+              <div className="glass relative h-full overflow-hidden p-8 md:p-10">
                 <div
                   className="pointer-events-none absolute inset-0 opacity-[0.14]"
                   style={{ background: "var(--gradient-spectrum)" }}
@@ -385,7 +475,7 @@ function Home() {
       <Section tone="raised" className="py-24 md:py-32">
         <div className="shell">
           <Reveal>
-            <motion.div className="relative overflow-hidden rounded-lg border border-border-strong bg-background p-10 md:p-16">
+            <motion.div className="glass ambient-navy relative overflow-hidden p-10 md:p-16">
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-px"
                 style={{ background: "var(--gradient-spectrum)" }}

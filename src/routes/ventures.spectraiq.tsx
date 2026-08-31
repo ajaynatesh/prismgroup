@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
+import { spectraiqRelationship } from "@/lib/prism";
 import spectraiqLogo from "@/assets/spectraiq-logo.png.asset.json";
 import { Reveal } from "@/components/prism/Reveal";
 import {
@@ -160,6 +161,9 @@ function Page() {
               </a>
               <ExternalText href={SIQ_URL}>Visit SpectraIQ.ai</ExternalText>
             </div>
+            <p className="mt-10 max-w-2xl border-t border-border pt-6 text-xs leading-relaxed text-muted-foreground">
+              {spectraiqRelationship}
+            </p>
           </Reveal>
 
           <Reveal delay={0.1}>

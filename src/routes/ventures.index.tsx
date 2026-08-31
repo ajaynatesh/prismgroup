@@ -83,7 +83,7 @@ function Ventures() {
                     />
                   </div>
                   <h2 className="display-md mt-5">{v.name}</h2>
-                  <VentureLabel className="mt-5" label={relationshipCopy[v.kind] ?? undefined} />
+                  <VentureLabel className="mt-5" label={relationshipCopy[v.kind] || "A Prism Group venture"} />
                 </div>
                 <div>
                   <p className="font-display text-base font-semibold tracking-tight">{v.headline}</p>
