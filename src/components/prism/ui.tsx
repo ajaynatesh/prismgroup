@@ -20,11 +20,31 @@ export function Section({
       id={id}
       className={cn(
         "relative py-20 md:py-28 lg:py-32",
-        tone === "raised" && "bg-surface/40",
+        tone === "raised" && "overflow-hidden bg-surface/40",
         className,
       )}
     >
-      {children}
+      {tone === "raised" ? (
+        <>
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-70"
+            style={{
+              background:
+                "radial-gradient(80% 60% at 12% 0%, color-mix(in oklab, var(--navy) 65%, transparent), transparent 70%), radial-gradient(60% 50% at 90% 100%, color-mix(in oklab, var(--accent-electric) 9%, transparent), transparent 70%)",
+            }}
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 h-px"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, var(--color-border-strong) 20%, var(--color-border-strong) 80%, transparent)",
+            }}
+          />
+        </>
+      ) : null}
+      <div className="relative">{children}</div>
     </section>
   );
 }

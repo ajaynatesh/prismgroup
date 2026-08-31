@@ -48,10 +48,8 @@ function Home() {
               </span>
             </Reveal>
             <Reveal delay={0.06}>
-              <h1 className="display-xl mt-7 uppercase">
-                Unleash the
-                <br />
-                potential of{" "}
+              <h1 className="display-xl mt-7 text-[clamp(2.4rem,5vw,4.4rem)] uppercase">
+                Unleash the potential of{" "}
                 <span
                   style={{
                     background: "var(--gradient-enterprise)",
