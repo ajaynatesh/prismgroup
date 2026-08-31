@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { PillarPortfolio, PillarLedger } from "@/components/prism/PillarPortfolio";
+import { HeroIntelligence } from "@/components/prism/HeroIntelligence";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";
 import { commercialOutcomes, methodology, whyPrism } from "@/lib/home";
@@ -131,7 +132,7 @@ function Home() {
                   <span className="font-display text-3xl text-muted-foreground/40">{i === 0 ? "" : "+"}</span>
                 </Reveal>
                 <Reveal delay={i * 0.08 + 0.04}>
-                  <div>
+                  <div className="glass glass-hover p-7 md:p-8">
                     <span
                       className="block h-px w-10"
                       style={{ background: `var(--prism-colour-${o.colour})` }}
@@ -148,8 +149,13 @@ function Home() {
               <span className="font-display text-3xl text-muted-foreground/40">=</span>
             </Reveal>
             <Reveal delay={0.24}>
-              <div>
-                <span className="spectrum-rule block w-24" />
+              <div className="glass glass-hover relative overflow-hidden p-7 md:p-8">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-[0.12]"
+                  style={{ background: "var(--gradient-enterprise)" }}
+                />
+                <span className="spectrum-rule relative block w-24" />
                 <h2 className="mt-5 font-display text-4xl font-semibold uppercase tracking-tight md:text-5xl">
                   Accelerate
                 </h2>
@@ -263,7 +269,7 @@ function Home() {
           <div className="mt-16 grid gap-8 lg:grid-cols-[1fr_1fr_1.4fr]">
             {commercialOutcomes.map((o, i) => (
               <Reveal key={o.label} delay={i * 0.08}>
-                <div className="h-full rounded-lg border border-border bg-background p-8">
+                <div className="glass glass-hover h-full p-8">
                   <span
                     className="block h-px w-10"
                     style={{ background: `var(--prism-colour-${o.colour})` }}
@@ -282,7 +288,7 @@ function Home() {
               </Reveal>
             ))}
             <Reveal delay={0.24}>
-              <div className="relative h-full overflow-hidden rounded-lg border border-border-strong bg-surface p-8 md:p-10">
+              <div className="glass relative h-full overflow-hidden p-8 md:p-10">
                 <div
                   className="pointer-events-none absolute inset-0 opacity-[0.14]"
                   style={{ background: "var(--gradient-spectrum)" }}
@@ -431,7 +437,7 @@ function Home() {
       <Section tone="raised" className="py-24 md:py-32">
         <div className="shell">
           <Reveal>
-            <motion.div className="relative overflow-hidden rounded-lg border border-border-strong bg-background p-10 md:p-16">
+            <motion.div className="glass ambient-navy relative overflow-hidden p-10 md:p-16">
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-px"
                 style={{ background: "var(--gradient-spectrum)" }}
