@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading, VentureLabel } from "@/components/prism/ui";
-import { capabilities, ventures, valueSteps } from "@/lib/prism";
+import { capabilities, relationshipCopy, ventures, valueSteps } from "@/lib/prism";
 
 const title = "What We Do — AI transformation & enterprise technology | Prism Group";
 const description =
