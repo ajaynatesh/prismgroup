@@ -86,7 +86,7 @@ function Home() {
                 {[
                   { k: "07", v: "Strategic pillars" },
                   { k: "AI +", v: "Engineering depth" },
-                  { k: "ROI first", v: "Before we build" },
+                  { k: "ROI", v: "Before we build" },
                 ].map((m) => (
                   <div key={m.v}>
                     <dt className="metric-figure text-foreground">{m.k}</dt>
