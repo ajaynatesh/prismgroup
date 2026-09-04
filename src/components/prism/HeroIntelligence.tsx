@@ -1,28 +1,210 @@
 import { motion, useReducedMotion } from "motion/react";
+import { ArrowDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const inputs = ["Operations", "Customers", "Finance", "Systems", "Signals"];
-const outputs = ["Opportunity", "Decision", "Action", "Outcome"];
+const inputs = [
+  "Operations",
+  "Customers",
+  "Finance",
+  "Systems",
+  "Market signals",
+  "People",
+] as const;
 
-/**
- * Hero visual: enterprise signals enter a precision-cut intelligence layer and
- * leave as decisions. Proprietary, restrained, built from brand tokens only.
- */
-export function HeroIntelligence({ className }: { className?: string }) {
+const outputs = [
+  "Opportunity",
+  "Decision",
+  "Automation",
+  "Action",
+  "Outcome",
+  "Advantage",
+] as const;
+
+const ROWS = 6;
+/** Row centres in a 0..600 viewBox with 6 equal rows — matches a 6-row CSS grid. */
+const rowCentres = Array.from({ length: ROWS }, (_, i) => 50 + i * 100);
+
+function Connectors({ direction }: { direction: "in" | "out" }) {
   const reduce = useReducedMotion() ?? false;
 
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 100 600"
+      preserveAspectRatio="none"
+      className="h-full w-full"
+    >
+      <defs>
+        <linearGradient id={`conn-${direction}`} x1="0" y1="0" x2="1" y2="0">
+          <stop
+            offset="0%"
+            stopColor="var(--color-foreground)"
+            stopOpacity={direction === "in" ? 0 : 0.55}
+          />
+          <stop
+            offset="100%"
+            stopColor="var(--color-foreground)"
+            stopOpacity={direction === "in" ? 0.55 : 0}
+          />
+        </linearGradient>
+      </defs>
+      {rowCentres.map((y, i) => {
+        const d =
+          direction === "in"
+            ? `M0 ${y} C 55 ${y}, 45 300, 100 300`
+            : `M0 300 C 55 300, 45 ${y}, 100 ${y}`;
+        const stroke =
+          direction === "out" ? `var(--prism-colour-${i + 1})` : `url(#conn-${direction})`;
+        return (
+          <g key={y}>
+            <motion.path
+              d={d}
+              fill="none"
+              stroke={stroke}
+              strokeWidth="1.2"
+              vectorEffect="non-scaling-stroke"
+              strokeOpacity={direction === "out" ? 0.75 : 1}
+              initial={reduce ? { pathLength: 1 } : { pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.1 + i * 0.07, ease: "easeOut" }}
+            />
+            {reduce ? null : (
+              <circle
+                r="3"
+                fill={
+                  direction === "out"
+                    ? `var(--prism-colour-${i + 1})`
+                    : "var(--color-foreground)"
+                }
+                opacity="0.9"
+              >
+                <animateMotion
+                  dur="3s"
+                  begin={`${i * 0.45}s`}
+                  repeatCount="indefinite"
+                  path={d}
+                  keyPoints="0;1"
+                  keyTimes="0;1"
+                  calcMode="spline"
+                  keySplines="0.4 0 0.6 1"
+                />
+                <animate
+                  attributeName="opacity"
+                  dur="3s"
+                  begin={`${i * 0.45}s`}
+                  repeatCount="indefinite"
+                  values="0;0.95;0"
+                />
+              </circle>
+            )}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+function Chip({
+  label,
+  colour,
+  emphasis,
+}: {
+  label: string;
+  colour?: number;
+  emphasis?: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        "flex h-full min-h-11 items-center gap-2.5 rounded-lg border border-border bg-surface/50 px-3 py-2 text-[0.75rem] leading-tight transition-colors duration-300 hover:border-border-strong sm:text-[0.8125rem]",
+        emphasis ? "text-foreground" : "text-muted-foreground",
+      )}
+      style={
+        emphasis && colour
+          ? {
+              borderColor: `color-mix(in oklab, var(--prism-colour-${colour}) 40%, transparent)`,
+              background: `color-mix(in oklab, var(--prism-colour-${colour}) 8%, transparent)`,
+            }
+          : undefined
+      }
+    >
+      <span
+        className="h-1.5 w-1.5 shrink-0 rounded-full"
+        style={{
+          background: colour
+            ? `var(--prism-colour-${colour})`
+            : "color-mix(in oklab, var(--color-foreground) 45%, transparent)",
+        }}
+        aria-hidden="true"
+      />
+      <span className="truncate">{label}</span>
+    </div>
+  );
+}
+
+function Core() {
+  const reduce = useReducedMotion() ?? false;
+
+  return (
+    <div className="glass relative flex h-full w-full flex-col justify-center overflow-hidden px-5 py-6 lg:w-[186px]">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.18]"
+        style={{ background: "var(--gradient-enterprise)" }}
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px"
+        style={{ background: "var(--gradient-spectrum)" }}
+      />
+      <div className="relative text-center">
+        <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
+          Prism core
+        </p>
+        <p className="mt-3 font-display text-lg font-semibold uppercase leading-tight tracking-tight">
+          Intelligence
+          <br />
+          layer
+        </p>
+        <div className="mt-5 space-y-1.5" aria-hidden="true">
+          {Array.from({ length: 7 }).map((_, i) => (
+            <motion.span
+              key={i}
+              className="block h-[3px] rounded-full"
+              style={{ background: `var(--prism-colour-${i + 1})` }}
+              initial={reduce ? { opacity: 0.8 } : { opacity: 0.25 }}
+              animate={reduce ? { opacity: 0.8 } : { opacity: [0.25, 1, 0.25] }}
+              transition={{ duration: 3.6, delay: i * 0.24, repeat: Infinity, ease: "easeInOut" }}
+            />
+          ))}
+        </div>
+        <p className="mt-5 text-[0.6875rem] leading-relaxed text-muted-foreground">
+          Data · AI · Automation
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Hero visual: six enterprise signals enter the Prism intelligence layer and
+ * leave as six commercial outcomes. Six rows on each side share one grid so the
+ * connectors and cards stay perfectly aligned at every breakpoint.
+ */
+export function HeroIntelligence({ className }: { className?: string }) {
   return (
     <div className={cn("relative w-full", className)}>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -inset-16 opacity-70"
+        className="pointer-events-none absolute -inset-10 opacity-70"
         style={{
           background:
-            "radial-gradient(50% 50% at 55% 45%, color-mix(in oklab, var(--accent-electric) 20%, transparent), transparent 70%)",
+            "radial-gradient(50% 50% at 50% 45%, color-mix(in oklab, var(--accent-electric) 18%, transparent), transparent 70%)",
         }}
       />
 
-      <div className="glass relative overflow-hidden p-5 md:p-7">
+      <div className="glass relative overflow-hidden p-4 sm:p-6">
         <div className="flex items-center justify-between text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
           <span>Intelligence layer</span>
           <span className="inline-flex items-center gap-2">
@@ -34,164 +216,53 @@ export function HeroIntelligence({ className }: { className?: string }) {
           </span>
         </div>
 
-        <svg
-          viewBox="0 0 520 340"
-          className="mt-5 h-auto w-full"
-          role="img"
-          aria-label="Enterprise signals refracting through the Prism intelligence layer into decisions"
-        >
-          <defs>
-            <linearGradient id="hero-slab" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="var(--accent-electric)" stopOpacity="0.5" />
-              <stop offset="55%" stopColor="var(--prism-colour-5)" stopOpacity="0.28" />
-              <stop offset="100%" stopColor="var(--accent-emerald)" stopOpacity="0.42" />
-            </linearGradient>
-            <linearGradient id="hero-beam" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="var(--color-foreground)" stopOpacity="0" />
-              <stop offset="100%" stopColor="var(--color-foreground)" stopOpacity="0.75" />
-            </linearGradient>
-            <radialGradient id="hero-halo" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="var(--accent-electric)" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="var(--accent-electric)" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-
-          <circle cx="250" cy="170" r="150" fill="url(#hero-halo)" />
-
-          {/* enterprise signal grid */}
-          {[0, 1, 2, 3, 4].map((r) =>
-            [0, 1, 2].map((c) => (
-              <motion.circle
-                key={`${r}-${c}`}
-                cx={16 + c * 26}
-                cy={48 + r * 60}
-                r="2"
-                fill="var(--color-muted-foreground)"
-                initial={reduce ? { opacity: 0.5 } : { opacity: 0.2 }}
-                animate={reduce ? { opacity: 0.5 } : { opacity: [0.2, 0.7, 0.2] }}
-                transition={{ duration: 3.4, delay: (r + c) * 0.22, repeat: Infinity }}
-              />
-            )),
-          )}
-
-          {/* converging signals */}
-          {[48, 108, 168, 228, 288].map((y, i) => (
-            <g key={y}>
-              <motion.path
-                d={`M74 ${y} C 140 ${y}, 168 170, 212 170`}
-                fill="none"
-                stroke="url(#hero-beam)"
-                strokeWidth="1"
-                initial={reduce ? { pathLength: 1, opacity: 0.5 } : { pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.5 }}
-                transition={{ duration: 1.2, delay: 0.15 + i * 0.09, ease: "easeOut" }}
-              />
-              {reduce ? null : (
-                <motion.circle
-                  r="2.4"
-                  fill="var(--color-foreground)"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 0.9, 0] }}
-                  transition={{ duration: 2.6, delay: i * 0.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <animateMotion
-                    dur="2.6s"
-                    begin={`${i * 0.5}s`}
-                    repeatCount="indefinite"
-                    path={`M74 ${y} C 140 ${y}, 168 170, 212 170`}
-                  />
-                </motion.circle>
-              )}
-            </g>
-          ))}
-
-          {/* the intelligence layer — precision-cut slab */}
-          <g>
-            <rect
-              x="212"
-              y="66"
-              width="72"
-              height="208"
-              rx="8"
-              fill="url(#hero-slab)"
-              stroke="var(--color-border-strong)"
-              strokeWidth="1"
-            />
-            <rect
-              x="220"
-              y="74"
-              width="56"
-              height="192"
-              rx="6"
-              fill="none"
-              stroke="oklch(1 0 0 / 12%)"
-              strokeWidth="0.6"
-            />
-            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-              <motion.rect
-                key={i}
-                x="224"
-                y={84 + i * 26}
-                width="48"
-                height="2.5"
-                rx="1.25"
-                fill={`var(--prism-colour-${i + 1})`}
-                initial={reduce ? { opacity: 0.75 } : { opacity: 0.2 }}
-                animate={reduce ? { opacity: 0.75 } : { opacity: [0.2, 0.95, 0.2] }}
-                transition={{ duration: 3.8, delay: i * 0.26, repeat: Infinity, ease: "easeInOut" }}
-              />
+        {/* Desktop / large tablet: 6 → core → 6 */}
+        <div className="mt-6 hidden items-stretch gap-0 lg:grid lg:grid-cols-[minmax(0,1fr)_52px_auto_52px_minmax(0,1fr)]">
+          <div className="grid grid-rows-6 gap-2">
+            {inputs.map((label) => (
+              <Chip key={label} label={label} />
             ))}
-          </g>
-
-          {/* refracted decisions */}
-          {[86, 142, 198, 254].map((y, i) => (
-            <motion.path
-              key={y}
-              d={`M284 170 C 330 170, 350 ${y}, 430 ${y}`}
-              fill="none"
-              stroke={`var(--prism-colour-${i + 3})`}
-              strokeWidth="1.4"
-              strokeOpacity="0.8"
-              initial={reduce ? { pathLength: 1 } : { pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1.1, delay: 0.7 + i * 0.1, ease: "easeOut" }}
-            />
-          ))}
-          {[86, 142, 198, 254].map((y, i) => (
-            <circle key={`n-${y}`} cx="430" cy={y} r="3" fill={`var(--prism-colour-${i + 3})`} />
-          ))}
-        </svg>
-
-        <div className="mt-5 grid gap-4 border-t border-border pt-5 sm:grid-cols-2">
-          <div>
-            <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">Inputs</p>
-            <ul className="mt-2.5 flex flex-wrap gap-1.5">
-              {inputs.map((s) => (
-                <li
-                  key={s}
-                  className="rounded-full border border-border px-2.5 py-1 text-[0.6875rem] text-muted-foreground"
-                >
-                  {s}
-                </li>
-              ))}
-            </ul>
           </div>
-          <div>
-            <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">Outputs</p>
-            <ul className="mt-2.5 flex flex-wrap gap-1.5">
-              {outputs.map((s, i) => (
-                <li
-                  key={s}
-                  className="rounded-full border px-2.5 py-1 text-[0.6875rem] font-medium text-foreground"
-                  style={{
-                    borderColor: `color-mix(in oklab, var(--prism-colour-${i + 3}) 45%, transparent)`,
-                    background: `color-mix(in oklab, var(--prism-colour-${i + 3}) 9%, transparent)`,
-                  }}
-                >
-                  {s}
-                </li>
-              ))}
-            </ul>
+          <div className="min-h-full">
+            <Connectors direction="in" />
+          </div>
+          <Core />
+          <div className="min-h-full">
+            <Connectors direction="out" />
+          </div>
+          <div className="grid grid-rows-6 gap-2">
+            {outputs.map((label, i) => (
+              <Chip key={label} label={label} colour={i + 1} emphasis />
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile / tablet: inputs → core → outputs */}
+        <div className="mt-6 lg:hidden">
+          <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
+            Signals in
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+            {inputs.map((label) => (
+              <Chip key={label} label={label} />
+            ))}
+          </div>
+          <div className="flex justify-center py-4" aria-hidden="true">
+            <ArrowDown className="h-4 w-4 text-muted-foreground" />
+          </div>
+          <div className="min-h-[152px]">
+            <Core />
+          </div>
+          <div className="flex justify-center py-4" aria-hidden="true">
+            <ArrowDown className="h-4 w-4 text-muted-foreground" />
+          </div>
+          <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
+            Outcomes out
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+            {outputs.map((label, i) => (
+              <Chip key={label} label={label} colour={i + 1} emphasis />
+            ))}
           </div>
         </div>
       </div>
