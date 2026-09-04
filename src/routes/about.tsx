@@ -110,59 +110,16 @@ function About() {
       <Section tone="raised">
         <div className="shell grid gap-14 lg:grid-cols-2">
           <SectionHeading
-            eyebrow="Scale"
-            title="Built to think global."
-            copy="Prism builds technology and intellectual property with the ambition to solve problems that exist across industries and markets."
+            eyebrow="Australia-first"
+            title="Built in Australia, for Australian business."
+            copy="Prism is Australia-native. We build technology and intellectual property around the realities of Australian businesses — local market dynamics, local operating conditions, local regulation and local customer behaviour — with architecture designed to scale well beyond it."
           />
           <Reveal delay={0.1}>
-            <div className="panel relative aspect-4/3 overflow-hidden">
-              <svg viewBox="0 0 400 300" className="h-full w-full" aria-hidden="true">
-                {Array.from({ length: 7 }).map((_, i) => (
-                  <circle
-                    key={i}
-                    cx="200"
-                    cy="150"
-                    r={26 + i * 20}
-                    fill="none"
-                    stroke={`var(--prism-colour-${i + 1})`}
-                    strokeOpacity="0.35"
-                    strokeWidth="1"
-                  />
-                ))}
-                {Array.from({ length: 14 }).map((_, i) => {
-                  const a = (i / 14) * Math.PI * 2;
-                  return (
-                    <line
-                      key={i}
-                      x1="200"
-                      y1="150"
-                      x2={200 + Math.cos(a) * 165}
-                      y2={150 + Math.sin(a) * 165}
-                      stroke="currentColor"
-                      strokeOpacity="0.08"
-                      strokeWidth="1"
-                    />
-                  );
-                })}
-                {Array.from({ length: 20 }).map((_, i) => {
-                  const a = (i / 20) * Math.PI * 2 + 0.3;
-                  const r = 40 + ((i * 37) % 120);
-                  return (
-                    <circle
-                      key={`d${i}`}
-                      cx={200 + Math.cos(a) * r}
-                      cy={150 + Math.sin(a) * r}
-                      r="2"
-                      fill={`var(--prism-colour-${(i % 7) + 1})`}
-                      fillOpacity="0.8"
-                    />
-                  );
-                })}
-              </svg>
-            </div>
+            <EcosystemPulse />
           </Reveal>
         </div>
       </Section>
+
 
       <Section>
         <div className="shell text-center">
