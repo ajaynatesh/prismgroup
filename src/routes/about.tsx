@@ -54,11 +54,12 @@ function About() {
               We're building the intelligence layer for what comes next.
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              Prism Group is a technology and innovation group that builds, owns, operates and scales
-              technology-driven businesses across AI transformation, enterprise technology, decision
-              intelligence, mobile-first business platforms, AI-powered customer engagement and healthcare
-              diagnostics.
+              Prism Group is an Australia-native technology and innovation group that builds, owns and
+              operates technology-driven businesses across AI transformation, enterprise technology,
+              decision intelligence, mobile-first business platforms, AI-powered customer engagement and
+              healthcare diagnostics.
             </p>
+
           </Reveal>
         </div>
       </header>
