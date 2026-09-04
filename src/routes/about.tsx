@@ -7,7 +7,8 @@ import { principles } from "@/lib/prism";
 
 const title = "About Prism Group — Building the intelligence layer";
 const description =
-  "Prism Group brings together entrepreneurs, technologists, AI specialists, domain experts, engineers and healthcare innovators to build and scale intelligent businesses.";
+  "Prism Group is an Australia-native technology and AI group, bringing together entrepreneurs, technologists, AI specialists, domain experts, engineers and healthcare innovators to build intelligent businesses.";
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
