@@ -110,12 +110,14 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="prism-mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28 }}
-            className="fixed inset-0 top-16 z-40 overflow-y-auto bg-background lg:hidden"
+            exit={{ opacity: 0, pointerEvents: "none" }}
+            transition={{ duration: 0.24, ease: "easeOut" }}
+            className="fixed inset-0 top-16 z-40 overflow-y-auto overscroll-contain bg-background lg:hidden"
           >
+
             <div className="shell flex min-h-full flex-col justify-between py-10">
               <nav aria-label="Mobile" className="flex flex-col">
                 {navLinks.map((l, i) => (
