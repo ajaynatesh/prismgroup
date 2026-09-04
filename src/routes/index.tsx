@@ -85,7 +85,7 @@ function Home() {
               <dl className="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-border pt-8">
                 {[
                   { k: "07", v: "Strategic pillars" },
-                  { k: "AI + Data", v: "Engineering depth" },
+                  { k: "AI +", v: "Engineering depth" },
                   { k: "ROI first", v: "Before we build" },
                 ].map((m) => (
                   <div key={m.v}>
