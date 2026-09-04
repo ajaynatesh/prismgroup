@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { EcosystemPulse } from "@/components/prism/EcosystemPulse";
 import { Reveal } from "@/components/prism/Reveal";
+
 import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";
 import { principles } from "@/lib/prism";
 
