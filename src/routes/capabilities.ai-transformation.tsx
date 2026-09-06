@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { ArrowRight } from "lucide-react";
 import { Extra } from "@/components/prism/PillarExtra";
 import { Reveal } from "@/components/prism/Reveal";
