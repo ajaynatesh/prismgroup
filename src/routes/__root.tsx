@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { ORG_ID, SITE_NAME, SITE_URL, WEBSITE_ID, absUrl, ldScripts } from "@/lib/seo";
+
 
 function NotFoundComponent() {
   return (
