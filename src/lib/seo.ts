@@ -44,7 +44,7 @@ export function pageMeta(seo: PageSeo): MetaTag[] {
     { property: "og:title", content: social },
     { property: "og:description", content: seo.description },
     { property: "og:url", content: url },
-    { name: "twitter:card", content: seo.image ? "summary_large_image" : "summary_large_image" },
+    { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: social },
     { name: "twitter:description", content: seo.description },
   ];
