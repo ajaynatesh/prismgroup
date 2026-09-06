@@ -14,19 +14,47 @@ const description =
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: "/" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
+    meta: pageMeta({
+      title,
+      description,
+      path: "/",
+      ogTitle: "Unleash the potential of AI — Prism Group",
+    }),
+    links: canonical("/"),
+    scripts: ldScripts(
+      webPageLd({
+        name: title,
+        description,
+        path: "/",
+        extra: {
+          primaryImageOfPage: undefined,
+          significantLink: [
+            absUrl("/ventures"),
+            absUrl("/capabilities"),
+            absUrl("/technology"),
+            absUrl("/contact"),
+          ],
+        },
+      }),
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Prism Group strategic pillars",
+        description: "Seven strategic pillars spanning AI, technology, intelligence and healthcare.",
+        itemListElement: pillars.map((p, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: p.name,
+          description: p.copy,
+          url: p.external ?? absUrl(p.href),
+        })),
+      },
+      breadcrumbLd([]),
+    ),
   }),
   component: Home,
 });
+
 
 function Home() {
   return (
