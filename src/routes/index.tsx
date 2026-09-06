@@ -6,7 +6,9 @@ import { HeroIntelligence } from "@/components/prism/HeroIntelligence";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";
 import { commercialOutcomes, methodology, whyPrism } from "@/lib/home";
-import { industries, insights } from "@/lib/prism";
+import { industries, insights, pillars } from "@/lib/prism";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
+
 
 const title = "Prism Group — Unleash the potential of AI";
 const description =
