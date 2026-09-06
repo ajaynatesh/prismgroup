@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { ORG_ID, SITE_NAME, SITE_URL, WEBSITE_ID, absUrl, ldScripts } from "@/lib/seo";
+
 
 function NotFoundComponent() {
   return (
@@ -85,7 +87,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Prism Group builds and scales intelligent businesses across AI transformation, enterprise technology, decision intelligence and healthcare diagnostics.",
       },
-      { property: "og:site_name", content: "Prism Group" },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:locale", content: "en_AU" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#0b0d14" },
@@ -100,23 +103,56 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@400;500;600;700&display=swap",
       },
     ],
-    scripts: [
+    scripts: ldScripts(
       {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Prism Group",
-          description:
-            "Prism Group is a technology and innovation group building intelligent solutions across AI, enterprise transformation, decision intelligence, mobile-first business platforms, AI-powered customer engagement and healthcare diagnostics.",
-          url: "/",
-          subOrganization: [
-            { "@type": "Organization", name: "Prism Diagnostics", url: "https://prismdiagnostics.com.au/" },
-          ],
-        }),
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": ORG_ID,
+        name: SITE_NAME,
+        legalName: "Prism Group",
+        description:
+          "Prism Group is an Australia-native technology and innovation group building intelligent solutions across AI transformation, enterprise technology, decision intelligence, mobile-first business platforms, AI-powered customer engagement and healthcare diagnostics.",
+        url: SITE_URL,
+        logo: {
+          "@type": "ImageObject",
+          url: absUrl("/favicon.png"),
+        },
+        foundingLocation: { "@type": "Country", name: "Australia" },
+        areaServed: { "@type": "Country", name: "Australia" },
+        knowsAbout: [
+          "Artificial intelligence",
+          "AI transformation",
+          "Enterprise technology",
+          "Decision intelligence",
+          "Automation",
+          "Healthcare diagnostics",
+        ],
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "sales",
+            telephone: "+61408065993",
+            email: "ajay@spectraiq.ai",
+            areaServed: "AU",
+            availableLanguage: "English",
+          },
+        ],
+        subOrganization: [
+          { "@type": "Organization", name: "Prism Diagnostics", url: "https://prismdiagnostics.com.au/" },
+        ],
       },
-    ],
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": WEBSITE_ID,
+        name: SITE_NAME,
+        url: SITE_URL,
+        inLanguage: "en-AU",
+        publisher: { "@id": ORG_ID },
+      },
+    ),
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,

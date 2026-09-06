@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { ArrowRight } from "lucide-react";
 import { Extra } from "@/components/prism/PillarExtra";
 import { Reveal } from "@/components/prism/Reveal";
@@ -39,22 +40,28 @@ const accent = `var(--prism-colour-${AIX_COLOUR})`;
 const title = "AI Transformation — From AI Ambition to Business Impact | Prism Group";
 const description =
   "Prism's AI transformation approach: identify high-value opportunities, model the economics, redesign workflows, deploy AI agents and automation, and measure value realisation.";
-const url = "https://prismgroup.com.au/capabilities/ai-transformation";
+const path = "/capabilities/ai-transformation";
+const url = absUrl(path);
 
 export const Route = createFileRoute("/capabilities/ai-transformation")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: "From AI ambition to business impact — Prism AI Transformation" },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: url },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: url }],
+    meta: pageMeta({
+      title,
+      description,
+      path,
+      ogTitle: "From AI ambition to business impact — Prism AI Transformation",
+    }),
+    links: canonical(path),
     scripts: [
+      ...ldScripts(
+        breadcrumbLd([
+          { name: "Capabilities", path: "/capabilities" },
+          { name: "AI Transformation", path },
+        ]),
+        webPageLd({ name: title, description, path }),
+      ),
       {
+
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
