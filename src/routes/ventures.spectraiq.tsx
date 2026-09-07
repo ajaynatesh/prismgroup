@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import { spectraiqRelationship } from "@/lib/prism";
 import spectraiqLogo from "@/assets/spectraiq-logo.png.asset.json";
@@ -47,20 +48,22 @@ const title = "SpectraIQ.ai — AI intelligence layer for Australian dealerships
 const description =
   "SpectraIQ.ai is an independent enterprise AI intelligence platform for Australian franchised automotive dealerships — connecting leads, sales, service, parts, marketing and customer data through one AI intelligence layer.";
 
+const path = "/ventures/spectraiq";
+
 export const Route = createFileRoute("/ventures/spectraiq")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: "/ventures/spectraiq" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/ventures/spectraiq" }],
+    meta: pageMeta({ title, description, path }),
+    links: canonical(path),
     scripts: [
+      ...ldScripts(
+        breadcrumbLd([
+          { name: "Portfolio", path: "/ventures" },
+          { name: "SpectraIQ.ai", path },
+        ]),
+        webPageLd({ name: title, description, path }),
+      ),
       {
+
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",

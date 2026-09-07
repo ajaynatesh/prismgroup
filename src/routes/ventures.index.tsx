@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading, VentureLabel } from "@/components/prism/ui";
@@ -10,33 +11,31 @@ const description =
 
 export const Route = createFileRoute("/ventures/")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: "/ventures" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/ventures" }],
-    scripts: [
+    meta: pageMeta({
+      title,
+      description,
+      path: "/ventures",
+      ogTitle: "Seven colours. One prism. — The Prism portfolio",
+    }),
+    links: canonical("/ventures"),
+    scripts: ldScripts(
+      webPageLd({ name: title, description, path: "/ventures", type: "CollectionPage" }),
       {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: "Prism Group portfolio",
-          itemListElement: ventures.map((v, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            name: v.name,
-            description: v.copy,
-            url: v.external ?? v.href,
-          })),
-        }),
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Prism Group portfolio",
+        itemListElement: ventures.map((v, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: v.name,
+          description: v.copy,
+          url: v.external ?? absUrl(v.href),
+        })),
       },
-    ],
+      breadcrumbLd([{ name: "Portfolio", path: "/ventures" }]),
+    ),
   }),
+
   component: Ventures,
 });
 

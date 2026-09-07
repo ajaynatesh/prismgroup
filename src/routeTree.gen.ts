@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SecurityRouteImport } from './routes/security'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TechnologyRouteImport } from './routes/technology'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CapabilitiesIndexRouteImport } from './routes/capabilities.index'
@@ -55,6 +56,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const SecurityRoute = SecurityRouteImport.update({
   id: '/security',
   path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TechnologyRoute = TechnologyRouteImport.update({
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
   '/security': typeof SecurityRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
   '/security': typeof SecurityRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
   '/security': typeof SecurityRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
@@ -183,6 +192,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy'
     | '/security'
+    | '/sitemap.xml'
     | '/technology'
     | '/terms'
     | '/capabilities/ai-transformation'
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy'
     | '/security'
+    | '/sitemap.xml'
     | '/technology'
     | '/terms'
     | '/capabilities/ai-transformation'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy'
     | '/security'
+    | '/sitemap.xml'
     | '/technology'
     | '/terms'
     | '/capabilities/ai-transformation'
@@ -241,6 +253,7 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRoute
   PrivacyRoute: typeof PrivacyRoute
   SecurityRoute: typeof SecurityRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TechnologyRoute: typeof TechnologyRoute
   TermsRoute: typeof TermsRoute
   CapabilitiesAiTransformationRoute: typeof CapabilitiesAiTransformationRoute
@@ -296,6 +309,13 @@ declare module '@tanstack/react-router' {
       path: '/security'
       fullPath: '/security'
       preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/technology': {
@@ -385,6 +405,7 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRoute,
   PrivacyRoute: PrivacyRoute,
   SecurityRoute: SecurityRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TechnologyRoute: TechnologyRoute,
   TermsRoute: TermsRoute,
   CapabilitiesAiTransformationRoute: CapabilitiesAiTransformationRoute,

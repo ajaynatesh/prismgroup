@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { ArrowRight, MessageCircle, Phone, QrCode, Shield, Smartphone } from "lucide-react";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";
@@ -52,27 +53,35 @@ const accent = tlAccent;
 const title = "Prism TradeLink — WhatsApp-first business platform";
 const description =
   "Prism TradeLink turns WhatsApp into a complete business operating system for mobile-first companies: intelligent lead capture, bookings, quotes, payments, CRM, follow-ups and automation — all in one conversation.";
-const url = "https://prismgroup.com.au/ventures/tradelink";
+const path = "/ventures/tradelink";
+const url = absUrl(path);
 
 export const Route = createFileRoute("/ventures/tradelink")({
   head: () => ({
     meta: [
-      { title },
-      { name: "description", content: description },
+      ...pageMeta({
+        title,
+        description,
+        path,
+        ogTitle: "Your business. In your pocket. — Prism TradeLink",
+      }),
       {
         name: "keywords",
         content:
           "WhatsApp business platform, WhatsApp CRM, AI WhatsApp automation, small business automation, trades automation, mobile-first CRM, WhatsApp booking system, WhatsApp payments, lead qualification, customer follow-up automation, digital front desk, business messaging Australia",
       },
-      { property: "og:title", content: "Your business. In your pocket. — Prism TradeLink" },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: url },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: canonical(path),
     scripts: [
+      ...ldScripts(
+        breadcrumbLd([
+          { name: "Portfolio", path: "/ventures" },
+          { name: "Prism TradeLink", path },
+        ]),
+        webPageLd({ name: title, description, path }),
+      ),
       {
+
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",

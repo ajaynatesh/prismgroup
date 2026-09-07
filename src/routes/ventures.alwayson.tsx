@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { ArrowRight, Phone, MessageSquare, Clock, Zap } from "lucide-react";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";
@@ -32,27 +33,35 @@ const colour = pillar.colour;
 const title = "Prism AlwaysOn AI — 24/7 AI voice & SMS workforce";
 const description =
   "Prism AlwaysOn AI gives businesses intelligent AI agents that answer, engage, qualify, book, follow up and execute workflows 24/7 across voice and SMS — an always-on workforce measured on outcomes.";
-const url = "https://prismgroup.com.au/ventures/alwayson";
+const path = "/ventures/alwayson";
+const url = absUrl(path);
 
 export const Route = createFileRoute("/ventures/alwayson")({
   head: () => ({
     meta: [
-      { title },
-      { name: "description", content: description },
+      ...pageMeta({
+        title,
+        description,
+        path,
+        ogTitle: "AN ALWAYS-ON AI WORKFORCE — Prism AlwaysOn AI",
+      }),
       {
         name: "keywords",
         content:
           "AI voice agent, AI SMS agent, 24/7 AI workforce, voice AI Australia, SMS automation, AI receptionist, AI sales agent, AI appointment booking, intelligent call answering, conversational AI, business automation, AI customer service, missed call recovery",
       },
-      { property: "og:title", content: "AN ALWAYS-ON AI WORKFORCE — Prism AlwaysOn AI" },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: url },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: canonical(path),
     scripts: [
+      ...ldScripts(
+        breadcrumbLd([
+          { name: "Portfolio", path: "/ventures" },
+          { name: "Prism AlwaysOn AI", path },
+        ]),
+        webPageLd({ name: title, description, path }),
+      ),
       {
+
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",

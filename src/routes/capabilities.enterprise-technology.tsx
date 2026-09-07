@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/prism/Reveal";
 import { Section, SectionHeading } from "@/components/prism/ui";
@@ -46,22 +47,28 @@ const accent = `var(--prism-colour-${ENT_COLOUR})`;
 const title = "Enterprise AI & Technology Transformation — Build the Technology, Enable the Intelligence | Prism Group";
 const description =
   "Prism modernises enterprise technology and embeds AI into core operations: ERP and core systems, data engineering, digital process transformation, application engineering, cybersecurity, risk and AI governance.";
-const url = "https://prismgroup.com.au/capabilities/enterprise-technology";
+const path = "/capabilities/enterprise-technology";
+const url = absUrl(path);
 
 export const Route = createFileRoute("/capabilities/enterprise-technology")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: "Build the technology. Enable the intelligence. — Prism Enterprise Transformation" },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: url },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: url }],
+    meta: pageMeta({
+      title,
+      description,
+      path,
+      ogTitle: "Build the technology. Enable the intelligence. — Prism Enterprise Transformation",
+    }),
+    links: canonical(path),
     scripts: [
+      ...ldScripts(
+        breadcrumbLd([
+          { name: "Capabilities", path: "/capabilities" },
+          { name: "Enterprise AI & Technology Transformation", path },
+        ]),
+        webPageLd({ name: title, description, path }),
+      ),
       {
+
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",

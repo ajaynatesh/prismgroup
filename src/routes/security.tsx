@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { Reveal } from "@/components/prism/Reveal";
 import { Section } from "@/components/prism/ui";
 
@@ -16,18 +17,16 @@ const sections = [
 
 export const Route = createFileRoute("/security")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: "/security" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/security" }],
+    meta: pageMeta({ title, description, path: "/security" }),
+    links: canonical("/security"),
+    scripts: ldScripts(
+      webPageLd({ name: title, description, path: "/security" }),
+      breadcrumbLd([{ name: "Security", path: "/security" }]),
+    ),
   }),
   component: Page,
 });
+
 
 function Page() {
   return (
