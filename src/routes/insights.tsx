@@ -19,18 +19,45 @@ const categories = [
 
 export const Route = createFileRoute("/insights")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: "/insights" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/insights" }],
+    meta: pageMeta({
+      title,
+      description,
+      path: "/insights",
+      ogTitle: "Prism thinking — insights on AI and transformation",
+    }),
+    links: canonical("/insights"),
+    scripts: ldScripts(
+      webPageLd({
+        name: title,
+        description,
+        path: "/insights",
+        type: "Blog",
+        extra: { keywords: categories.join(", ") },
+      }),
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Prism Group insights",
+        itemListElement: insights.map((a, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "Article",
+            headline: a.title,
+            description: a.excerpt,
+            articleSection: a.category,
+            url: absUrl("/insights"),
+            author: { "@id": ORG_ID },
+            publisher: { "@id": ORG_ID },
+          },
+        })),
+      },
+      breadcrumbLd([{ name: "Insights", path: "/insights" }]),
+    ),
   }),
   component: Insights,
 });
+
 
 function Insights() {
   return (
