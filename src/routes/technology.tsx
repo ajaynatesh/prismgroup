@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { motion } from "motion/react";
 import { Reveal } from "@/components/prism/Reveal";
 import { FlowRail, GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";

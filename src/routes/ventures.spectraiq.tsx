@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import { spectraiqRelationship } from "@/lib/prism";
 import spectraiqLogo from "@/assets/spectraiq-logo.png.asset.json";

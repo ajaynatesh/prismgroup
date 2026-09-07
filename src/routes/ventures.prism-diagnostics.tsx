@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { PillarPage } from "@/components/prism/PillarPage";
 import { pillars } from "@/lib/prism";
 import { Extra } from "@/components/prism/PillarExtra";

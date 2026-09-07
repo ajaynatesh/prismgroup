@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { EcosystemPulse } from "@/components/prism/EcosystemPulse";
 import { Reveal } from "@/components/prism/Reveal";
 
