@@ -24,10 +24,10 @@ export const Route = createFileRoute("/technology")({
         "@context": "https://schema.org",
         "@type": "ItemList",
         name: "Prism technology ecosystem layers",
-        itemListElement: ecosystemLayers.map((l, i) => ({
+        itemListElement: ecosystemLayers.map((l: string, i: number) => ({
           "@type": "ListItem",
           position: i + 1,
-          name: l.name,
+          name: l,
           url: absUrl("/technology"),
         })),
       },
