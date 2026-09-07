@@ -11,16 +11,30 @@ const description =
 
 export const Route = createFileRoute("/technology")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: "/technology" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/technology" }],
+    meta: pageMeta({
+      title,
+      description,
+      path: "/technology",
+      ogTitle: "Cognitive engineering — the Prism technology ecosystem",
+    }),
+    links: canonical("/technology"),
+    scripts: ldScripts(
+      webPageLd({ name: title, description, path: "/technology" }),
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Prism technology ecosystem layers",
+        itemListElement: ecosystemLayers.map((l, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: l.name,
+          url: absUrl("/technology"),
+        })),
+      },
+      breadcrumbLd([{ name: "Technology", path: "/technology" }]),
+    ),
   }),
+
   component: Technology,
 });
 
