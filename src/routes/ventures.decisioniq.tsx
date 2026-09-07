@@ -55,27 +55,35 @@ const accent = `var(--prism-colour-${DIQ_COLOUR})`;
 const title = "Prism DecisionIQ — The AI Operating System for Business Decisions";
 const description =
   "Prism DecisionIQ is an AI-powered decision intelligence platform for leadership: governed data, AI reasoning, predictive intelligence, scenario simulation and ranked recommendations for CEOs, CFOs, COOs and boards.";
-const url = "https://prismgroup.com.au/ventures/decisioniq";
+const path = "/ventures/decisioniq";
+const url = absUrl(path);
 
 export const Route = createFileRoute("/ventures/decisioniq")({
   head: () => ({
     meta: [
-      { title },
-      { name: "description", content: description },
+      ...pageMeta({
+        title,
+        description,
+        path,
+        ogTitle: "See what matters. Understand why. Decide what's next. — Prism DecisionIQ",
+      }),
       {
         name: "keywords",
         content:
           "decision intelligence, AI decision intelligence, executive decision intelligence, AI for CEOs, AI for CFOs, AI for COOs, FP&A intelligence, AI-powered FP&A, scenario planning, business simulation, predictive analytics, business intelligence, enterprise AI, executive dashboards, AI leadership copilot, enterprise performance management",
       },
-      { property: "og:title", content: "See what matters. Understand why. Decide what's next. — Prism DecisionIQ" },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: url },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: canonical(path),
     scripts: [
+      ...ldScripts(
+        breadcrumbLd([
+          { name: "Portfolio", path: "/ventures" },
+          { name: "Prism DecisionIQ", path },
+        ]),
+        webPageLd({ name: title, description, path }),
+      ),
       {
+
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
