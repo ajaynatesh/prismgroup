@@ -17,18 +17,16 @@ const sections = [
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: "/privacy" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/privacy" }],
+    meta: pageMeta({ title, description, path: "/privacy", noindexFollow: true }),
+    links: canonical("/privacy"),
+    scripts: ldScripts(
+      webPageLd({ name: title, description, path: "/privacy" }),
+      breadcrumbLd([{ name: "Privacy Policy", path: "/privacy" }]),
+    ),
   }),
   component: Page,
 });
+
 
 function Page() {
   return (
