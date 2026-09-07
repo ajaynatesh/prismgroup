@@ -13,18 +13,27 @@ const description =
 
 export const Route = createFileRoute("/about")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: "/about" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
+    meta: pageMeta({
+      title,
+      description,
+      path: "/about",
+      ogTitle: "Australia-native. Builders, not bystanders. — About Prism Group",
+    }),
+    links: canonical("/about"),
+    scripts: ldScripts(
+      webPageLd({
+        name: title,
+        description,
+        path: "/about",
+        type: "AboutPage",
+        extra: { mainEntity: { "@id": ORG_ID } },
+      }),
+      breadcrumbLd([{ name: "About", path: "/about" }]),
+    ),
   }),
   component: About,
 });
+
 
 const people = [
   "Entrepreneurs",
