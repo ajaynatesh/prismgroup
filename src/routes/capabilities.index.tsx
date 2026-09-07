@@ -11,18 +11,45 @@ const description =
 
 export const Route = createFileRoute("/capabilities/")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: "/capabilities" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/capabilities" }],
+    meta: pageMeta({
+      title,
+      description,
+      path: "/capabilities",
+      ogTitle: "What we do — AI transformation & enterprise technology",
+    }),
+    links: canonical("/capabilities"),
+    scripts: ldScripts(
+      webPageLd({
+        name: title,
+        description,
+        path: "/capabilities",
+        type: "CollectionPage",
+      }),
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Prism Group capabilities",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "AI Transformation & Automation",
+            url: absUrl("/capabilities/ai-transformation"),
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Enterprise AI & Technology Transformation",
+            url: absUrl("/capabilities/enterprise-technology"),
+          },
+        ],
+      },
+      breadcrumbLd([{ name: "Capabilities", path: "/capabilities" }]),
+    ),
   }),
   component: Capabilities,
 });
+
 
 function Capabilities() {
   return (
