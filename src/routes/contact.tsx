@@ -10,18 +10,37 @@ const description =
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: "/contact" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    meta: pageMeta({
+      title,
+      description,
+      path: "/contact",
+      ogTitle: "Talk to Prism — start with the outcome",
+    }),
+    links: canonical("/contact"),
+    scripts: ldScripts(
+      webPageLd({
+        name: title,
+        description,
+        path: "/contact",
+        type: "ContactPage",
+      }),
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPoint",
+        "@id": `${absUrl("/contact")}#contactpoint`,
+        contactType: "sales",
+        telephone: "+61408065993",
+        email: "ajay@spectraiq.ai",
+        areaServed: "AU",
+        availableLanguage: "English",
+        url: absUrl("/contact"),
+      },
+      breadcrumbLd([{ name: "Contact", path: "/contact" }]),
+    ),
   }),
   component: Contact,
 });
+
 
 function Contact() {
   return (
