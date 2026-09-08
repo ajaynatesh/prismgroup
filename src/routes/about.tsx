@@ -154,10 +154,14 @@ function About() {
                   Founder &amp; Managing Director
                 </p>
                 <p className="mt-8 text-base leading-relaxed text-foreground/90">
-                  A transformational business leader and operator-founder with more than two decades of
-                  senior leadership experience across healthcare, retail, analytics and AI.
+                  A transformational business leader and operator-founder with 20+ years of senior leadership
+                  experience spanning FMCG, healthcare &amp; retail. A proven growth and transformation leader
+                  who builds high-performing businesses, unlocks commercial value, and harnesses data,
+                  technology and AI to drive growth, productivity and lasting competitive advantage.
 
 
+ 
+ 
                   His philosophy is simple: strategy matters, but execution creates the outcome.
                 </p>
               </div>
