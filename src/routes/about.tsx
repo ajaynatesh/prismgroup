@@ -167,15 +167,21 @@ function About() {
                 With 20+ years of commercial and general management leadership, AJ has built his career at
                 the intersection of growth, transformation and execution.
 
+
+
                 From global corporations to entrepreneurial ventures, he has led complex businesses, built
                 high-performing teams, transformed commercial models and translated strategy into measurable
                 results. His experience spans strategy, P&amp;L leadership, sales, marketing, operations,
                 commercial excellence, digital transformation and AI, across multiple markets and industries.
 
+
+
                 AJ has held senior leadership roles with PepsiCo, GSK Consumer Healthcare and Amplifon, most
                 recently leading Retail Excellence for Amplifon Australia across a large national network. His
                 work has focused on creating scalable operating models, strengthening commercial discipline,
                 improving performance visibility and embedding execution cultures that deliver sustainable growth.
+
+
 
                 Today, AJ brings that experience to Prism Group, where he is building businesses that combine
                 healthcare expertise, technology, diagnostics, AI and intelligent automation to solve real-world
