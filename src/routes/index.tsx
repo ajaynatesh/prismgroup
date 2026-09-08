@@ -152,7 +152,7 @@ function Home() {
         <div className="shell">
           <div className="grid items-center gap-6 md:grid-cols-[auto_1fr_auto_1fr_auto_1.2fr] md:gap-6">
             {[
-              { k: "Grow", sub: "Revenue & opportunity", colour: 2 },
+              { k: "GROW", sub: "Revenue & opportunity", colour: 2 },
               { k: "Optimise", sub: "Cost & efficiency", colour: 5 },
             ].map((o, i) => (
               <div key={o.k} className="contents">
