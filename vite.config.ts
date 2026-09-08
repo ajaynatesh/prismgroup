@@ -6,10 +6,49 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Every public route, prerendered to static HTML at build time so GitHub Pages can
+// serve each URL with its own SEO metadata. Keep in sync with src/routes and the sitemap.
+const staticPages = [
+  "/",
+  "/about",
+  "/capabilities",
+  "/capabilities/ai-transformation",
+  "/capabilities/enterprise-technology",
+  "/ventures",
+  "/ventures/spectraiq",
+  "/ventures/decisioniq",
+  "/ventures/tradelink",
+  "/ventures/alwayson",
+  "/ventures/prism-diagnostics",
+  "/technology",
+  "/insights",
+  "/contact",
+  "/privacy",
+  "/terms",
+  "/security",
+].map((path) => ({ path }));
+
+// Inside Lovable the nitro deploy plugin is pinned by env; outside it (GitHub Actions)
+// we want a purely static client build with no server bundle.
+const insideLovable = Boolean(process.env["LOVABLE_NITRO_PRESET"]);
+
+// Set BASE_PATH=/repo-name/ when publishing to a project GitHub Pages site.
+const basePath = process.env["BASE_PATH"] ?? "/";
+
 export default defineConfig({
+  ...(insideLovable ? {} : { nitro: false as const }),
+  vite: { base: basePath },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    // Static SPA output: a client-only shell (served as 404.html for deep links)
+    // plus prerendered HTML for every route so SEO metadata stays static.
+    spa: {
+      enabled: true,
+      prerender: { outputPath: "/404", autoSubfolderIndex: false, crawlLinks: false },
+    },
+    pages: staticPages,
+    prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
   },
 });

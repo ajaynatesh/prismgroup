@@ -31,7 +31,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build static site
+        # For a project site (https://<user>.github.io/<repo>/) set:
+        #   BASE_PATH: /<repo>/
+        env:
+          BASE_PATH: /
         run: npm run build
 
       - name: Setup Pages
@@ -40,7 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./dist/client
 
       - name: Deploy to GitHub Pages
         id: deployment

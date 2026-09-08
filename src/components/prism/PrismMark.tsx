@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
-import prismMark from "@/assets/prism-mark.png.asset.json";
+import prismMark from "@/assets/prism-mark.png";
 
 /** Prism Group brand mark — the refracting prism from the official logo. */
 export function PrismMark({ className }: { className?: string; animated?: boolean }) {
   return (
     <img
-      src={prismMark.url}
+      src={prismMark}
       alt="Prism Group"
       width={476}
       height={417}

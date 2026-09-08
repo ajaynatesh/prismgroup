@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import { spectraiqRelationship } from "@/lib/prism";
-import spectraiqLogo from "@/assets/spectraiq-logo.png.asset.json";
+import spectraiqLogo from "@/assets/spectraiq-logo.png";
 import { Reveal } from "@/components/prism/Reveal";
 import {
   ExternalCta,
@@ -129,7 +129,7 @@ function Page() {
               <VentureLabel label="Independent company · Prism founder is a shareholder" />
             </div>
             <img
-              src={spectraiqLogo.url}
+              src={spectraiqLogo}
               alt="SpectraIQ.ai"
               width={1131}
               height={384}
