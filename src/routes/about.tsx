@@ -156,21 +156,30 @@ function About() {
                 <p className="mt-8 text-base leading-relaxed text-foreground/90">
                   A transformational business leader and operator-founder with more than two decades of
                   senior leadership experience across healthcare, retail, analytics and AI.
+
+
+                  His philosophy is simple: strategy matters, but execution creates the outcome.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={0.1} className="space-y-6">
               <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-                AJ has led complex business transformations, built high-performing teams, developed
-                strategic partnerships and delivered sustainable commercial growth across multi-market
-                environments. His experience spans commercial strategy, customer experience, operating
-                model transformation, analytics and AI, with a strong focus on turning strategy into
-                measurable business outcomes.
-              </p>
-              <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-                As Founder &amp; Managing Director of Prism Group, AJ combines commercial discipline,
-                technology and execution to help organisations unlock growth, improve performance and
-                build sustainable competitive advantage.
+                With 20+ years of commercial and general management leadership, AJ has built his career at
+                the intersection of growth, transformation and execution.
+
+                From global corporations to entrepreneurial ventures, he has led complex businesses, built
+                high-performing teams, transformed commercial models and translated strategy into measurable
+                results. His experience spans strategy, P&amp;L leadership, sales, marketing, operations,
+                commercial excellence, digital transformation and AI, across multiple markets and industries.
+
+                AJ has held senior leadership roles with PepsiCo, GSK Consumer Healthcare and Amplifon, most
+                recently leading Retail Excellence for Amplifon Australia across a large national network. His
+                work has focused on creating scalable operating models, strengthening commercial discipline,
+                improving performance visibility and embedding execution cultures that deliver sustainable growth.
+
+                Today, AJ brings that experience to Prism Group, where he is building businesses that combine
+                healthcare expertise, technology, diagnostics, AI and intelligent automation to solve real-world
+                problems and create measurable impact.
               </p>
             </Reveal>
           </div>
