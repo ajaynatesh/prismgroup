@@ -32,14 +32,22 @@ const staticPages = [
 // we want a purely static client build with no server bundle.
 const insideLovable = Boolean(process.env["LOVABLE_NITRO_PRESET"]);
 
+// Set BASE_PATH=/repo-name/ when publishing to a project GitHub Pages site.
+const basePath = process.env["BASE_PATH"] ?? "/";
+
 export default defineConfig({
   ...(insideLovable ? {} : { nitro: false as const }),
+  vite: { base: basePath },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
-    // Static SPA output: a client-only shell plus prerendered HTML for every route.
-    spa: { enabled: true, prerender: { outputPath: "/index" } },
+    // Static SPA output: a client-only shell (served as 404.html for deep links)
+    // plus prerendered HTML for every route so SEO metadata stays static.
+    spa: {
+      enabled: true,
+      prerender: { outputPath: "/404", autoSubfolderIndex: false, crawlLinks: false },
+    },
     pages: staticPages,
     prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
   },
