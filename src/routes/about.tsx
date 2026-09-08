@@ -45,6 +45,14 @@ const people = [
   "Transformation professionals",
 ];
 
+const leadershipPillars = [
+  "Operator-founder focused on outcomes, not features",
+  "Deep expertise across transformation, analytics, AI and customer experience",
+  "Proven track record in operational excellence and high-performing teams",
+  "Long-term, partnership-led approach to building sustainable business value",
+];
+
+
 function About() {
   return (
     <>
@@ -131,6 +139,56 @@ function About() {
           <Reveal delay={0.1}>
             <EcosystemPulse />
           </Reveal>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="shell">
+          <SectionHeading eyebrow="Leadership" title="The founder behind Prism Group." colour={3} />
+          <div className="mt-14 grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+            <Reveal>
+              <div className="panel p-8 md:p-10">
+                <div className="spectrum-rule max-w-16" />
+                <h3 className="display-lg mt-8">Ajay Natesh (AJ)</h3>
+                <p className="mt-4 text-sm uppercase tracking-[0.18em] text-muted-foreground">
+                  Founder &amp; Managing Director
+                </p>
+                <p className="mt-8 text-base leading-relaxed text-foreground/90">
+                  A transformational business leader and operator-founder with more than two decades of
+                  senior leadership experience across healthcare, retail, analytics and AI.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1} className="space-y-6">
+              <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+                AJ has led complex business transformations, built high-performing teams, developed
+                strategic partnerships and delivered sustainable commercial growth across multi-market
+                environments. His experience spans commercial strategy, customer experience, operating
+                model transformation, analytics and AI, with a strong focus on turning strategy into
+                measurable business outcomes.
+              </p>
+              <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+                As Founder &amp; Managing Director of Prism Group, AJ combines commercial discipline,
+                technology and execution to help organisations unlock growth, improve performance and
+                build sustainable competitive advantage.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="mt-14 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2">
+            {leadershipPillars.map((p, i) => (
+              <div key={p} className="bg-background p-7 transition-colors hover:bg-surface md:p-9">
+                <div className="flex items-start gap-4">
+                  <span
+                    className="mt-2 h-2 w-2 shrink-0 rounded-full"
+                    style={{ background: `var(--prism-colour-${(i % 7) + 1})` }}
+                    aria-hidden="true"
+                  />
+                  <p className="text-sm leading-relaxed text-foreground/90 md:text-base">{p}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
