@@ -161,7 +161,6 @@ function About() {
 
 
  
- 
                   His philosophy is simple: strategy matters, but execution creates the outcome.
                 </p>
               </div>
