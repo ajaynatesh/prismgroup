@@ -38,17 +38,18 @@ const basePath = process.env["BASE_PATH"] ?? "/";
 export default defineConfig({
   ...(insideLovable ? {} : { nitro: false as const }),
   vite: { base: basePath },
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
-    // Static SPA output: a client-only shell (served as 404.html for deep links)
-    // plus prerendered HTML for every route so SEO metadata stays static.
-    spa: {
-      enabled: true,
-      prerender: { outputPath: "/404", autoSubfolderIndex: false, crawlLinks: false },
-    },
-    pages: staticPages,
-    prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
-  },
+  tanstackStart: insideLovable
+    ? {
+        // Lovable hosting uses its normal server build and the guarded SSR entry.
+        server: { entry: "server" },
+      }
+    : {
+        // GitHub Pages receives a client-only shell plus prerendered route HTML.
+        spa: {
+          enabled: true,
+          prerender: { outputPath: "/404", autoSubfolderIndex: false, crawlLinks: false },
+        },
+        pages: staticPages,
+        prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
+      },
 });
