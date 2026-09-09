@@ -439,7 +439,7 @@ export const insights = [
     title: "Where AI genuinely helps clinical workflows",
     excerpt:
       "Diagnostic capability grows when technology reduces interpretation burden and returns time to clinicians.",
-    read: "7 min read",
+    read: "6 min read",
     colour: 7 as PrismColour,
   },
 ];
