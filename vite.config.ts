@@ -28,22 +28,19 @@ const staticPages = [
   "/security",
 ].map((path) => ({ path }));
 
-// Inside Lovable the nitro deploy plugin is pinned by env; outside it (GitHub Actions)
-// we want a purely static client build with no server bundle.
-const insideLovable = Boolean(process.env["LOVABLE_NITRO_PRESET"]);
+// Lovable hosting is the safe default. GitHub Actions opts into the separate
+// static SPA build explicitly so missing environment variables can never make
+// a Lovable production build emit GitHub-only output.
+const githubPagesBuild = process.env["GITHUB_PAGES"] === "true";
 
 // Set BASE_PATH=/repo-name/ when publishing to a project GitHub Pages site.
 const basePath = process.env["BASE_PATH"] ?? "/";
 
 export default defineConfig({
-  ...(insideLovable ? {} : { nitro: false as const }),
+  ...(githubPagesBuild ? { nitro: false as const } : {}),
   vite: { base: basePath },
-  tanstackStart: insideLovable
+  tanstackStart: githubPagesBuild
     ? {
-        // Lovable hosting uses its normal server build and the guarded SSR entry.
-        server: { entry: "server" },
-      }
-    : {
         // GitHub Pages receives a client-only shell plus prerendered route HTML.
         spa: {
           enabled: true,
@@ -51,5 +48,9 @@ export default defineConfig({
         },
         pages: staticPages,
         prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
+      }
+    : {
+        // Lovable hosting uses its normal server build and guarded SSR entry.
+        server: { entry: "server" },
       },
 });
