@@ -35,6 +35,7 @@ jobs:
         # For a project site (https://<user>.github.io/<repo>/) set:
         #   BASE_PATH: /<repo>/
         env:
+          GITHUB_PAGES: "true"
           BASE_PATH: /
         run: npm run build
 
