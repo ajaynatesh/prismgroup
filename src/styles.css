@@ -283,8 +283,25 @@
   );
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(8px) saturate(125%);
   box-shadow: var(--shadow-elevate);
+}
+
+@media (min-width: 768px) {
+  .glass {
+    backdrop-filter: blur(14px) saturate(140%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @utility glass-hover {

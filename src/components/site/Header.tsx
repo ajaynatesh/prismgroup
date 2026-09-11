@@ -65,7 +65,7 @@ export function Header() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled ? "border-b border-border bg-background/80 backdrop-blur-xl" : "border-b border-transparent",
+        scrolled ? "border-b border-border bg-background/95 md:bg-background/80 md:backdrop-blur-xl" : "border-b border-transparent",
       )}
     >
       <div className="shell flex h-16 items-center justify-between md:h-20">
@@ -99,7 +99,7 @@ export function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground lg:hidden"
+            className="inline-flex h-11 w-11 touch-manipulation items-center justify-center rounded-full border border-border text-foreground transition-colors active:bg-accent lg:hidden"
           >
             {open ? <X className="h-4.5 w-4.5" /> : <Menu className="h-4.5 w-4.5" />}
           </button>
@@ -130,7 +130,7 @@ export function Header() {
                     <Link
                       to={l.to}
                       onClick={() => setOpen(false)}
-                      className="flex items-center justify-between border-b border-border py-5 font-display text-2xl font-semibold tracking-tight"
+                      className="flex min-h-16 touch-manipulation items-center justify-between border-b border-border py-4 font-display text-2xl font-semibold tracking-tight active:text-muted-foreground"
                     >
                       {l.label}
                       <span

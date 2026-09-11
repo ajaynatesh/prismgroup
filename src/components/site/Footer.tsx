@@ -48,7 +48,7 @@ export function Footer() {
                 <li key={l.to}>
                   <Link
                     to={l.to}
-                    className="link-underline text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="inline-flex min-h-11 items-center text-sm text-muted-foreground transition-colors active:text-foreground md:min-h-0 md:hover:text-foreground"
                   >
                     {l.label}
                   </Link>
@@ -61,14 +61,14 @@ export function Footer() {
       <div className="hairline">
         <div className="shell flex flex-col gap-4 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Prism Group</p>
-          <div className="flex gap-6">
-            <Link to="/privacy" className="link-underline hover:text-foreground">
+          <div className="flex flex-wrap gap-x-6 gap-y-1">
+            <Link to="/privacy" className="inline-flex min-h-11 items-center hover:text-foreground">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="link-underline hover:text-foreground">
+            <Link to="/terms" className="inline-flex min-h-11 items-center hover:text-foreground">
               Terms
             </Link>
-            <Link to="/security" className="link-underline hover:text-foreground">
+            <Link to="/security" className="inline-flex min-h-11 items-center hover:text-foreground">
               Security
             </Link>
           </div>
