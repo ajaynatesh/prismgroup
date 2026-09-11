@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { homePillars, type HomePillar } from "@/lib/home";
@@ -49,11 +49,12 @@ function ExploreLink({ pillar }: { pillar: HomePillar }) {
 export function PillarPortfolio() {
   const [i, setI] = useState(0);
   const active = homePillars[i]!;
+  const reduce = useReducedMotion() ?? false;
 
   return (
     <div>
       {/* spectrum selector */}
-      <div className="grid grid-cols-7 gap-2 md:gap-3">
+      <div className="-mx-5 flex snap-x snap-mandatory gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-7 sm:px-0 sm:pb-0 md:gap-3">
         {homePillars.map((p, idx) => {
           const on = idx === i;
           return (
@@ -65,7 +66,7 @@ export function PillarPortfolio() {
               onClick={() => setI(idx)}
               aria-label={p.name}
               aria-pressed={on}
-              className="group relative flex w-full flex-col items-stretch justify-start pt-4 text-left focus:outline-none"
+              className="group relative flex min-h-16 w-[4.25rem] shrink-0 snap-start touch-manipulation flex-col items-stretch justify-start pt-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-0 sm:w-full sm:pt-4"
             >
               <span
                 className="block h-[3px] w-full rounded-full transition-all duration-500"
@@ -103,13 +104,13 @@ export function PillarPortfolio() {
         <AnimatePresence mode="wait">
           <motion.div
             key={active.index}
-            initial={{ opacity: 0, y: 14 }}
+            initial={reduce ? { opacity: 1 } : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -6 }}
+            transition={{ duration: reduce ? 0 : 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20"
           >
-            <div>
+            <div className="min-w-0">
               <div className="flex items-center gap-3">
                 <span
                   className="h-2 w-2 rounded-full"
@@ -128,7 +129,7 @@ export function PillarPortfolio() {
               </div>
             </div>
 
-            <div className="space-y-9">
+            <div className="min-w-0 space-y-9">
               <div>
                 <p className="eyebrow">What we solve</p>
                 <ul className="mt-5 space-y-3">
@@ -173,10 +174,10 @@ export function PillarLedger() {
     <div className="hairline">
       {homePillars.map((p, idx) => (
         <Reveal key={p.index} delay={idx * 0.03}>
-          <article className="group grid gap-8 border-b border-border py-12 md:grid-cols-[auto_1fr] md:gap-12 md:py-14">
+          <article className="group grid gap-6 border-b border-border py-10 md:grid-cols-[auto_1fr] md:gap-12 md:py-14">
             <div className="flex items-start gap-4 md:w-40">
               <span
-                className="mt-2 h-10 w-px shrink-0 transition-all duration-500 group-hover:h-16"
+                className="mt-2 h-8 w-px shrink-0 transition-all duration-500 md:h-10 md:group-hover:h-16"
                 style={{ background: `var(--prism-colour-${p.colour})` }}
                 aria-hidden="true"
               />

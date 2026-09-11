@@ -62,23 +62,23 @@ function Home() {
   return (
     <>
       {/* 02 — HERO */}
-      <section className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-36">
+      <section className="relative overflow-hidden pb-12 pt-24 md:pb-24 md:pt-36">
         <div className="ambient-navy pointer-events-none absolute inset-0 opacity-90" aria-hidden="true" />
         <div
           className="grain-grid pointer-events-none absolute inset-0 opacity-40"
           aria-hidden="true"
           style={{ maskImage: "radial-gradient(70% 60% at 50% 0%, black, transparent)" }}
         />
-        <div className="shell relative grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div className="shell relative grid items-center gap-9 sm:gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div className="relative z-10">
             <Reveal>
-              <span className="inline-flex items-center gap-2.5 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-[0.6875rem] uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
+              <span className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-border bg-surface/60 px-3 py-1.5 text-[0.625rem] uppercase leading-relaxed tracking-[0.16em] text-muted-foreground sm:px-3.5 sm:text-[0.6875rem] sm:tracking-[0.2em] sm:backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent-emerald)" }} />
                 Prism Group · Enterprise AI &amp; intelligence
               </span>
             </Reveal>
             <Reveal delay={0.06}>
-              <h1 className="display-xl mt-7 uppercase" style={{ fontSize: "clamp(2.2rem, 3.7vw, 3.6rem)" }}>
+              <h1 className="mt-6 font-display text-[2.15rem] font-semibold uppercase leading-[0.96] sm:mt-7 sm:text-[2.55rem] lg:text-[3.6rem]">
                 Unleash the potential of{" "}
                 <span
                   style={{
@@ -94,25 +94,25 @@ function Home() {
               </h1>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="mt-7 max-w-xl font-display text-lg font-medium leading-snug tracking-tight text-foreground/90 md:text-2xl">
+              <p className="mt-6 max-w-xl font-display text-[1.0625rem] font-medium leading-snug text-foreground/90 sm:text-lg md:mt-7 md:text-2xl">
                 Transform your business. Accelerate growth. Increase profitability.
               </p>
             </Reveal>
             <Reveal delay={0.18}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+              <p className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-muted-foreground sm:text-base md:mt-6">
                 Prism helps organisations move from AI ambition to measurable business impact —
                 identifying where AI can create value, building the right solutions and embedding
                 intelligence into the way businesses operate.
               </p>
             </Reveal>
             <Reveal delay={0.24}>
-              <div className="mt-10 flex flex-wrap gap-3">
-                <PrimaryLink to="/ventures">Explore Our Portfolio</PrimaryLink>
-                <GhostLink to="/contact">Talk to Prism</GhostLink>
+              <div className="mt-7 grid grid-cols-1 gap-2.5 min-[390px]:grid-cols-2 sm:mt-10 sm:flex sm:flex-wrap sm:gap-3">
+                <PrimaryLink to="/ventures" className="justify-center px-5 sm:px-6">Explore Our Portfolio</PrimaryLink>
+                <GhostLink to="/contact" className="justify-center px-5 sm:px-6">Talk to Prism</GhostLink>
               </div>
             </Reveal>
             <Reveal delay={0.3}>
-              <dl className="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-border pt-8">
+              <dl className="mt-8 grid max-w-xl grid-cols-3 gap-3 border-t border-border pt-6 sm:mt-12 sm:gap-6 sm:pt-8">
                 {[
                   { k: "07", v: "Strategic pillars" },
                   { k: "AI +", v: "Engineering depth" },
@@ -120,7 +120,7 @@ function Home() {
                 ].map((m) => (
                   <div key={m.v}>
                     <dt className="metric-figure text-foreground">{m.k}</dt>
-                    <dd className="mt-2 text-xs leading-relaxed text-muted-foreground">{m.v}</dd>
+                    <dd className="mt-2 text-[0.6875rem] leading-snug text-muted-foreground sm:text-xs sm:leading-relaxed">{m.v}</dd>
                   </div>
                 ))}
               </dl>
@@ -148,7 +148,7 @@ function Home() {
       </section>
 
       {/* 03 — BUSINESS OUTCOME */}
-      <Section tone="raised" className="py-16 md:py-20 lg:py-24">
+      <Section tone="raised" className="py-14 md:py-20 lg:py-24">
         <div className="shell">
           <div className="grid items-center gap-6 md:grid-cols-[auto_1fr_auto_1fr_auto_1.2fr] md:gap-6">
             {[
@@ -160,7 +160,7 @@ function Home() {
                   <span className="font-display text-3xl text-muted-foreground/40">{i === 0 ? "" : "+"}</span>
                 </Reveal>
                 <Reveal delay={i * 0.08 + 0.04}>
-                  <div className="glass glass-hover p-7 md:p-8">
+                  <div className="glass glass-hover p-5 sm:p-7 md:p-8">
                     <span
                       className="block h-px w-10"
                       style={{ background: `var(--prism-colour-${o.colour})` }}
@@ -177,7 +177,7 @@ function Home() {
               <span className="font-display text-3xl text-muted-foreground/40">=</span>
             </Reveal>
             <Reveal delay={0.24}>
-              <div className="glass glass-hover relative overflow-hidden p-7 md:p-8">
+              <div className="glass glass-hover relative overflow-hidden p-5 sm:p-7 md:p-8">
                 <span
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 opacity-[0.12]"
@@ -196,7 +196,7 @@ function Home() {
 
 
       {/* 03b — CAPABILITY SPINE */}
-      <section className="relative border-y border-border py-10">
+      <section className="relative border-y border-border py-8 md:py-10">
         <div className="shell">
           <Reveal>
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-center">
@@ -256,7 +256,7 @@ function Home() {
               </p>
             </Reveal>
           </div>
-          <div className="mt-16 md:mt-20">
+          <div className="mt-12 md:mt-20">
             <PillarPortfolio />
           </div>
         </div>
@@ -270,7 +270,7 @@ function Home() {
             title="Depth behind every colour."
             copy="Seven pillars, each with its own domain, technology and commercial thesis — and one shared objective: measurable business value."
           />
-          <div className="mt-14">
+          <div className="mt-10 md:mt-14">
             <PillarLedger />
           </div>
         </div>
@@ -302,10 +302,10 @@ function Home() {
             </Reveal>
           </div>
 
-          <div className="mt-16 grid gap-px overflow-hidden border-y border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-px overflow-hidden border-y border-border bg-border sm:mt-16 sm:grid-cols-2 lg:grid-cols-3">
             {methodology.map((s, i) => (
               <Reveal key={s.n} delay={i * 0.05}>
-                <div className="group h-full bg-background p-7 transition-colors hover:bg-surface md:p-9">
+                <div className="group h-full bg-background p-6 transition-colors active:bg-surface md:p-9 md:hover:bg-surface">
                   <div className="flex items-baseline justify-between">
                     <span className="font-display text-xs tracking-[0.18em] text-muted-foreground">
                       {s.n}
@@ -334,10 +334,10 @@ function Home() {
             title={<span className="uppercase">AI should not be a cost centre.</span>}
             copy='The objective is not to "do something with AI". The objective is to create measurable business value.'
           />
-          <div className="mt-16 grid gap-8 lg:grid-cols-[1fr_1fr_1.4fr]">
+          <div className="mt-12 grid gap-5 sm:mt-16 sm:gap-8 lg:grid-cols-[1fr_1fr_1.4fr]">
             {commercialOutcomes.map((o, i) => (
               <Reveal key={o.label} delay={i * 0.08}>
-                <div className="glass glass-hover h-full p-8">
+                <div className="glass glass-hover h-full p-6 sm:p-8">
                   <span
                     className="block h-px w-10"
                     style={{ background: `var(--prism-colour-${o.colour})` }}
@@ -356,7 +356,7 @@ function Home() {
               </Reveal>
             ))}
             <Reveal delay={0.24}>
-              <div className="glass relative h-full overflow-hidden p-8 md:p-10">
+              <div className="glass relative h-full overflow-hidden p-6 sm:p-8 md:p-10">
                 <div
                   className="pointer-events-none absolute inset-0 opacity-[0.14]"
                   style={{ background: "var(--gradient-spectrum)" }}
@@ -382,7 +382,7 @@ function Home() {
 
           {/* Core promise */}
           <Reveal>
-            <div className="mt-20 grid gap-10 border-t border-border pt-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+            <div className="mt-14 grid gap-6 border-t border-border pt-10 sm:mt-20 sm:gap-10 sm:pt-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
               <h3 className="display-md uppercase">We start with the outcome.</h3>
               <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
                 We don't begin with technology. We begin with the business problem, quantify the
@@ -398,10 +398,10 @@ function Home() {
       <Section>
         <div className="shell">
           <SectionHeading eyebrow="Why Prism" title={<span className="uppercase">Why Prism exists.</span>} />
-          <div className="mt-16 grid gap-px overflow-hidden border-y border-border bg-border md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-px overflow-hidden border-y border-border bg-border sm:mt-16 md:grid-cols-2 lg:grid-cols-4">
             {whyPrism.map((w, i) => (
               <Reveal key={w.title} delay={i * 0.06}>
-                <div className="h-full bg-background p-8 transition-colors hover:bg-surface md:p-9">
+                <div className="h-full bg-background p-6 transition-colors active:bg-surface md:p-9 md:hover:bg-surface">
                   <span
                     className="inline-block h-2 w-2 rounded-full"
                     style={{ background: `var(--prism-colour-${i + 2})` }}
@@ -476,12 +476,12 @@ function Home() {
               <GhostLink to="/insights">All insights</GhostLink>
             </Reveal>
           </div>
-          <div className="mt-14 grid gap-px overflow-hidden border-y border-border bg-border md:grid-cols-3">
+          <div className="mt-10 grid gap-px overflow-hidden border-y border-border bg-border sm:mt-14 md:grid-cols-3">
             {insights.map((a, i) => (
               <Reveal key={a.slug} delay={i * 0.06}>
                 <Link
                   to="/insights"
-                  className="group flex h-full flex-col bg-background p-8 transition-colors hover:bg-surface md:p-9"
+                  className="group flex min-h-44 flex-col bg-background p-6 transition-colors active:bg-surface md:p-9 md:hover:bg-surface"
                 >
                   <span
                     className="text-[0.6875rem] uppercase tracking-[0.18em]"
@@ -502,10 +502,10 @@ function Home() {
       </Section>
 
       {/* 11 — FINAL CTA */}
-      <Section tone="raised" className="py-24 md:py-32">
+      <Section tone="raised" className="py-16 md:py-32">
         <div className="shell">
           <Reveal>
-            <motion.div className="glass ambient-navy relative overflow-hidden p-10 md:p-16">
+            <motion.div className="glass ambient-navy relative overflow-hidden p-6 sm:p-10 md:p-16">
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-px"
                 style={{ background: "var(--gradient-spectrum)" }}
