@@ -117,7 +117,7 @@ function Chip({
   return (
     <div
       className={cn(
-        "flex h-full min-h-11 items-center gap-2.5 rounded-lg border border-border bg-surface/50 px-3 py-2 text-[0.75rem] leading-tight transition-colors duration-300 hover:border-border-strong sm:text-[0.8125rem]",
+        "flex h-full min-h-11 items-center gap-2 rounded-lg border border-border bg-surface/50 px-2.5 py-2 text-[0.6875rem] leading-tight transition-colors duration-300 active:border-border-strong sm:gap-2.5 sm:px-3 sm:text-[0.8125rem] md:hover:border-border-strong",
         emphasis ? "text-foreground" : "text-muted-foreground",
       )}
       style={
@@ -197,14 +197,14 @@ export function HeroIntelligence({ className }: { className?: string }) {
     <div className={cn("relative w-full", className)}>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -inset-10 opacity-70"
+        className="pointer-events-none absolute -inset-5 opacity-50 sm:-inset-10 sm:opacity-70"
         style={{
           background:
             "radial-gradient(50% 50% at 50% 45%, color-mix(in oklab, var(--accent-electric) 18%, transparent), transparent 70%)",
         }}
       />
 
-      <div className="glass relative overflow-hidden p-4 sm:p-6">
+      <div className="glass relative overflow-hidden p-3.5 sm:p-6">
         <div className="flex items-center justify-between text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
           <span>Intelligence layer</span>
           <span className="inline-flex items-center gap-2">
@@ -238,28 +238,28 @@ export function HeroIntelligence({ className }: { className?: string }) {
         </div>
 
         {/* Mobile / tablet: inputs → core → outputs */}
-        <div className="mt-6 lg:hidden">
+        <div className="mt-4 lg:hidden sm:mt-6">
           <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
             Signals in
           </p>
-          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+          <div className="mt-2.5 grid grid-cols-2 gap-1.5 min-[390px]:grid-cols-3 sm:mt-3 sm:gap-2">
             {inputs.map((label) => (
               <Chip key={label} label={label} />
             ))}
           </div>
-          <div className="flex justify-center py-4" aria-hidden="true">
+          <div className="flex justify-center py-2.5 sm:py-4" aria-hidden="true">
             <ArrowDown className="h-4 w-4 text-muted-foreground" />
           </div>
-          <div className="min-h-[152px]">
+          <div className="min-h-[124px] sm:min-h-[152px]">
             <Core />
           </div>
-          <div className="flex justify-center py-4" aria-hidden="true">
+          <div className="flex justify-center py-2.5 sm:py-4" aria-hidden="true">
             <ArrowDown className="h-4 w-4 text-muted-foreground" />
           </div>
           <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
             Outcomes out
           </p>
-          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+          <div className="mt-2.5 grid grid-cols-2 gap-1.5 min-[390px]:grid-cols-3 sm:mt-3 sm:gap-2">
             {outputs.map((label, i) => (
               <Chip key={label} label={label} colour={i + 1} emphasis />
             ))}

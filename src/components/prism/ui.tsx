@@ -19,7 +19,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "relative py-20 md:py-28 lg:py-32",
+        "relative py-16 md:py-28 lg:py-32",
         tone === "raised" && "overflow-hidden bg-surface/40",
         className,
       )}
@@ -82,7 +82,7 @@ export function SectionHeading({
 }
 
 const btnBase =
-  "group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-all duration-300";
+  "group inline-flex min-h-12 touch-manipulation items-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-all duration-300 active:scale-[0.98] motion-reduce:transform-none";
 
 export function PrimaryLink({
   to,
