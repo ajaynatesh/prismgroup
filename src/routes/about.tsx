@@ -171,9 +171,6 @@ function About() {
                 the intersection of growth, transformation and execution. Across global corporations and
                 entrepreneurial ventures, he has led complex businesses, built high-performing teams and
                 transformed commercial models—turning strategy into measurable, sustainable results.
-                .
-
-
 
 
 
@@ -183,9 +180,6 @@ function About() {
                 leading Retail Excellence for Amplifon Australia across a large national network. A consistent
                 theme throughout his career has been connecting people, technology and commercial strategy to
                 unlock growth, simplify complexity and build scalable businesses.
-                .
-
-
 
 
 
