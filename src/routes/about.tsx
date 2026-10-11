@@ -171,6 +171,7 @@ function About() {
                 the intersection of growth, transformation and execution. Across global corporations and
                 entrepreneurial ventures, he has led complex businesses, built high-performing teams and
                 transformed commercial models—turning strategy into measurable, sustainable results.
+                .
 
 
 
@@ -181,16 +182,17 @@ function About() {
                 senior leadership roles with PepsiCo, GSK Consumer Healthcare and Amplifon, most recently
                 leading Retail Excellence for Amplifon Australia across a large national network. A consistent
                 theme throughout his career has been connecting people, technology and commercial strategy to
-                unlock growth, simplify complexity and build scalable operating models.
+                unlock growth, simplify complexity and build scalable businesses.
+                .
 
 
 
 
 
-                Today, AJ brings that experience to Prism Group, building and scaling businesses at the
-                convergence of healthcare, diagnostics, technology, AI and intelligent automation—with a clear
-                focus on solving real-world problems, challenging traditional models and creating meaningful,
-                measurable impact.
+                Today, AJ brings that experience to Prism Group, building and scaling ventures across industries
+                by combining deep commercial expertise with technology, AI and intelligent automation. His focus
+                is on identifying real-world problems, challenging traditional business models and turning bold
+                ideas into scalable solutions that create meaningful, measurable impact.
               </p>
             </Reveal>
           </div>
