@@ -168,27 +168,29 @@ function About() {
             <Reveal delay={0.1} className="space-y-6">
               <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
                 With 20+ years of commercial and general management leadership, AJ has built his career at
-                the intersection of growth, transformation and execution.
+                the intersection of growth, transformation and execution. Across global corporations and
+                entrepreneurial ventures, he has led complex businesses, built high-performing teams and
+                transformed commercial models—turning strategy into measurable, sustainable results.
 
 
 
-                From global corporations to entrepreneurial ventures, he has led complex businesses, built
-                high-performing teams, transformed commercial models and translated strategy into measurable
-                results. His experience spans strategy, P&amp;L leadership, sales, marketing, operations,
-                commercial excellence, digital transformation and AI, across multiple markets and industries.
+
+
+                His experience spans strategy, P&amp;L leadership, sales, marketing, operations, commercial
+                excellence, digital transformation and AI across multiple industries and markets. AJ has held
+                senior leadership roles with PepsiCo, GSK Consumer Healthcare and Amplifon, most recently
+                leading Retail Excellence for Amplifon Australia across a large national network. A consistent
+                theme throughout his career has been connecting people, technology and commercial strategy to
+                unlock growth, simplify complexity and build scalable operating models.
 
 
 
-                AJ has held senior leadership roles with PepsiCo, GSK Consumer Healthcare and Amplifon, most
-                recently leading Retail Excellence for Amplifon Australia across a large national network. His
-                work has focused on creating scalable operating models, strengthening commercial discipline,
-                improving performance visibility and embedding execution cultures that deliver sustainable growth.
 
 
-
-                Today, AJ brings that experience to Prism Group, where he is building businesses that combine
-                healthcare expertise, technology, diagnostics, AI and intelligent automation to solve real-world
-                problems and create measurable impact.
+                Today, AJ brings that experience to Prism Group, building and scaling businesses at the
+                convergence of healthcare, diagnostics, technology, AI and intelligent automation—with a clear
+                focus on solving real-world problems, challenging traditional models and creating meaningful,
+                measurable impact.
               </p>
             </Reveal>
           </div>
