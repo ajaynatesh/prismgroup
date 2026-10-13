@@ -7,6 +7,8 @@ const routes: Array<{ path: string; priority: string; changefreq: string }> = [
   { path: "/capabilities", priority: "0.9", changefreq: "monthly" },
   { path: "/capabilities/ai-transformation", priority: "0.9", changefreq: "monthly" },
   { path: "/capabilities/enterprise-technology", priority: "0.9", changefreq: "monthly" },
+  { path: "/case-studies", priority: "0.8", changefreq: "monthly" },
+  { path: "/case-studies/intelligent-procurement", priority: "0.7", changefreq: "monthly" },
   { path: "/ventures", priority: "0.9", changefreq: "monthly" },
   { path: "/ventures/spectraiq", priority: "0.8", changefreq: "monthly" },
   { path: "/ventures/decisioniq", priority: "0.8", changefreq: "monthly" },

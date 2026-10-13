@@ -448,6 +448,7 @@ export const navLinks = [
   { label: "About", to: "/about" },
   { label: "Portfolio", to: "/ventures" },
   { label: "Capabilities", to: "/capabilities" },
+  { label: "Case Studies", to: "/case-studies" },
   { label: "Technology", to: "/technology" },
   { label: "Insights", to: "/insights" },
   { label: "Contact", to: "/contact" },
