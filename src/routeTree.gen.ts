@@ -21,6 +21,8 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CapabilitiesIndexRouteImport } from './routes/capabilities.index'
 import { Route as CapabilitiesAiTransformationRouteImport } from './routes/capabilities.ai-transformation'
 import { Route as CapabilitiesEnterpriseTechnologyRouteImport } from './routes/capabilities.enterprise-technology'
+import { Route as CaseStudiesIndexRouteImport } from './routes/case-studies.index'
+import { Route as CaseStudiesIntelligentProcurementRouteImport } from './routes/case-studies.intelligent-procurement'
 import { Route as VenturesIndexRouteImport } from './routes/ventures.index'
 import { Route as VenturesAlwaysonRouteImport } from './routes/ventures.alwayson'
 import { Route as VenturesDecisioniqRouteImport } from './routes/ventures.decisioniq'
@@ -90,6 +92,17 @@ const CapabilitiesEnterpriseTechnologyRoute =
     path: '/capabilities/enterprise-technology',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CaseStudiesIndexRoute = CaseStudiesIndexRouteImport.update({
+  id: '/case-studies/',
+  path: '/case-studies/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseStudiesIntelligentProcurementRoute =
+  CaseStudiesIntelligentProcurementRouteImport.update({
+    id: '/case-studies/intelligent-procurement',
+    path: '/case-studies/intelligent-procurement',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const VenturesIndexRoute = VenturesIndexRouteImport.update({
   id: '/ventures/',
   path: '/ventures/',
@@ -134,12 +147,14 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/case-studies/intelligent-procurement': typeof CaseStudiesIntelligentProcurementRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
   '/ventures/decisioniq': typeof VenturesDecisioniqRoute
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
   '/ventures/spectraiq': typeof VenturesSpectraiqRoute
   '/ventures/tradelink': typeof VenturesTradelinkRoute
   '/capabilities/': typeof CapabilitiesIndexRoute
+  '/case-studies/': typeof CaseStudiesIndexRoute
   '/ventures/': typeof VenturesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -154,12 +169,14 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/case-studies/intelligent-procurement': typeof CaseStudiesIntelligentProcurementRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
   '/ventures/decisioniq': typeof VenturesDecisioniqRoute
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
   '/ventures/spectraiq': typeof VenturesSpectraiqRoute
   '/ventures/tradelink': typeof VenturesTradelinkRoute
   '/capabilities': typeof CapabilitiesIndexRoute
+  '/case-studies': typeof CaseStudiesIndexRoute
   '/ventures': typeof VenturesIndexRoute
 }
 export interface FileRoutesById {
@@ -175,12 +192,14 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/case-studies/intelligent-procurement': typeof CaseStudiesIntelligentProcurementRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
   '/ventures/decisioniq': typeof VenturesDecisioniqRoute
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
   '/ventures/spectraiq': typeof VenturesSpectraiqRoute
   '/ventures/tradelink': typeof VenturesTradelinkRoute
   '/capabilities/': typeof CapabilitiesIndexRoute
+  '/case-studies/': typeof CaseStudiesIndexRoute
   '/ventures/': typeof VenturesIndexRoute
 }
 export interface FileRouteTypes {
@@ -197,12 +216,14 @@ export interface FileRouteTypes {
     | '/terms'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
+    | '/case-studies/intelligent-procurement'
     | '/ventures/alwayson'
     | '/ventures/decisioniq'
     | '/ventures/prism-diagnostics'
     | '/ventures/spectraiq'
     | '/ventures/tradelink'
     | '/capabilities/'
+    | '/case-studies/'
     | '/ventures/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -217,12 +238,14 @@ export interface FileRouteTypes {
     | '/terms'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
+    | '/case-studies/intelligent-procurement'
     | '/ventures/alwayson'
     | '/ventures/decisioniq'
     | '/ventures/prism-diagnostics'
     | '/ventures/spectraiq'
     | '/ventures/tradelink'
     | '/capabilities'
+    | '/case-studies'
     | '/ventures'
   id:
     | '__root__'
@@ -237,12 +260,14 @@ export interface FileRouteTypes {
     | '/terms'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
+    | '/case-studies/intelligent-procurement'
     | '/ventures/alwayson'
     | '/ventures/decisioniq'
     | '/ventures/prism-diagnostics'
     | '/ventures/spectraiq'
     | '/ventures/tradelink'
     | '/capabilities/'
+    | '/case-studies/'
     | '/ventures/'
   fileRoutesById: FileRoutesById
 }
@@ -258,12 +283,14 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   CapabilitiesAiTransformationRoute: typeof CapabilitiesAiTransformationRoute
   CapabilitiesEnterpriseTechnologyRoute: typeof CapabilitiesEnterpriseTechnologyRoute
+  CaseStudiesIntelligentProcurementRoute: typeof CaseStudiesIntelligentProcurementRoute
   VenturesAlwaysonRoute: typeof VenturesAlwaysonRoute
   VenturesDecisioniqRoute: typeof VenturesDecisioniqRoute
   VenturesPrismDiagnosticsRoute: typeof VenturesPrismDiagnosticsRoute
   VenturesSpectraiqRoute: typeof VenturesSpectraiqRoute
   VenturesTradelinkRoute: typeof VenturesTradelinkRoute
   CapabilitiesIndexRoute: typeof CapabilitiesIndexRoute
+  CaseStudiesIndexRoute: typeof CaseStudiesIndexRoute
   VenturesIndexRoute: typeof VenturesIndexRoute
 }
 
@@ -353,6 +380,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CapabilitiesEnterpriseTechnologyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/case-studies/': {
+      id: '/case-studies/'
+      path: '/case-studies'
+      fullPath: '/case-studies/'
+      preLoaderRoute: typeof CaseStudiesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies/intelligent-procurement': {
+      id: '/case-studies/intelligent-procurement'
+      path: '/case-studies/intelligent-procurement'
+      fullPath: '/case-studies/intelligent-procurement'
+      preLoaderRoute: typeof CaseStudiesIntelligentProcurementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ventures/': {
       id: '/ventures/'
       path: '/ventures'
@@ -410,12 +451,15 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   CapabilitiesAiTransformationRoute: CapabilitiesAiTransformationRoute,
   CapabilitiesEnterpriseTechnologyRoute: CapabilitiesEnterpriseTechnologyRoute,
+  CaseStudiesIntelligentProcurementRoute:
+    CaseStudiesIntelligentProcurementRoute,
   VenturesAlwaysonRoute: VenturesAlwaysonRoute,
   VenturesDecisioniqRoute: VenturesDecisioniqRoute,
   VenturesPrismDiagnosticsRoute: VenturesPrismDiagnosticsRoute,
   VenturesSpectraiqRoute: VenturesSpectraiqRoute,
   VenturesTradelinkRoute: VenturesTradelinkRoute,
   CapabilitiesIndexRoute: CapabilitiesIndexRoute,
+  CaseStudiesIndexRoute: CaseStudiesIndexRoute,
   VenturesIndexRoute: VenturesIndexRoute,
 }
 export const routeTree = rootRouteImport
