@@ -14,6 +14,8 @@ const staticPages = [
   "/capabilities",
   "/capabilities/ai-transformation",
   "/capabilities/enterprise-technology",
+  "/case-studies",
+  "/case-studies/intelligent-procurement",
   "/ventures",
   "/ventures/spectraiq",
   "/ventures/decisioniq",
