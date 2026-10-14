@@ -554,6 +554,24 @@ function Page() {
         </div>
       </Section>
 
+      {/* Case studies cross-link */}
+      <Section>
+        <div className="shell">
+          <SectionHeading
+            eyebrow="Case studies"
+            colour={AIX_COLOUR}
+            title="See the workflows in action."
+            copy="Interactive solution blueprints with synthetic data — procurement, supply chain, compliance and finance operations."
+          />
+          <Link
+            to="/case-studies/intelligent-procurement"
+            className="mt-10 inline-flex min-h-12 items-center gap-2 rounded-full border border-border-strong px-6 text-sm font-medium hover:bg-accent"
+          >
+            Explore Procurement, Reimagined <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </Section>
+
       {/* 24 — Final CTA */}
       <Section tone="raised">
         <div className="shell">

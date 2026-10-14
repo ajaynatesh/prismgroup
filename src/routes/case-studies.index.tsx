@@ -133,7 +133,7 @@ function Tile({ c, featured }: { c: CaseStudy; featured?: boolean }) {
   return c.live ? <Link to={c.to as never} className={cls}>{body}</Link> : <div className={cls}>{body}</div>;
 }
 
-function MiniVisual({ c, featured }: { c: CaseStudy; featured?: boolean }) {
+function MiniVisual({ c, featured }: { c: CaseStudy; featured?: boolean | undefined }) {
   const nodes = c.slug === "intelligent-procurement" ? ["Contracts", "Spend", "Suppliers", "Compliance"] : c.chips;
   return (
     <div className={cn("relative rounded-2xl border border-border bg-background/60 p-4", !featured && "hidden sm:block")} aria-hidden="true">

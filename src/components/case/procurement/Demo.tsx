@@ -72,12 +72,12 @@ const factors = [
 
 function RiskScore() {
   const [vals, setVals] = useState<Record<string, number>>(Object.fromEntries(factors.map((f) => [f.key, f.base])));
-  const score = Math.round(factors.reduce((s, f) => s + vals[f.key] * f.weight, 0));
+  const score = Math.round(factors.reduce((s, f) => s + (vals[f.key] ?? 0) * f.weight, 0));
   const band = score >= 65 ? "High" : score >= 40 ? "Medium" : "Low";
   return (
     <div className="space-y-4">
       {factors.map((f) => (
-        <ControlSlider key={f.key} label={`${f.label} · weight ${f.weight * 100}%`} value={vals[f.key]} min={0} max={100} onChange={(v) => setVals((s) => ({ ...s, [f.key]: v }))} />
+        <ControlSlider key={f.key} label={`${f.label} · weight ${f.weight * 100}%`} value={vals[f.key] ?? 0} min={0} max={100} onChange={(v) => setVals((s) => ({ ...s, [f.key]: v }))} />
       ))}
       <div className="flex items-baseline justify-between border-t border-border pt-4">
         <span className="text-sm text-muted-foreground">Weighted score = Σ factor × weight</span>
@@ -90,7 +90,7 @@ function RiskScore() {
 
 export function PurchaseJourney() {
   const [i, setI] = useState(0);
-  const st = S[i];
+  const st = S[i]!;
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -179,7 +179,7 @@ const clauses = [
 
 export function ClauseHeatmap() {
   const [sel, setSel] = useState(0);
-  const c = clauses[sel];
+  const c = clauses[sel]!;
   return (
     <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
       <div role="listbox" aria-label="Clauses" className="grid grid-cols-2 gap-2">
@@ -224,7 +224,7 @@ export function SpendTreemap() {
   const data = useMemo(() => {
     const rows = Object.entries(spend).map(([cat, v]) => {
       const year = u === "All" ? v.Operations + v.Corporate + v.Technology : v[u];
-      const val = m === "Full year" ? year : m === "H1" ? year * halfShare[cat] : year * (1 - halfShare[cat]);
+      const val = m === "Full year" ? year : m === "H1" ? year * (halfShare[cat] ?? 0.5) : year * (1 - (halfShare[cat] ?? 0.5));
       return { cat, val: val * 1000 };
     });
     return rows.sort((a, b) => b.val - a.val);
