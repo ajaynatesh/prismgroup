@@ -60,7 +60,7 @@ const statusLabel = { pass: "Passed", flag: "Flagged", missing: "Missing" } as c
 
 export function Journey({ stages }: { stages: JourneyStage[] }) {
   const [active, setActive] = useState(0);
-  const s = stages[active];
+  const s = stages[active]!;
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3"><DemoBadge /></div>
@@ -105,10 +105,10 @@ export function Journey({ stages }: { stages: JourneyStage[] }) {
 /* ---------- Exception workbench ---------- */
 export type ExceptionItem = { id: string; title: string; severity: "High" | "Medium" | "Low"; owner: string; due: string; detail: string; trace: TraceStep[] };
 export function Exceptions({ items }: { items: ExceptionItem[] }) {
-  const [sel, setSel] = useState(items[0].id);
+  const [sel, setSel] = useState(items[0]!.id);
   const [filter, setFilter] = useState<"All" | ExceptionItem["severity"]>("All");
   const shown = items.filter((i) => filter === "All" || i.severity === filter);
-  const cur = items.find((i) => i.id === sel) ?? items[0];
+  const cur = (items.find((i) => i.id === sel) ?? items[0])!;
   return (
     <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
       <div className="rounded-xl border border-border">
@@ -144,7 +144,8 @@ export function Exceptions({ items }: { items: ExceptionItem[] }) {
 
 /* ---------- Assumption-based value model ---------- */
 export type ImpactInput = { key: string; label: string; min: number; max: number; step?: number; value: number; format?: (v: number) => string };
-export type ImpactOutput = { label: string; formula: string; compute: (v: Record<string, number>) => number; format: (n: number) => string };
+export type ImpactOutput = { label: string; formula: string; // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  compute: (v: any) => number; format: (n: number) => string };
 export function ImpactModel({ inputs, outputs, note }: { inputs: ImpactInput[]; outputs: ImpactOutput[]; note: string }) {
   const [vals, setVals] = useState<Record<string, number>>(() => Object.fromEntries(inputs.map((i) => [i.key, i.value])));
   const results = useMemo(() => outputs.map((o) => o.compute(vals)), [vals, outputs]);
@@ -152,7 +153,7 @@ export function ImpactModel({ inputs, outputs, note }: { inputs: ImpactInput[]; 
     <div className="grid gap-4 lg:grid-cols-[1fr_1.3fr]">
       <ControlPanel>
         {inputs.map((i) => (
-          <ControlSlider key={i.key} label={i.label} min={i.min} max={i.max} step={i.step} value={vals[i.key]} format={i.format}
+          <ControlSlider key={i.key} label={i.label} min={i.min} max={i.max} step={i.step} value={vals[i.key] ?? i.value} format={i.format}
             onChange={(v) => setVals((p) => ({ ...p, [i.key]: v }))} />
         ))}
       </ControlPanel>
@@ -161,7 +162,7 @@ export function ImpactModel({ inputs, outputs, note }: { inputs: ImpactInput[]; 
           {outputs.map((o, idx) => (
             <div key={o.label} className="rounded-xl border border-border p-5">
               <p className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-foreground">{o.label}</p>
-              <p className="mt-2 font-display text-3xl tabular-nums" style={{ color: "var(--case)" }}>{o.format(results[idx])}</p>
+              <p className="mt-2 font-display text-3xl tabular-nums" style={{ color: "var(--case)" }}>{o.format(results[idx] ?? 0)}</p>
               <p className="mt-2 font-mono text-[0.6875rem] text-muted-foreground">{o.formula}</p>
             </div>
           ))}
