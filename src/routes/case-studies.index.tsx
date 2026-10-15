@@ -6,7 +6,7 @@ import { caseCategories, caseCategoryLabel, caseStudies, challenges, type CaseSt
 import { colourVar } from "@/lib/prism";
 import { cn } from "@/lib/utils";
 import { DemoBadge } from "@/components/case/Kit";
-import { Reveal } from "@/components/prism/Reveal";
+import { ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 
 const path = "/case-studies";
 const title = "Case Studies — From AI ambition to business impact | Prism Group";
@@ -53,6 +53,8 @@ function Page() {
           ))}
         </ol>
       </div>
+
+      <ChallengeAdviser />
 
       <section className="py-14 md:py-20">
         <div className="shell">
