@@ -22,7 +22,10 @@ import { Route as CapabilitiesIndexRouteImport } from './routes/capabilities.ind
 import { Route as CapabilitiesAiTransformationRouteImport } from './routes/capabilities.ai-transformation'
 import { Route as CapabilitiesEnterpriseTechnologyRouteImport } from './routes/capabilities.enterprise-technology'
 import { Route as CaseStudiesIndexRouteImport } from './routes/case-studies.index'
+import { Route as CaseStudiesContinuousRiskComplianceRouteImport } from './routes/case-studies.continuous-risk-compliance'
+import { Route as CaseStudiesIntelligentFinanceOperationsRouteImport } from './routes/case-studies.intelligent-finance-operations'
 import { Route as CaseStudiesIntelligentProcurementRouteImport } from './routes/case-studies.intelligent-procurement'
+import { Route as CaseStudiesIntelligentSupplyChainRouteImport } from './routes/case-studies.intelligent-supply-chain'
 import { Route as VenturesIndexRouteImport } from './routes/ventures.index'
 import { Route as VenturesAlwaysonRouteImport } from './routes/ventures.alwayson'
 import { Route as VenturesDecisioniqRouteImport } from './routes/ventures.decisioniq'
@@ -97,10 +100,28 @@ const CaseStudiesIndexRoute = CaseStudiesIndexRouteImport.update({
   path: '/case-studies/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CaseStudiesContinuousRiskComplianceRoute =
+  CaseStudiesContinuousRiskComplianceRouteImport.update({
+    id: '/case-studies/continuous-risk-compliance',
+    path: '/case-studies/continuous-risk-compliance',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CaseStudiesIntelligentFinanceOperationsRoute =
+  CaseStudiesIntelligentFinanceOperationsRouteImport.update({
+    id: '/case-studies/intelligent-finance-operations',
+    path: '/case-studies/intelligent-finance-operations',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CaseStudiesIntelligentProcurementRoute =
   CaseStudiesIntelligentProcurementRouteImport.update({
     id: '/case-studies/intelligent-procurement',
     path: '/case-studies/intelligent-procurement',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CaseStudiesIntelligentSupplyChainRoute =
+  CaseStudiesIntelligentSupplyChainRouteImport.update({
+    id: '/case-studies/intelligent-supply-chain',
+    path: '/case-studies/intelligent-supply-chain',
     getParentRoute: () => rootRouteImport,
   } as any)
 const VenturesIndexRoute = VenturesIndexRouteImport.update({
@@ -147,7 +168,10 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/case-studies/continuous-risk-compliance': typeof CaseStudiesContinuousRiskComplianceRoute
+  '/case-studies/intelligent-finance-operations': typeof CaseStudiesIntelligentFinanceOperationsRoute
   '/case-studies/intelligent-procurement': typeof CaseStudiesIntelligentProcurementRoute
+  '/case-studies/intelligent-supply-chain': typeof CaseStudiesIntelligentSupplyChainRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
   '/ventures/decisioniq': typeof VenturesDecisioniqRoute
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
@@ -169,7 +193,10 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/case-studies/continuous-risk-compliance': typeof CaseStudiesContinuousRiskComplianceRoute
+  '/case-studies/intelligent-finance-operations': typeof CaseStudiesIntelligentFinanceOperationsRoute
   '/case-studies/intelligent-procurement': typeof CaseStudiesIntelligentProcurementRoute
+  '/case-studies/intelligent-supply-chain': typeof CaseStudiesIntelligentSupplyChainRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
   '/ventures/decisioniq': typeof VenturesDecisioniqRoute
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
@@ -192,7 +219,10 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
+  '/case-studies/continuous-risk-compliance': typeof CaseStudiesContinuousRiskComplianceRoute
+  '/case-studies/intelligent-finance-operations': typeof CaseStudiesIntelligentFinanceOperationsRoute
   '/case-studies/intelligent-procurement': typeof CaseStudiesIntelligentProcurementRoute
+  '/case-studies/intelligent-supply-chain': typeof CaseStudiesIntelligentSupplyChainRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
   '/ventures/decisioniq': typeof VenturesDecisioniqRoute
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
@@ -216,7 +246,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
+    | '/case-studies/continuous-risk-compliance'
+    | '/case-studies/intelligent-finance-operations'
     | '/case-studies/intelligent-procurement'
+    | '/case-studies/intelligent-supply-chain'
     | '/ventures/alwayson'
     | '/ventures/decisioniq'
     | '/ventures/prism-diagnostics'
@@ -238,7 +271,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
+    | '/case-studies/continuous-risk-compliance'
+    | '/case-studies/intelligent-finance-operations'
     | '/case-studies/intelligent-procurement'
+    | '/case-studies/intelligent-supply-chain'
     | '/ventures/alwayson'
     | '/ventures/decisioniq'
     | '/ventures/prism-diagnostics'
@@ -260,7 +296,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
+    | '/case-studies/continuous-risk-compliance'
+    | '/case-studies/intelligent-finance-operations'
     | '/case-studies/intelligent-procurement'
+    | '/case-studies/intelligent-supply-chain'
     | '/ventures/alwayson'
     | '/ventures/decisioniq'
     | '/ventures/prism-diagnostics'
@@ -283,7 +322,10 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   CapabilitiesAiTransformationRoute: typeof CapabilitiesAiTransformationRoute
   CapabilitiesEnterpriseTechnologyRoute: typeof CapabilitiesEnterpriseTechnologyRoute
+  CaseStudiesContinuousRiskComplianceRoute: typeof CaseStudiesContinuousRiskComplianceRoute
+  CaseStudiesIntelligentFinanceOperationsRoute: typeof CaseStudiesIntelligentFinanceOperationsRoute
   CaseStudiesIntelligentProcurementRoute: typeof CaseStudiesIntelligentProcurementRoute
+  CaseStudiesIntelligentSupplyChainRoute: typeof CaseStudiesIntelligentSupplyChainRoute
   VenturesAlwaysonRoute: typeof VenturesAlwaysonRoute
   VenturesDecisioniqRoute: typeof VenturesDecisioniqRoute
   VenturesPrismDiagnosticsRoute: typeof VenturesPrismDiagnosticsRoute
@@ -387,11 +429,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CaseStudiesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/case-studies/continuous-risk-compliance': {
+      id: '/case-studies/continuous-risk-compliance'
+      path: '/case-studies/continuous-risk-compliance'
+      fullPath: '/case-studies/continuous-risk-compliance'
+      preLoaderRoute: typeof CaseStudiesContinuousRiskComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies/intelligent-finance-operations': {
+      id: '/case-studies/intelligent-finance-operations'
+      path: '/case-studies/intelligent-finance-operations'
+      fullPath: '/case-studies/intelligent-finance-operations'
+      preLoaderRoute: typeof CaseStudiesIntelligentFinanceOperationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/case-studies/intelligent-procurement': {
       id: '/case-studies/intelligent-procurement'
       path: '/case-studies/intelligent-procurement'
       fullPath: '/case-studies/intelligent-procurement'
       preLoaderRoute: typeof CaseStudiesIntelligentProcurementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies/intelligent-supply-chain': {
+      id: '/case-studies/intelligent-supply-chain'
+      path: '/case-studies/intelligent-supply-chain'
+      fullPath: '/case-studies/intelligent-supply-chain'
+      preLoaderRoute: typeof CaseStudiesIntelligentSupplyChainRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ventures/': {
@@ -451,8 +514,14 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   CapabilitiesAiTransformationRoute: CapabilitiesAiTransformationRoute,
   CapabilitiesEnterpriseTechnologyRoute: CapabilitiesEnterpriseTechnologyRoute,
+  CaseStudiesContinuousRiskComplianceRoute:
+    CaseStudiesContinuousRiskComplianceRoute,
+  CaseStudiesIntelligentFinanceOperationsRoute:
+    CaseStudiesIntelligentFinanceOperationsRoute,
   CaseStudiesIntelligentProcurementRoute:
     CaseStudiesIntelligentProcurementRoute,
+  CaseStudiesIntelligentSupplyChainRoute:
+    CaseStudiesIntelligentSupplyChainRoute,
   VenturesAlwaysonRoute: VenturesAlwaysonRoute,
   VenturesDecisioniqRoute: VenturesDecisioniqRoute,
   VenturesPrismDiagnosticsRoute: VenturesPrismDiagnosticsRoute,

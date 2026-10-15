@@ -63,7 +63,7 @@ export const caseStudies: CaseStudy[] = [
     chips: ["Demand sensing", "Inventory optimisation", "Supplier intelligence"],
     challenges: ["Poor forecasting", "Disconnected data", "Slow decisions"],
     status: "Illustrative solution blueprint",
-    live: false,
+    live: true,
     pillarTo: "/capabilities/ai-transformation",
   },
   {
@@ -78,7 +78,7 @@ export const caseStudies: CaseStudy[] = [
     chips: ["Controls monitoring", "Third-party risk", "Audit readiness"],
     challenges: ["Compliance risk", "Manual work", "Disconnected data"],
     status: "Illustrative solution blueprint",
-    live: false,
+    live: true,
     pillarTo: "/capabilities/ai-transformation",
   },
   {
@@ -93,7 +93,7 @@ export const caseStudies: CaseStudy[] = [
     chips: ["Document processing", "Three-way match", "Governed approvals"],
     challenges: ["Manual work", "Compliance risk"],
     status: "Proposed illustrative solution blueprint",
-    live: false,
+    live: true,
     pillarTo: "/capabilities/ai-transformation",
   },
   {
