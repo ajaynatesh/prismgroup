@@ -108,7 +108,7 @@ export const caseStudies: CaseStudy[] = [
     chips: ["WhatsApp-first", "Quote to payment", "Repeat customers"],
     challenges: ["Customer leakage", "Manual work"],
     status: "Illustrative solution blueprint",
-    live: false,
+    live: true,
     pillarTo: "/ventures/tradelink",
   },
   {
@@ -122,8 +122,8 @@ export const caseStudies: CaseStudy[] = [
       "Production, cost, commercial and risk signals are reported in isolation, so leaders debate whose numbers are right instead of what to do.",
     chips: ["Executive personas", "Scenario engine", "Governed KPIs"],
     challenges: ["Slow decisions", "Disconnected data", "Poor forecasting"],
-    status: "Anonymised project-inspired case narrative",
-    live: false,
+    status: "Illustrative mining intelligence blueprint",
+    live: true,
     pillarTo: "/ventures/decisioniq",
   },
   {

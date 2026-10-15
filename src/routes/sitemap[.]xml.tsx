@@ -12,6 +12,8 @@ const routes: Array<{ path: string; priority: string; changefreq: string }> = [
   { path: "/case-studies/intelligent-supply-chain", priority: "0.7", changefreq: "monthly" },
   { path: "/case-studies/continuous-risk-compliance", priority: "0.7", changefreq: "monthly" },
   { path: "/case-studies/intelligent-finance-operations", priority: "0.7", changefreq: "monthly" },
+  { path: "/case-studies/tradelink-whatsapp", priority: "0.7", changefreq: "monthly" },
+  { path: "/case-studies/decisioniq-mining", priority: "0.7", changefreq: "monthly" },
   { path: "/ventures", priority: "0.9", changefreq: "monthly" },
   { path: "/ventures/spectraiq", priority: "0.8", changefreq: "monthly" },
   { path: "/ventures/decisioniq", priority: "0.8", changefreq: "monthly" },
@@ -30,13 +32,12 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: () => {
-        const lastmod = new Date().toISOString().slice(0, 10);
         const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes
   .map(
     (r) =>
-      `  <url>\n    <loc>${absUrl(r.path)}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority}</priority>\n  </url>`,
+      `  <url>\n    <loc>${absUrl(r.path)}</loc>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority}</priority>\n  </url>`,
   )
   .join("\n")}
 </urlset>

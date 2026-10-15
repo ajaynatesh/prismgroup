@@ -22,6 +22,13 @@ const pages = [
   ["/capabilities", "0.9", "monthly"],
   ["/capabilities/ai-transformation", "0.9", "monthly"],
   ["/capabilities/enterprise-technology", "0.9", "monthly"],
+  ["/case-studies", "0.8", "monthly"],
+  ["/case-studies/intelligent-procurement", "0.7", "monthly"],
+  ["/case-studies/intelligent-supply-chain", "0.7", "monthly"],
+  ["/case-studies/continuous-risk-compliance", "0.7", "monthly"],
+  ["/case-studies/intelligent-finance-operations", "0.7", "monthly"],
+  ["/case-studies/tradelink-whatsapp", "0.7", "monthly"],
+  ["/case-studies/decisioniq-mining", "0.7", "monthly"],
   ["/ventures", "0.9", "monthly"],
   ["/ventures/spectraiq", "0.8", "monthly"],
   ["/ventures/decisioniq", "0.8", "monthly"],
@@ -36,13 +43,12 @@ const pages = [
   ["/security", "0.4", "yearly"],
 ];
 
-const lastmod = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages
   .map(
     ([path, priority, changefreq]) =>
-      `  <url>\n    <loc>${siteUrl}${base}${path === "/" ? "/" : path}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
+      `  <url>\n    <loc>${siteUrl}${base}${path === "/" ? "/" : path}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
   )
   .join("\n")}
 </urlset>
