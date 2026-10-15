@@ -126,6 +126,21 @@ export const caseStudies: CaseStudy[] = [
     live: false,
     pillarTo: "/ventures/decisioniq",
   },
+  {
+    slug: "intelligent-hr-transformation",
+    to: "/case-studies/intelligent-hr-transformation",
+    title: "The Intelligent Workforce",
+    category: "AI Transformation & Automation",
+    colour: 2,
+    signature: "Employee lifecycle and workforce intelligence platform",
+    problem:
+      "AI-powered recruitment, onboarding, workforce planning, payroll intelligence and HR compliance — moving HR from administration to workforce intelligence.",
+    chips: ["Recruitment & onboarding", "Workforce planning", "HR compliance"],
+    challenges: ["Manual work", "Compliance risk", "Disconnected data"],
+    status: "Illustrative solution blueprint",
+    live: false,
+    pillarTo: "/capabilities/ai-transformation",
+  },
 ];
 
 export const caseCategories: ("All" | CaseCategory)[] = [
