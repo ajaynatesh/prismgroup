@@ -7,6 +7,6 @@
 
 # AI challenge adviser
 
-- [ ] Add a grounded challenge adviser to Case Studies and Contact.
-- [ ] Connect AI Gateway with safe errors and durable access-block handling.
-- [ ] Verify a real recommendation, matching links, and mobile layout.
+- [x] Add a grounded challenge adviser to Case Studies and Contact.
+- [x] Connect AI Gateway with safe errors and durable access-block handling.
+- [x] Verify real finance and TradeLink recommendations, matching links, copy action, and mobile layout.
