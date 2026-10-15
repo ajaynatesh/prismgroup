@@ -52,7 +52,7 @@ const outPath = (o: (typeof outcomes)[number]) => {
 };
 
 /* keyTimes helpers for a seamless loop: active between fractions a→b of LOOP */
-const window = (a: number, b: number) => ({
+const span = (a: number, b: number) => ({
   keyPoints: "0;0;1;1",
   keyTimes: `0;${a};${b};1`,
 });
@@ -295,7 +295,7 @@ function DesktopEngine({ reduce }: { reduce: boolean }) {
           <path id={`aix-in-${s.id}`} d={inPath(s)} fill="none" stroke={fg} strokeOpacity={inOp} strokeWidth={0.8} className="transition-[stroke-opacity] duration-500" />
           {reduce ? null : (
             <circle r={2.2} fill={`var(--prism-colour-${s.colour})`}>
-              <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" calcMode="linear" {...window(0.04 + i * 0.035, 0.3 + i * 0.02)}>
+              <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" calcMode="linear" {...span(0.04 + i * 0.035, 0.3 + i * 0.02)}>
                 <mpath href={`#aix-in-${s.id}`} />
               </animateMotion>
               <animate attributeName="opacity" dur={`${LOOP}s`} repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes={`0;${0.04 + i * 0.035};${0.06 + i * 0.035};${0.28 + i * 0.02};${0.3 + i * 0.02};1`} />
@@ -310,7 +310,7 @@ function DesktopEngine({ reduce }: { reduce: boolean }) {
           <path id={`aix-out-${o.id}`} d={outPath(o)} fill="none" stroke={accent} strokeOpacity={outOp} strokeWidth={0.9} className="transition-[stroke-opacity] duration-500" />
           {reduce ? null : (
             <circle r={2.4} fill={accent}>
-              <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" calcMode="linear" {...window(0.48 + i * 0.03, 0.64 + i * 0.03)}>
+              <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" calcMode="linear" {...span(0.48 + i * 0.03, 0.64 + i * 0.03)}>
                 <mpath href={`#aix-out-${o.id}`} />
               </animateMotion>
               <animate attributeName="opacity" dur={`${LOOP}s`} repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes={`0;${0.48 + i * 0.03};${0.5 + i * 0.03};${0.62 + i * 0.03};${0.64 + i * 0.03};1`} />
@@ -405,7 +405,7 @@ function MobileEngine({ reduce }: { reduce: boolean }) {
             <path id={`aixm-in-${i}`} d={d} fill="none" stroke={fg} strokeOpacity={0.2} strokeWidth={0.8} />
             {reduce ? null : (
               <circle r={2} fill={`var(--prism-colour-${s.c})`}>
-                <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" calcMode="linear" {...window(0.05 + i * 0.05, 0.3 + i * 0.03)}>
+                <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" calcMode="linear" {...span(0.05 + i * 0.05, 0.3 + i * 0.03)}>
                   <mpath href={`#aixm-in-${i}`} />
                 </animateMotion>
               </circle>
@@ -428,7 +428,7 @@ function MobileEngine({ reduce }: { reduce: boolean }) {
             <path id={`aixm-out-${i}`} d={d} fill="none" stroke={accent} strokeOpacity={0.3} strokeWidth={0.9} />
             {reduce ? null : (
               <circle r={2.2} fill={accent}>
-                <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" calcMode="linear" {...window(0.5 + i * 0.03, 0.64 + i * 0.03)}>
+                <animateMotion dur={`${LOOP}s`} repeatCount="indefinite" calcMode="linear" {...span(0.5 + i * 0.03, 0.64 + i * 0.03)}>
                   <mpath href={`#aixm-out-${i}`} />
                 </animateMotion>
               </circle>
