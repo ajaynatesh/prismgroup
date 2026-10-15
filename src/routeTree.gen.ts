@@ -23,9 +23,11 @@ import { Route as CapabilitiesAiTransformationRouteImport } from './routes/capab
 import { Route as CapabilitiesEnterpriseTechnologyRouteImport } from './routes/capabilities.enterprise-technology'
 import { Route as CaseStudiesIndexRouteImport } from './routes/case-studies.index'
 import { Route as CaseStudiesContinuousRiskComplianceRouteImport } from './routes/case-studies.continuous-risk-compliance'
+import { Route as CaseStudiesDecisioniqMiningRouteImport } from './routes/case-studies.decisioniq-mining'
 import { Route as CaseStudiesIntelligentFinanceOperationsRouteImport } from './routes/case-studies.intelligent-finance-operations'
 import { Route as CaseStudiesIntelligentProcurementRouteImport } from './routes/case-studies.intelligent-procurement'
 import { Route as CaseStudiesIntelligentSupplyChainRouteImport } from './routes/case-studies.intelligent-supply-chain'
+import { Route as CaseStudiesTradelinkWhatsappRouteImport } from './routes/case-studies.tradelink-whatsapp'
 import { Route as VenturesIndexRouteImport } from './routes/ventures.index'
 import { Route as VenturesAlwaysonRouteImport } from './routes/ventures.alwayson'
 import { Route as VenturesDecisioniqRouteImport } from './routes/ventures.decisioniq'
@@ -106,6 +108,12 @@ const CaseStudiesContinuousRiskComplianceRoute =
     path: '/case-studies/continuous-risk-compliance',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CaseStudiesDecisioniqMiningRoute =
+  CaseStudiesDecisioniqMiningRouteImport.update({
+    id: '/case-studies/decisioniq-mining',
+    path: '/case-studies/decisioniq-mining',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CaseStudiesIntelligentFinanceOperationsRoute =
   CaseStudiesIntelligentFinanceOperationsRouteImport.update({
     id: '/case-studies/intelligent-finance-operations',
@@ -122,6 +130,12 @@ const CaseStudiesIntelligentSupplyChainRoute =
   CaseStudiesIntelligentSupplyChainRouteImport.update({
     id: '/case-studies/intelligent-supply-chain',
     path: '/case-studies/intelligent-supply-chain',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CaseStudiesTradelinkWhatsappRoute =
+  CaseStudiesTradelinkWhatsappRouteImport.update({
+    id: '/case-studies/tradelink-whatsapp',
+    path: '/case-studies/tradelink-whatsapp',
     getParentRoute: () => rootRouteImport,
   } as any)
 const VenturesIndexRoute = VenturesIndexRouteImport.update({
@@ -169,9 +183,11 @@ export interface FileRoutesByFullPath {
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/case-studies/continuous-risk-compliance': typeof CaseStudiesContinuousRiskComplianceRoute
+  '/case-studies/decisioniq-mining': typeof CaseStudiesDecisioniqMiningRoute
   '/case-studies/intelligent-finance-operations': typeof CaseStudiesIntelligentFinanceOperationsRoute
   '/case-studies/intelligent-procurement': typeof CaseStudiesIntelligentProcurementRoute
   '/case-studies/intelligent-supply-chain': typeof CaseStudiesIntelligentSupplyChainRoute
+  '/case-studies/tradelink-whatsapp': typeof CaseStudiesTradelinkWhatsappRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
   '/ventures/decisioniq': typeof VenturesDecisioniqRoute
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
@@ -194,9 +210,11 @@ export interface FileRoutesByTo {
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/case-studies/continuous-risk-compliance': typeof CaseStudiesContinuousRiskComplianceRoute
+  '/case-studies/decisioniq-mining': typeof CaseStudiesDecisioniqMiningRoute
   '/case-studies/intelligent-finance-operations': typeof CaseStudiesIntelligentFinanceOperationsRoute
   '/case-studies/intelligent-procurement': typeof CaseStudiesIntelligentProcurementRoute
   '/case-studies/intelligent-supply-chain': typeof CaseStudiesIntelligentSupplyChainRoute
+  '/case-studies/tradelink-whatsapp': typeof CaseStudiesTradelinkWhatsappRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
   '/ventures/decisioniq': typeof VenturesDecisioniqRoute
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
@@ -220,9 +238,11 @@ export interface FileRoutesById {
   '/capabilities/ai-transformation': typeof CapabilitiesAiTransformationRoute
   '/capabilities/enterprise-technology': typeof CapabilitiesEnterpriseTechnologyRoute
   '/case-studies/continuous-risk-compliance': typeof CaseStudiesContinuousRiskComplianceRoute
+  '/case-studies/decisioniq-mining': typeof CaseStudiesDecisioniqMiningRoute
   '/case-studies/intelligent-finance-operations': typeof CaseStudiesIntelligentFinanceOperationsRoute
   '/case-studies/intelligent-procurement': typeof CaseStudiesIntelligentProcurementRoute
   '/case-studies/intelligent-supply-chain': typeof CaseStudiesIntelligentSupplyChainRoute
+  '/case-studies/tradelink-whatsapp': typeof CaseStudiesTradelinkWhatsappRoute
   '/ventures/alwayson': typeof VenturesAlwaysonRoute
   '/ventures/decisioniq': typeof VenturesDecisioniqRoute
   '/ventures/prism-diagnostics': typeof VenturesPrismDiagnosticsRoute
@@ -247,9 +267,11 @@ export interface FileRouteTypes {
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/case-studies/continuous-risk-compliance'
+    | '/case-studies/decisioniq-mining'
     | '/case-studies/intelligent-finance-operations'
     | '/case-studies/intelligent-procurement'
     | '/case-studies/intelligent-supply-chain'
+    | '/case-studies/tradelink-whatsapp'
     | '/ventures/alwayson'
     | '/ventures/decisioniq'
     | '/ventures/prism-diagnostics'
@@ -272,9 +294,11 @@ export interface FileRouteTypes {
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/case-studies/continuous-risk-compliance'
+    | '/case-studies/decisioniq-mining'
     | '/case-studies/intelligent-finance-operations'
     | '/case-studies/intelligent-procurement'
     | '/case-studies/intelligent-supply-chain'
+    | '/case-studies/tradelink-whatsapp'
     | '/ventures/alwayson'
     | '/ventures/decisioniq'
     | '/ventures/prism-diagnostics'
@@ -297,9 +321,11 @@ export interface FileRouteTypes {
     | '/capabilities/ai-transformation'
     | '/capabilities/enterprise-technology'
     | '/case-studies/continuous-risk-compliance'
+    | '/case-studies/decisioniq-mining'
     | '/case-studies/intelligent-finance-operations'
     | '/case-studies/intelligent-procurement'
     | '/case-studies/intelligent-supply-chain'
+    | '/case-studies/tradelink-whatsapp'
     | '/ventures/alwayson'
     | '/ventures/decisioniq'
     | '/ventures/prism-diagnostics'
@@ -323,9 +349,11 @@ export interface RootRouteChildren {
   CapabilitiesAiTransformationRoute: typeof CapabilitiesAiTransformationRoute
   CapabilitiesEnterpriseTechnologyRoute: typeof CapabilitiesEnterpriseTechnologyRoute
   CaseStudiesContinuousRiskComplianceRoute: typeof CaseStudiesContinuousRiskComplianceRoute
+  CaseStudiesDecisioniqMiningRoute: typeof CaseStudiesDecisioniqMiningRoute
   CaseStudiesIntelligentFinanceOperationsRoute: typeof CaseStudiesIntelligentFinanceOperationsRoute
   CaseStudiesIntelligentProcurementRoute: typeof CaseStudiesIntelligentProcurementRoute
   CaseStudiesIntelligentSupplyChainRoute: typeof CaseStudiesIntelligentSupplyChainRoute
+  CaseStudiesTradelinkWhatsappRoute: typeof CaseStudiesTradelinkWhatsappRoute
   VenturesAlwaysonRoute: typeof VenturesAlwaysonRoute
   VenturesDecisioniqRoute: typeof VenturesDecisioniqRoute
   VenturesPrismDiagnosticsRoute: typeof VenturesPrismDiagnosticsRoute
@@ -436,6 +464,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CaseStudiesContinuousRiskComplianceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/case-studies/decisioniq-mining': {
+      id: '/case-studies/decisioniq-mining'
+      path: '/case-studies/decisioniq-mining'
+      fullPath: '/case-studies/decisioniq-mining'
+      preLoaderRoute: typeof CaseStudiesDecisioniqMiningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/case-studies/intelligent-finance-operations': {
       id: '/case-studies/intelligent-finance-operations'
       path: '/case-studies/intelligent-finance-operations'
@@ -455,6 +490,13 @@ declare module '@tanstack/react-router' {
       path: '/case-studies/intelligent-supply-chain'
       fullPath: '/case-studies/intelligent-supply-chain'
       preLoaderRoute: typeof CaseStudiesIntelligentSupplyChainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies/tradelink-whatsapp': {
+      id: '/case-studies/tradelink-whatsapp'
+      path: '/case-studies/tradelink-whatsapp'
+      fullPath: '/case-studies/tradelink-whatsapp'
+      preLoaderRoute: typeof CaseStudiesTradelinkWhatsappRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ventures/': {
@@ -516,12 +558,14 @@ const rootRouteChildren: RootRouteChildren = {
   CapabilitiesEnterpriseTechnologyRoute: CapabilitiesEnterpriseTechnologyRoute,
   CaseStudiesContinuousRiskComplianceRoute:
     CaseStudiesContinuousRiskComplianceRoute,
+  CaseStudiesDecisioniqMiningRoute: CaseStudiesDecisioniqMiningRoute,
   CaseStudiesIntelligentFinanceOperationsRoute:
     CaseStudiesIntelligentFinanceOperationsRoute,
   CaseStudiesIntelligentProcurementRoute:
     CaseStudiesIntelligentProcurementRoute,
   CaseStudiesIntelligentSupplyChainRoute:
     CaseStudiesIntelligentSupplyChainRoute,
+  CaseStudiesTradelinkWhatsappRoute: CaseStudiesTradelinkWhatsappRoute,
   VenturesAlwaysonRoute: VenturesAlwaysonRoute,
   VenturesDecisioniqRoute: VenturesDecisioniqRoute,
   VenturesPrismDiagnosticsRoute: VenturesPrismDiagnosticsRoute,
