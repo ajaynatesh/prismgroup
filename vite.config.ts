@@ -19,6 +19,8 @@ const staticPages = [
   "/case-studies/intelligent-supply-chain",
   "/case-studies/continuous-risk-compliance",
   "/case-studies/intelligent-finance-operations",
+  "/case-studies/tradelink-whatsapp",
+  "/case-studies/decisioniq-mining",
   "/ventures",
   "/ventures/spectraiq",
   "/ventures/decisioniq",

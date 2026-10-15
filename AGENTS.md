@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Dedicated case study routes use the shared case chapter shell, with domain-specific interactive demonstrations kept in `src/components/case`; this preserves visual consistency without coupling venture-page behavior.
+- Keep public case study URLs synchronized across the case catalogue, static prerender list, server sitemap and static sitemap script so both hosting modes retain deep links.
