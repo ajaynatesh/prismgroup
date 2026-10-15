@@ -82,7 +82,7 @@ function PanelArt({ id, x, y }: { id: string; x: number; y: number }) {
       return (
         <g>
           <path d={`M${ox + 6},${oy + 30} L${ox + 30},${oy + 8} L${ox + 56},${oy + 26} L${ox + 30},${oy + 8} L${ox + 18},${oy + 34}`} {...s} />
-          {[[6, 30], [30, 8], [56, 26], [18, 34]].map(([dx, dy], i) => (
+          {([[6, 30], [30, 8], [56, 26], [18, 34]] as const).map(([dx, dy], i) => (
             <circle key={i} cx={ox + dx} cy={oy + dy} r={2.5} fill={fg} fillOpacity={0.7} />
           ))}
           <rect x={ox + 76} y={oy + 12} width={46} height={6} rx={3} fill={fg} fillOpacity={0.12} />
