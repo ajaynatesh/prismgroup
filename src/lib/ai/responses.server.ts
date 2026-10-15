@@ -10,7 +10,12 @@ import {
 
 export function createResponsesCall(
   request: Request,
-  config: { baseURL: string; apiKey: string; model: string; onGatewayError: (status: number, message: string, type: string) => Promise<void> },
+  config: {
+    baseURL: string;
+    apiKey: string;
+    model: string;
+    onGatewayError: (status: number, message: string, type: string) => Promise<void>;
+  },
   messages: ModelMessage[],
   instructions?: string,
 ) {
@@ -29,7 +34,9 @@ export function createResponsesCall(
           const error = body.error ?? body;
           if (typeof error.message === "string") message = error.message;
           if (typeof error.type === "string") type = error.type;
-        } catch { /* Non-JSON upstream errors use the safe fallback. */ }
+        } catch {
+          /* Non-JSON upstream errors use the safe fallback. */
+        }
         await config.onGatewayError(response.status, message, type);
       }
       return response;
@@ -62,6 +69,9 @@ export function createResponsesCall(
   return {
     result,
     response: () =>
-      withLovableAiGatewayRunIdHeader(result.toUIMessageStreamResponse({ sendReasoning: true }), runIdFetch),
+      withLovableAiGatewayRunIdHeader(
+        result.toUIMessageStreamResponse({ sendReasoning: true }),
+        runIdFetch,
+      ),
   };
 }

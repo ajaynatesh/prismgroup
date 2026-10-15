@@ -12,7 +12,10 @@ export const recommendChallenge = createServerFn({ method: "POST" })
     const key = process.env["LOVABLE_API_KEY"];
     if (!key) {
       setResponseStatus(503);
-      return { brief: null, error: "The AI adviser is not configured yet. Please contact Prism directly." };
+      return {
+        brief: null,
+        error: "The AI adviser is not configured yet. Please contact Prism directly.",
+      };
     }
     const { buildChallengeBrief } = await import("@/lib/challenge-adviser.server");
     const result = await buildChallengeBrief(getRequest(), data.challenge, key);
