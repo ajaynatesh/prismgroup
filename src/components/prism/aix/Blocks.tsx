@@ -486,7 +486,8 @@ export function Flywheel() {
   const r = 128;
   return (
     <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-center lg:gap-16">
-      <div className="relative h-[22rem] w-[22rem] shrink-0">
+      <div className="relative h-[17rem] w-[17rem] shrink-0 sm:h-[22rem] sm:w-[22rem]">
+        <div className="absolute inset-0 origin-center scale-[0.77] sm:scale-100">
         <motion.div
           className="absolute inset-6 rounded-full border"
           style={{ borderColor: tint(30) }}
@@ -513,6 +514,7 @@ export function Flywheel() {
           <br />
           flywheel
         </span>
+        </div>
       </div>
       <p className="max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
         AI transformation is not a project with an end date. Each cycle produces evidence, and that evidence
