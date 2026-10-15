@@ -4,6 +4,7 @@ import { CaseStudyShell, Chapter, ClosingLine, Controls, Faq, PainGrid, Phases, 
 import { ArchStrip, ImpactModel, KpiChips, fmtNum } from "@/components/case/Generic";
 import { TradeLinkDemo } from "@/components/case/TradeLinkDemo";
 import { PrimaryLink } from "@/components/prism/ui";
+import { Button } from "@/components/ui/button";
 
 const path = "/case-studies/tradelink-whatsapp";
 const title = "From Message to Money — TradeLink case study | Prism Group";
@@ -27,7 +28,7 @@ function Page() {
     </Chapter>
     <Chapter id="owner" eyebrow="The owner’s view" title="Know what needs attention today." copy="Synthetic workload, not measured performance. Each category connects to a stage in the demonstration.">
       <DemoBadge label="Illustrative demo — synthetic data" />
-      <div className="mt-6 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">{[["New enquiries", "8", "Engage"], ["Bookings", "5", "Book"], ["Quotes pending", "3", "Quote"], ["Payments outstanding", "2", "Pay"], ["Follow-ups", "4", "Follow up"]].map(([label, value, stage]) => <a key={label} href="#top-journey" onClick={(e) => { e.preventDefault(); const tab = Array.from(document.querySelectorAll('[role="tab"]')).find((el) => el.textContent?.endsWith(stage)); if (tab instanceof HTMLElement) { tab.click(); tab.scrollIntoView({ block: "center" }); } }} className="group bg-background p-5 hover:bg-surface"><p className="text-xs text-muted-foreground">{label}</p><p className="mt-3 font-display text-3xl text-prism-5">{value}</p><p className="mt-4 text-xs">Review {stage.toLowerCase()} →</p></a>)}</div>
+      <div className="mt-6 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">{[["New enquiries", "8", "Engage"], ["Bookings", "5", "Book"], ["Quotes pending", "3", "Quote"], ["Payments outstanding", "2", "Pay"], ["Follow-ups", "4", "Follow up"]].map(([label = "", value = "", stage = ""]) => <Button key={label} variant="ghost" onClick={() => { const tab = Array.from(document.querySelectorAll('[role="tab"]')).find((el) => el.textContent?.endsWith(stage)); if (tab instanceof HTMLElement) { tab.click(); tab.scrollIntoView({ block: "center" }); } }} className="group h-auto flex-col items-start whitespace-normal rounded-none bg-background p-5 text-left hover:bg-surface"><span className="text-xs text-muted-foreground">{label}</span><span className="mt-1 font-display text-3xl text-prism-5">{value}</span><span className="mt-2 text-xs">Review {stage.toLowerCase()} →</span></Button>)}</div>
     </Chapter>
     <Chapter id="value" eyebrow="Commercial value drivers" title="Model capacity. Don’t promise revenue." raised copy="Adjust baseline and improvement assumptions independently. Additional first-time bookings and repeat opportunities are shown separately and must not be added without checking overlap.">
       <DemoBadge label="Illustrative demo — synthetic data" />
