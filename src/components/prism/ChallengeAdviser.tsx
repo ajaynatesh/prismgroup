@@ -21,7 +21,7 @@ export function ChallengeAdviser() {
   const [copied, setCopied] = useState(false);
   const input = useRef<HTMLTextAreaElement>(null);
   const generate = useServerFn(recommendChallenge);
-  const isStatic = import.meta.env.VITE_PRISM_STATIC === "true";
+  const isStatic = import.meta.env["VITE_PRISM_STATIC"] === "true";
 
   async function submit(event: FormEvent) {
     event.preventDefault();

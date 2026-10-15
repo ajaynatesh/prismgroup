@@ -40,7 +40,7 @@ export function normalizeBrief(brief: Brief): Brief {
     summary: concise(brief.summary, 65),
     capabilities: uniqueMatches(brief.capabilities, adviserCapabilities.map((p) => p.id)),
     cases: uniqueMatches(brief.cases, adviserCases.map((c) => c.id)),
-    nextSteps: brief.nextSteps.filter((s) => s.trim()).slice(0, 3).map((s) => concise(s, 40)),
+    nextSteps: brief.nextSteps.filter((s) => s.trim()).slice(0, 3).map((s) => concise(s.replace(/^\s*\d+[.)]\s*/, ""), 40)),
     questions: brief.questions.filter((s) => s.trim()).slice(0, 2).map((s) => concise(s, 35)),
     caveat: concise(brief.caveat, 55),
   };

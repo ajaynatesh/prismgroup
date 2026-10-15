@@ -15,7 +15,7 @@ export async function buildChallengeBrief(request: Request, challenge: string, k
 
   let gatewayError: { status: number; message: string } | undefined;
   let blockSaveFailed = false;
-  const { result, ...gateway } = createResponsesCall(request, {
+  const { result } = createResponsesCall(request, {
     baseURL: "https://ai.gateway.lovable.dev/v1", apiKey: key, model: "openai/gpt-6-astra",
     onGatewayError: async (status, message, type) => {
       gatewayError = { status, message };
