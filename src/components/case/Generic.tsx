@@ -153,7 +153,7 @@ export function ImpactModel({ inputs, outputs, note }: { inputs: ImpactInput[]; 
     <div className="grid gap-4 lg:grid-cols-[1fr_1.3fr]">
       <ControlPanel>
         {inputs.map((i) => (
-          <ControlSlider key={i.key} label={i.label} min={i.min} max={i.max} step={i.step} value={vals[i.key] ?? i.value} format={i.format}
+          <ControlSlider key={i.key} label={i.label} min={i.min} max={i.max} step={i.step ?? 1} value={vals[i.key] ?? i.value} format={i.format ?? String}
             onChange={(v) => setVals((p) => ({ ...p, [i.key]: v }))} />
         ))}
       </ControlPanel>
