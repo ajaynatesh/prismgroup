@@ -3,6 +3,7 @@ import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from 
 import { Reveal } from "@/components/prism/Reveal";
 import { Section } from "@/components/prism/ui";
 import { Mail, Phone } from "lucide-react";
+import { ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 
 const title = "Talk to Prism — Contact Prism Group";
 const description =
@@ -94,7 +95,9 @@ function Contact() {
         </div>
       </header>
 
-      <Section className="pt-0">
+      <ChallengeAdviser />
+
+      <Section>
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-3">
             <Reveal>

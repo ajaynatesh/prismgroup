@@ -45,7 +45,7 @@ const basePath = process.env["BASE_PATH"] ?? "/";
 
 export default defineConfig({
   ...(githubPagesBuild ? { nitro: false as const } : {}),
-  vite: { base: basePath },
+  vite: { base: basePath, define: { "import.meta.env.VITE_PRISM_STATIC": JSON.stringify(githubPagesBuild ? "true" : "false") } },
   tanstackStart: githubPagesBuild
     ? {
         // GitHub Pages receives a client-only shell plus prerendered route HTML.
