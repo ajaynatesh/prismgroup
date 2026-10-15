@@ -343,16 +343,17 @@ function DesktopEngine({ reduce }: { reduce: boolean }) {
           const R = 108;
           const x = Math.cos(rad) * R;
           const y = Math.sin(rad) * R;
-          const anchor = Math.abs(Math.cos(rad)) < 0.3 ? "middle" : Math.cos(rad) > 0 ? "start" : "end";
+          const anchor = "middle";
+          const dy = Math.sin(rad) < -0.5 ? -4 : 12;
           const showFull = zone === "engine";
           return (
             <g key={c.short}>
               <line x1={Math.cos(rad) * 80} y1={Math.sin(rad) * 80} x2={Math.cos(rad) * 98} y2={Math.sin(rad) * 98} stroke={fg} strokeOpacity={0.25} />
               <circle cx={Math.cos(rad) * 98} cy={Math.sin(rad) * 98} r={2} fill={accent} />
-              <text x={x} y={y + (Math.sin(rad) > 0.5 ? 10 : Math.sin(rad) < -0.5 ? -4 : 3)} textAnchor={anchor} fontSize={7.5} letterSpacing="0.18em" fill={fg} fillOpacity={0.85} className="font-display">
+              <text x={x} y={y + dy} textAnchor={anchor} fontSize={7.5} letterSpacing="0.18em" fill={fg} fillOpacity={0.85} className="font-display">
                 {c.short}
               </text>
-              <text x={x} y={y + (Math.sin(rad) > 0.5 ? 21 : Math.sin(rad) < -0.5 ? -14 : 14)} textAnchor={anchor} fontSize={7} fill={muted} opacity={showFull ? 1 : 0} className="transition-opacity duration-500">
+              <text x={x} y={y + (dy < 0 ? -14 : 23)} textAnchor={anchor} fontSize={7} fill={muted} opacity={showFull ? 1 : 0} className="transition-opacity duration-500">
                 {c.full}
               </text>
             </g>
