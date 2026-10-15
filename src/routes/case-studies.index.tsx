@@ -81,6 +81,11 @@ function Page() {
           <div className="mt-10 space-y-6" aria-live="polite">
             {list.length === 0 ? <p className="text-muted-foreground">No case matches this combination.</p> : null}
             {featured ? <Tile c={featured} featured /> : null}
+            {featured?.slug === "intelligent-procurement" ? (
+              <Link to="/contact" className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+                Discuss a similar solution <ArrowRight className="h-4 w-4" />
+              </Link>
+            ) : null}
             <div className="grid gap-6 md:grid-cols-2">{rest.map((c) => <Tile key={c.slug} c={c} />)}</div>
           </div>
         </div>
@@ -100,6 +105,9 @@ function Page() {
               </li>
             ))}
           </ol>
+          <Link to="/contact" className="mt-10 mr-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background">
+            Talk to Prism about your opportunity <ArrowRight className="h-4 w-4" />
+          </Link>
           <Link to="/ventures" className="mt-10 inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
             Explore our seven pillars <ArrowRight className="h-4 w-4" />
           </Link>
@@ -124,7 +132,7 @@ function Tile({ c, featured }: { c: CaseStudy; featured?: boolean }) {
         <div className="mt-5 flex flex-wrap gap-2">
           {c.chips.map((x) => <span key={x} className="rounded-full border border-border px-3 py-1 text-xs">{x}</span>)}
         </div>
-        {c.live ? <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium">Explore workflow <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span> : null}
+        {c.live ? <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium">{featured ? "Explore the transformation" : "Explore case study"} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span> : null}
       </div>
       <MiniVisual c={c} featured={featured} />
     </div>

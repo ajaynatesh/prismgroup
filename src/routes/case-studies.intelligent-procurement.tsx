@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import {
   CaseStudyShell, Chapter, ClosingLine, Controls, Faq, PainGrid, Phases, RelatedCaseStudies,
+  CaseCta,
 } from "@/components/case/Kit";
 import {
   BeforeAfter, ClauseHeatmap, ExceptionWorkbench, OnboardingTracker, ProcurementCockpit, ProcurementImpact, PurchaseJourney, SpendTreemap,
@@ -146,6 +147,7 @@ function Page() {
         ]} />
       </Chapter>
 
+      <CaseCta heading="What could intelligent procurement unlock for your business?" copy="Whether your priority is accelerating contract reviews, improving spend visibility, strengthening supplier governance or automating procurement workflows, Prism can help identify and prioritise the opportunities with the strongest business case." cta="Discuss your procurement transformation" />
       <section className="py-16 md:py-24">
         <div className="shell">
           <p className="eyebrow mb-8">Related</p>

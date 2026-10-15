@@ -374,3 +374,20 @@ export function ClosingLine({ lines }: { lines: string[] }) {
 export const fmtMoney = (n: number) =>
   n >= 1_000_000 ? `$${(n / 1_000_000).toFixed(2)}M` : n >= 1000 ? `$${Math.round(n / 1000).toLocaleString("en-AU")}k` : `$${Math.round(n).toLocaleString("en-AU")}`;
 export const fmtNum = (n: number) => Math.round(n).toLocaleString("en-AU");
+
+export function CaseCta({ heading, copy, cta }: { heading: string; copy: string; cta: string }) {
+  return (
+    <section className="py-16 md:py-24">
+      <div className="shell">
+        <div className="rounded-3xl border border-border bg-surface/40 p-8 md:p-12">
+          <p className="eyebrow">Talk to Prism</p>
+          <h2 className="display-lg mt-4 max-w-3xl">{heading}</h2>
+          <p className="mt-4 max-w-2xl text-muted-foreground">{copy}</p>
+          <Link to="/contact" className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background transition-opacity hover:opacity-90">
+            {cta} <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
