@@ -514,6 +514,7 @@ export function Flywheel() {
           <br />
           flywheel
         </span>
+        </div>
       </div>
       <p className="max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
         AI transformation is not a project with an end date. Each cycle produces evidence, and that evidence
