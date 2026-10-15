@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import {
   CaseStudyShell, Chapter, ClosingLine, Controls, Faq, PainGrid, Phases, RelatedCaseStudies,
-, CaseCta } from "@/components/case/Kit";
+  CaseCta,
+} from "@/components/case/Kit";
 import {
   BeforeAfter, ClauseHeatmap, ExceptionWorkbench, OnboardingTracker, ProcurementCockpit, ProcurementImpact, PurchaseJourney, SpendTreemap,
 } from "@/components/case/procurement/Demo";
