@@ -120,6 +120,7 @@ export function CaseStudyShell({
       </section>
       <ChapterNav chapters={chapters} colour={colour} />
       {children}
+      <ChallengeAdviser />
     </div>
   );
 }

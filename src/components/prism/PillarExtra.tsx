@@ -1,3 +1,4 @@
+import { ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";
 import { pillars } from "@/lib/prism";
@@ -53,6 +54,8 @@ export function Extra() {
           </Reveal>
         </div>
       </Section>
+
+      <ChallengeAdviser />
     </>
   );
 }
