@@ -97,6 +97,15 @@ export function PrimaryLink({
     <Link
       to={to as never}
       className={cn(btnBase, "bg-primary text-primary-foreground hover:opacity-90", className)}
+      onClick={() => {
+        if (to === "/contact") {
+          trackEvent("contact_prism_click", {
+            page_path: window.location.pathname,
+            cta_location: "primary_link",
+            cta_label: typeof children === "string" ? children : "Start a Conversation",
+          });
+        }
+      }}
     >
       {children}
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -139,6 +148,20 @@ export function ExternalCta({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(btnBase, "bg-primary text-primary-foreground hover:opacity-90", className)}
+      onClick={() => {
+        let domain = "";
+        try {
+          domain = new URL(href).hostname;
+        } catch {
+          return;
+        }
+        trackEvent("external_venture_click", {
+          venture_name: typeof children === "string" ? children : domain,
+          destination_domain: domain,
+          page_path: window.location.pathname,
+          cta_location: "external_cta",
+        });
+      }}
     >
       {children}
       <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
