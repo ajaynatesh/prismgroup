@@ -1,35 +1,68 @@
-import { useRef, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { Loader2, Send } from "lucide-react";
-import { contactSubmissionSchema, type ContactResult } from "@/lib/contact";
+import { contactSubmissionSchema } from "@/lib/contact";
 import { trackEvent } from "@/lib/analytics";
+
+const PRISM_EMAIL = "ajay@spectraiq.ai";
 
 const isStaticBuild = import.meta.env["VITE_PRISM_STATIC"] === "true";
 const STATIC_CONTACT_URL = "https://prismgroup.lovable.app/api/public/contact";
 
-async function submitEnquiry(
-  payload: { name: string; email: string; company?: string | undefined; message: string; website?: string | undefined },
-  signal: AbortSignal,
-): Promise<ContactResult> {
+// Best-effort backup record of the enquiry. Never blocks the mailto handoff:
+// any failure is swallowed so the visitor's email app still opens.
+async function saveSubmission(payload: {
+  name: string;
+  email: string;
+  company?: string | undefined;
+  message: string;
+  website?: string | undefined;
+}): Promise<void> {
   try {
     if (isStaticBuild) {
-      const response = await fetch(STATIC_CONTACT_URL, {
+      await fetch(STATIC_CONTACT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
-        signal,
       });
-      return (await response.json()) as ContactResult;
+      return;
     }
     const { submitContactEnquiry } = await import("@/lib/contact.functions");
-    return await submitContactEnquiry({ data: payload });
-  } catch (err) {
-    if (err instanceof DOMException && err.name === "AbortError") throw err;
-    return {
-      ok: false,
-      error:
-        "We couldn't send your enquiry just now. Please try again shortly, or email ajay@spectraiq.ai directly.",
-    };
+    await submitContactEnquiry({ data: payload });
+  } catch {
+    // Backup storage is optional — the email handoff is the primary path.
   }
+}
+
+function buildMailto(data: { name: string; email: string; company?: string | undefined; message: string }): string {
+  const company = data.company?.trim();
+  const subject = company
+    ? `Prism Enquiry – ${company} – ${data.name}`
+    : `Prism Enquiry – ${data.name}`;
+  const lines = [
+    "Hi Prism team,",
+    "",
+    "I’d like to get in touch regarding the following:",
+    "",
+    "Name:",
+    data.name,
+    "",
+  ];
+  if (company) {
+    lines.push("Company:", company, "");
+  }
+  lines.push(
+    "Email:",
+    data.email,
+    "",
+    "Enquiry:",
+    data.message,
+    "",
+    "I’d appreciate the opportunity to discuss this further.",
+    "",
+    "Kind regards,",
+    data.name,
+  );
+  return `mailto:${PRISM_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 }
 
 const inputClass =
@@ -43,7 +76,6 @@ export function ContactForm() {
   const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
-  const abortRef = useRef<AbortController | null>(null);
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -58,41 +90,39 @@ export function ContactForm() {
 
     setStatus("sending");
     setError(null);
-    abortRef.current?.abort();
-    const controller = new AbortController();
-    abortRef.current = controller;
-    const timeout = window.setTimeout(() => controller.abort(), 30_000);
 
-    try {
-      const result = await submitEnquiry(parsed.data, controller.signal);
-      window.clearTimeout(timeout);
-      if (result.ok) {
-        setStatus("sent");
-        // GA4: behavioural metadata only — never names, emails or message text.
-        trackEvent("contact_form_submit", {
-          page_path: window.location.pathname,
-          message_length: parsed.data.message.length,
-          has_company: parsed.data.company ? "yes" : "no",
-        });
-      } else {
-        setStatus("error");
-        setError(result.error);
-      }
-    } catch {
-      window.clearTimeout(timeout);
-      setStatus("error");
-      setError(
-        "The request timed out. Please try again shortly, or email ajay@spectraiq.ai directly.",
-      );
+    // GA4: behavioural metadata only — never names, emails or message text.
+    trackEvent("contact_prism_click", {
+      page_path: window.location.pathname,
+      source: "contact_form",
+      form_name: "send_enquiry",
+    });
+
+    // Honeypot filled → bot. Pretend success, do nothing.
+    if (!parsed.data.website) {
+      await saveSubmission(parsed.data);
     }
+
+    trackEvent("email_enquiry_opened", {
+      page_path: window.location.pathname,
+      source: "contact_form",
+    });
+
+    window.location.href = buildMailto(parsed.data);
+    setStatus("sent");
   }
 
   if (status === "sent") {
     return (
       <div className="rounded-2xl border border-border bg-background p-8 text-center">
-        <p className="font-display text-xl font-medium tracking-tight">Thank you — enquiry received.</p>
+        <p className="font-display text-xl font-medium tracking-tight">Your email is ready to send.</p>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          We typically respond the same business day. If it's urgent, call{" "}
+          We've opened your email application with a pre-filled enquiry — just review it and press
+          send. If your email application didn't open, email us directly at{" "}
+          <a href={`mailto:${PRISM_EMAIL}`} className="text-foreground underline underline-offset-4">
+            {PRISM_EMAIL}
+          </a>{" "}
+          or call{" "}
           <a href="tel:+61408065993" className="text-foreground underline underline-offset-4">
             +61 408 065 993
           </a>
@@ -196,7 +226,7 @@ export function ContactForm() {
         >
           {status === "sending" ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+              <Loader2 className="h-4 w-4 animate-spin" /> Preparing…
             </>
           ) : (
             <>
@@ -205,7 +235,7 @@ export function ContactForm() {
           )}
         </button>
         <p className="text-xs text-muted-foreground">
-          Your details are only used to respond to your enquiry.
+          Opens your email app with everything pre-filled — you review and send.
         </p>
       </div>
     </form>
