@@ -1,14 +1,24 @@
 import { useRef, useState, type FormEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, ArrowUpRight, Check, Copy, LoaderCircle, Network } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  Copy,
+  LoaderCircle,
+  Mail,
+  Network,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
   adviserCapabilities,
   adviserCases,
   briefText,
   challengeInputSchema,
+  enquiryDraft,
   type Brief,
 } from "@/lib/challenge-adviser";
 import { recommendChallenge } from "@/lib/challenge-adviser.functions";
@@ -34,6 +44,11 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [showEmail, setShowEmail] = useState(false);
+  const [senderName, setSenderName] = useState("");
+  const [emailSubject, setEmailSubject] = useState("");
+  const [emailBody, setEmailBody] = useState("");
+  const [emailCopied, setEmailCopied] = useState(false);
   const input = useRef<HTMLTextAreaElement>(null);
   const generate = useServerFn(recommendChallenge);
   const isStatic = import.meta.env["VITE_PRISM_STATIC"] === "true";
