@@ -187,6 +187,140 @@ function Core() {
   );
 }
 
+/** Vertical flow connectors for the mobile composition: six streams converge
+ * into the core (in) or diverge from it (out), with travelling light points. */
+function VerticalFlow({ direction }: { direction: "in" | "out" }) {
+  const reduce = useReducedMotion() ?? false;
+  const xs = [25, 75, 125, 175, 225, 275];
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 300 72"
+      preserveAspectRatio="none"
+      className="h-16 w-full"
+    >
+      <defs>
+        <linearGradient id={`vconn-${direction}`} x1="0" y1="0" x2="0" y2="1">
+          <stop
+            offset="0%"
+            stopColor="var(--color-foreground)"
+            stopOpacity={direction === "in" ? 0.12 : 0.5}
+          />
+          <stop
+            offset="100%"
+            stopColor="var(--color-foreground)"
+            stopOpacity={direction === "in" ? 0.5 : 0.12}
+          />
+        </linearGradient>
+      </defs>
+      {xs.map((x, i) => {
+        const d =
+          direction === "in"
+            ? `M${x} 0 C ${x} 40, 150 32, 150 72`
+            : `M150 0 C 150 40, ${x} 32, ${x} 72`;
+        const stroke =
+          direction === "out" ? `var(--prism-colour-${i + 1})` : `url(#vconn-${direction})`;
+        return (
+          <g key={x}>
+            <motion.path
+              d={d}
+              fill="none"
+              stroke={stroke}
+              strokeWidth="1.1"
+              vectorEffect="non-scaling-stroke"
+              strokeOpacity={direction === "out" ? 0.7 : 1}
+              initial={reduce ? { pathLength: 1 } : { pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, delay: 0.15 + i * 0.06, ease: "easeOut" }}
+            />
+            {reduce ? null : (
+              <circle
+                r="2.6"
+                fill={
+                  direction === "out"
+                    ? `var(--prism-colour-${i + 1})`
+                    : "var(--color-foreground)"
+                }
+                opacity="0.9"
+              >
+                <animateMotion
+                  dur="3.2s"
+                  begin={`${i * 0.4}s`}
+                  repeatCount="indefinite"
+                  path={d}
+                  keyPoints="0;1"
+                  keyTimes="0;1"
+                  calcMode="spline"
+                  keySplines="0.4 0 0.6 1"
+                />
+                <animate
+                  attributeName="opacity"
+                  dur="3.2s"
+                  begin={`${i * 0.4}s`}
+                  repeatCount="indefinite"
+                  values="0;0.9;0"
+                />
+              </circle>
+            )}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+/** Staggered entrance wrapper used only by the tablet/mobile treatments. */
+function Rise({
+  i,
+  children,
+  className,
+}: {
+  i: number;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const reduce = useReducedMotion() ?? false;
+  return (
+    <motion.div
+      className={className}
+      initial={reduce ? { opacity: 1 } : { opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.55, delay: 0.08 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/** Mobile core: the shared Core wrapped in a soft rotating spectrum halo. */
+function MobileCore() {
+  const reduce = useReducedMotion() ?? false;
+  return (
+    <div className="relative">
+      <span
+        aria-hidden="true"
+        className={cn(
+          "pointer-events-none absolute -inset-6 rounded-full opacity-40 blur-2xl",
+          !reduce && "animate-[spin_24s_linear_infinite]",
+        )}
+        style={{
+          background:
+            "conic-gradient(from 0deg, var(--prism-colour-1), var(--prism-colour-3), var(--prism-colour-5), var(--prism-colour-7), var(--prism-colour-1))",
+        }}
+      />
+      <motion.div
+        className="relative"
+        animate={reduce ? undefined : { scale: [1, 1.015, 1] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Core />
+      </motion.div>
+    </div>
+  );
+}
+
 /**
  * Hero visual: six enterprise signals enter the Prism intelligence layer and
  * leave as six commercial outcomes. Six rows on each side share one grid so the
