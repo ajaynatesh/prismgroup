@@ -92,7 +92,7 @@ function AdvisorPage() {
           </p>
         </Reveal>
         <div className="mt-10">
-          <ChallengeAdviser />
+          <ChallengeAdviser showPageLink={false} />
         </div>
       </Section>
 
