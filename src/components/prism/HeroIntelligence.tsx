@@ -1,5 +1,4 @@
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const inputs = [
