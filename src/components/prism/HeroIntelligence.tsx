@@ -371,31 +371,66 @@ export function HeroIntelligence({ className }: { className?: string }) {
           </div>
         </div>
 
-        {/* Mobile / tablet: inputs → core → outputs */}
-        <div className="mt-4 lg:hidden sm:mt-6">
-          <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
-            Signals in
-          </p>
-          <div className="mt-2.5 grid grid-cols-2 gap-1.5 min-[390px]:grid-cols-3 sm:mt-3 sm:gap-2">
-            {inputs.map((label) => (
-              <Chip key={label} label={label} />
+        {/* Tablet: compact horizontal 6 → core → 6 with staggered entrance */}
+        <div className="mt-6 hidden sm:grid lg:hidden sm:grid-cols-[minmax(0,1fr)_40px_auto_40px_minmax(0,1fr)] sm:items-stretch">
+          <div className="grid grid-rows-6 gap-1.5">
+            {inputs.map((label, i) => (
+              <Rise key={label} i={i}>
+                <Chip label={label} />
+              </Rise>
             ))}
           </div>
-          <div className="flex justify-center py-2.5 sm:py-4" aria-hidden="true">
-            <ArrowDown className="h-4 w-4 text-muted-foreground" />
+          <div className="min-h-full">
+            <Connectors direction="in" />
           </div>
-          <div className="min-h-[124px] sm:min-h-[152px]">
+          <Rise i={3} className="h-full">
             <Core />
+          </Rise>
+          <div className="min-h-full">
+            <Connectors direction="out" />
           </div>
-          <div className="flex justify-center py-2.5 sm:py-4" aria-hidden="true">
-            <ArrowDown className="h-4 w-4 text-muted-foreground" />
-          </div>
-          <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
-            Outcomes out
-          </p>
-          <div className="mt-2.5 grid grid-cols-2 gap-1.5 min-[390px]:grid-cols-3 sm:mt-3 sm:gap-2">
+          <div className="grid grid-rows-6 gap-1.5">
             {outputs.map((label, i) => (
-              <Chip key={label} label={label} colour={i + 1} emphasis />
+              <Rise key={label} i={i + 2}>
+                <Chip label={label} colour={i + 1} emphasis />
+              </Rise>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile: vertical flow — signals converge into a haloed core, outcomes diverge */}
+        <div className="mt-5 sm:hidden">
+          <Rise i={0}>
+            <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
+              Signals in
+            </p>
+          </Rise>
+          <div className="mt-2.5 grid grid-cols-2 gap-1.5 min-[390px]:grid-cols-3">
+            {inputs.map((label, i) => (
+              <Rise key={label} i={i + 1}>
+                <Chip label={label} />
+              </Rise>
+            ))}
+          </div>
+          <Rise i={3}>
+            <VerticalFlow direction="in" />
+          </Rise>
+          <Rise i={4} className="min-h-[148px]">
+            <MobileCore />
+          </Rise>
+          <Rise i={5}>
+            <VerticalFlow direction="out" />
+          </Rise>
+          <Rise i={6}>
+            <p className="text-[0.625rem] uppercase tracking-[0.2em] text-muted-foreground">
+              Outcomes out
+            </p>
+          </Rise>
+          <div className="mt-2.5 grid grid-cols-2 gap-1.5 min-[390px]:grid-cols-3">
+            {outputs.map((label, i) => (
+              <Rise key={label} i={i + 7}>
+                <Chip label={label} colour={i + 1} emphasis />
+              </Rise>
             ))}
           </div>
         </div>
