@@ -1,6 +1,5 @@
-import { useRef, useState, type FormEvent } from "react";
+import { Component, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -21,7 +20,54 @@ import {
   enquiryDraft,
   type Brief,
 } from "@/lib/challenge-adviser";
-import { recommendChallenge } from "@/lib/challenge-adviser.functions";
+
+// The server-function module must never be imported eagerly: in the static
+// (GitHub Pages) build its module-scope createServerFn chain is unavailable
+// and would crash the whole route chunk. It is loaded on demand, only when a
+// visitor actually submits, and only in the server-hosted build.
+async function callAdviser(challenge: string): Promise<AdviserResult> {
+  const { recommendChallenge } = await import("@/lib/challenge-adviser.functions");
+  return recommendChallenge({ data: { challenge } });
+}
+
+type AdviserResult =
+  | { brief: Brief; error: null }
+  | { brief: null; error: string };
+
+// If the adviser ever fails to render, the rest of the page must survive.
+class AdviserBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  override state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  override componentDidCatch(error: unknown) {
+    console.error(error);
+  }
+  override render() {
+    if (this.state.failed) {
+      return (
+        <section className="border-y border-border bg-surface/40 py-14 md:py-20">
+          <div className="shell">
+            <p className="eyebrow">Prism opportunity adviser</p>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+              We’re unable to show the recommendation tool right now. Please try again shortly
+              or <Link to="/contact" className="underline underline-offset-4">contact Prism directly</Link>.
+            </p>
+          </div>
+        </section>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+export function ChallengeAdviserSafe({ showPageLink = true }: { showPageLink?: boolean }) {
+  return (
+    <AdviserBoundary>
+      <ChallengeAdviser showPageLink={showPageLink} />
+    </AdviserBoundary>
+  );
+}
 
 const examples = [
   {
@@ -50,7 +96,6 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
   const [emailBody, setEmailBody] = useState("");
   const [emailCopied, setEmailCopied] = useState(false);
   const input = useRef<HTMLTextAreaElement>(null);
-  const generate = useServerFn(recommendChallenge);
   const isStatic = import.meta.env["VITE_PRISM_STATIC"] === "true";
 
   async function submit(event: FormEvent) {
@@ -67,7 +112,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
     setBrief(null);
     setCopied(false);
     try {
-      const response = await generate({ data: parsed.data });
+      const response = await callAdviser(parsed.data.challenge);
       if (response.error) setError(response.error);
       else if (response.brief) {
         setBrief(response.brief);
@@ -77,7 +122,8 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
         setShowEmail(false);
         setEmailCopied(false);
       }
-    } catch {
+    } catch (cause) {
+      console.error("Adviser request failed:", cause);
       setError(
         "The adviser could not be reached. Please contact Prism directly; your description has been kept here.",
       );
