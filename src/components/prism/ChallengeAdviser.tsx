@@ -112,7 +112,10 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
   const input = useRef<HTMLTextAreaElement>(null);
   const section = useRef<HTMLElement>(null);
   const discussTracked = useRef(false);
-  const isStatic = import.meta.env["VITE_PRISM_STATIC"] === "true";
+  const abortRef = useRef<AbortController | null>(null);
+
+  // Cancel any in-flight request when the visitor navigates away.
+  useEffect(() => () => abortRef.current?.abort(), []);
 
   // GA4: fire opportunity_advisor_view once when the advisor scrolls into view.
   useEffect(() => observeAdviserView(section.current), []);
@@ -138,8 +141,12 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
       input_length: parsed.data.challenge.length,
     });
     const startedAt = performance.now();
+    const controller = new AbortController();
+    abortRef.current?.abort();
+    abortRef.current = controller;
+    const timeout = setTimeout(() => controller.abort(), 60_000);
     try {
-      const response = await callAdviser(parsed.data.challenge);
+      const response = await callAdviser(parsed.data.challenge, controller.signal);
       if (response.error) setError(response.error);
       else if (response.brief) {
         setBrief(response.brief);
@@ -156,12 +163,14 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
         setEmailCopied(false);
       }
     } catch (cause) {
+      if (controller.signal.aborted && abortRef.current !== controller) return; // navigated away
       console.error("Adviser request failed:", cause);
       setError(
-        "The adviser could not be reached. Please contact Prism directly; your description has been kept here.",
+        "The adviser could not be reached. Please try again shortly or contact Prism directly; your description has been kept here.",
       );
     } finally {
-      setBusy(false);
+      clearTimeout(timeout);
+      if (abortRef.current === controller) setBusy(false);
     }
   }
 
@@ -220,18 +229,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
               </p>
             ) : null}
           </div>
-          {isStatic ? (
-            <div className="self-center space-y-5">
-              <p className="text-muted-foreground">
-                The AI adviser is available on Prism’s main website.
-              </p>
-              <Button asChild className="min-h-11 h-auto whitespace-normal">
-                <a href="https://prismgroup.au/contact#challenge-adviser">
-                  Open Prism opportunity adviser <ArrowUpRight />
-                </a>
-              </Button>
-            </div>
-          ) : (
+          {
             <form onSubmit={submit} className="min-w-0">
               <label htmlFor="prism-challenge" className="text-sm font-medium">
                 What is holding your operations back?
