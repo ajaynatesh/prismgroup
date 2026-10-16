@@ -1,4 +1,4 @@
-import { Component, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { Component, useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -20,6 +20,7 @@ import {
   enquiryDraft,
   type Brief,
 } from "@/lib/challenge-adviser";
+import { adviserLocation, adviserStartOnce, observeAdviserView, trackEvent } from "@/lib/analytics";
 
 // The server-function module must never be imported eagerly: in the static
 // (GitHub Pages) build its module-scope createServerFn chain is unavailable
