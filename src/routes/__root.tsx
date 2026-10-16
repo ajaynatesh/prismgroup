@@ -11,6 +11,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { initAnalytics, trackPageView } from "@/lib/analytics";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -183,6 +184,16 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  // GA4: initialises only on the production domain; every client-side route
+  // change sends one page_view (automatic page_view is disabled in config).
+  useEffect(() => {
+    initAnalytics();
+    return router.subscribe("onResolved", ({ toLocation }) => {
+      trackPageView(toLocation.pathname);
+    });
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>
