@@ -229,8 +229,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
               </p>
             ) : null}
           </div>
-          {
-            <form onSubmit={submit} className="min-w-0">
+          <form onSubmit={submit} className="min-w-0">
               <label htmlFor="prism-challenge" className="text-sm font-medium">
                 What is holding your operations back?
               </label>
@@ -313,8 +312,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
                   Matching your challenge to Prism’s capabilities and published blueprints…
                 </p>
               ) : null}
-            </form>
-          )}
+          </form>
         </div>
         {error ? (
           <div
