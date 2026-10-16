@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ORG_ID, absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { EcosystemPulse } from "@/components/prism/EcosystemPulse";
-import { ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
+import { ChallengeAdviserSafe as ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 import { Reveal } from "@/components/prism/Reveal";
 
 import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";

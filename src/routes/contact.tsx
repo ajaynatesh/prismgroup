@@ -3,7 +3,7 @@ import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from 
 import { Reveal } from "@/components/prism/Reveal";
 import { Section } from "@/components/prism/ui";
 import { Mail, Phone } from "lucide-react";
-import { ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
+import { ChallengeAdviserSafe as ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 
 const title = "Talk to Prism — Contact Prism Group";
 const description =

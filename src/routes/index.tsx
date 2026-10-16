@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { PillarPortfolio, PillarLedger } from "@/components/prism/PillarPortfolio";
-import { ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
+import { ChallengeAdviserSafe as ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 import { HeroIntelligence } from "@/components/prism/HeroIntelligence";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading } from "@/components/prism/ui";

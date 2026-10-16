@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 import { ArrowRight } from "lucide-react";
-import { ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
+import { ChallengeAdviserSafe as ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 import { Reveal } from "@/components/prism/Reveal";
 import { GhostLink, PrimaryLink, Section, SectionHeading, VentureLabel } from "@/components/prism/ui";
 import { capabilities, relationshipCopy, ventures, valueSteps } from "@/lib/prism";

@@ -6,7 +6,7 @@ import { caseCategories, caseCategoryLabel, caseStudies, challenges, type CaseSt
 import { colourVar } from "@/lib/prism";
 import { cn } from "@/lib/utils";
 import { DemoBadge } from "@/components/case/Kit";
-import { ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
+import { ChallengeAdviserSafe as ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 
 const path = "/case-studies";
 const title = "Case Studies — From AI ambition to business impact | Prism Group";

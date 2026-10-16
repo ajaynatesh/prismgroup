@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { colourVar, type PrismColour } from "@/lib/prism";
 import { caseStudies } from "@/lib/case-studies";
 import { Reveal } from "@/components/prism/Reveal";
-import { ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
+import { ChallengeAdviserSafe as ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 
 /* ---------- DemoBadge ---------- */
 export function DemoBadge({ className, label = "Interactive illustration · Synthetic data" }: { className?: string; label?: string }) {
