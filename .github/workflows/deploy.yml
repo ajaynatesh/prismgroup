@@ -22,6 +22,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Full history so the IndexNow step can diff against the previous deployment.
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -50,3 +53,18 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # IndexNow runs only after a successful deployment. It notifies
+      # participating search engines of genuinely changed public URLs.
+      # continue-on-error: an IndexNow failure must never fail the deploy.
+      - name: Submit changed URLs to IndexNow
+        if: success()
+        continue-on-error: true
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          if [ -n "$BEFORE_SHA" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+            node scripts/indexnow-submit.mjs --changed "$BEFORE_SHA" "${{ github.sha }}"
+          else
+            echo "No previous deployment SHA (manual run or first push) — skipping IndexNow"
+          fi
