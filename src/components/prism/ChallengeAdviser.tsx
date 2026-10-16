@@ -121,7 +121,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
     const pagePath = window.location.pathname;
     trackEvent("opportunity_advisor_submit", {
       page_path: pagePath,
-      advisor_location: adviserLocation(pagePath),
+      advisor_location: advisorLocation(pagePath),
       input_length: parsed.data.challenge.length,
     });
     const startedAt = performance.now();
@@ -132,7 +132,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
         setBrief(response.brief);
         trackEvent("opportunity_advisor_result", {
           page_path: pagePath,
-          advisor_location: adviserLocation(pagePath),
+          advisor_location: advisorLocation(pagePath),
           response_status: "success",
           response_time_ms: Math.round(performance.now() - startedAt),
         });
@@ -236,7 +236,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
                     const pagePath = window.location.pathname;
                     trackEvent("opportunity_advisor_start", {
                       page_path: pagePath,
-                      advisor_location: adviserLocation(pagePath),
+                      advisor_location: advisorLocation(pagePath),
                     });
                   }
                 }}
@@ -272,7 +272,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
                         const pagePath = window.location.pathname;
                         trackEvent("opportunity_advisor_start", {
                           page_path: pagePath,
-                          advisor_location: adviserLocation(pagePath),
+                          advisor_location: advisorLocation(pagePath),
                         });
                       }
                     }}
@@ -490,7 +490,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
                         trackEvent("email_enquiry_opened", {
                           page_path: pagePath,
                           source: "opportunity_advisor",
-                          advisor_location: adviserLocation(pagePath),
+                          advisor_location: advisorLocation(pagePath),
                         });
                       }}
                     >
