@@ -6,7 +6,7 @@ export type AdviserResult = { brief: Brief; error: null } | { brief: null; error
 
 // Intentionally public: visitors need no account, and no visitor content is saved.
 export const recommendChallenge = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) => challengeInputSchema.parse(input))
+  .validator((input: unknown) => challengeInputSchema.parse(input))
   .handler(async ({ data }): Promise<AdviserResult> => {
     setResponseHeader("Cache-Control", "no-store");
     const key = process.env["LOVABLE_API_KEY"];
