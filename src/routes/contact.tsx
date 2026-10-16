@@ -4,6 +4,7 @@ import { Reveal } from "@/components/prism/Reveal";
 import { Section } from "@/components/prism/ui";
 import { Mail, Phone } from "lucide-react";
 import { ChallengeAdviserSafe as ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
+import { ContactForm } from "@/components/prism/ContactForm";
 
 const title = "Talk to Prism — Contact Prism Group";
 const description =
@@ -94,6 +95,21 @@ function Contact() {
           </Reveal>
         </div>
       </header>
+
+      <Section>
+        <div className="shell">
+          <Reveal className="mx-auto max-w-3xl">
+            <div className="mb-8 text-center">
+              <p className="eyebrow">Send an enquiry</p>
+              <h2 className="display-md mt-4">Tell us what you're working on</h2>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                Every enquiry lands directly with the Prism team — no intermediaries.
+              </p>
+            </div>
+            <ContactForm />
+          </Reveal>
+        </div>
+      </Section>
 
       <ChallengeAdviser />
 
