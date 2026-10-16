@@ -97,7 +97,11 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
   const [emailBody, setEmailBody] = useState("");
   const [emailCopied, setEmailCopied] = useState(false);
   const input = useRef<HTMLTextAreaElement>(null);
+  const section = useRef<HTMLElement>(null);
   const isStatic = import.meta.env["VITE_PRISM_STATIC"] === "true";
+
+  // GA4: fire opportunity_advisor_view once when the advisor scrolls into view.
+  useEffect(() => observeAdviserView(section.current), []);
 
   async function submit(event: FormEvent) {
     event.preventDefault();
@@ -112,11 +116,25 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
     setError(null);
     setBrief(null);
     setCopied(false);
+    // GA4: behavioural metadata only — never the raw challenge text.
+    const pagePath = window.location.pathname;
+    trackEvent("opportunity_advisor_submit", {
+      page_path: pagePath,
+      advisor_location: adviserLocation(pagePath),
+      input_length: parsed.data.challenge.length,
+    });
+    const startedAt = performance.now();
     try {
       const response = await callAdviser(parsed.data.challenge);
       if (response.error) setError(response.error);
       else if (response.brief) {
         setBrief(response.brief);
+        trackEvent("opportunity_advisor_result", {
+          page_path: pagePath,
+          advisor_location: adviserLocation(pagePath),
+          response_status: "success",
+          response_time_ms: Math.round(performance.now() - startedAt),
+        });
         const draft = enquiryDraft(response.brief);
         setEmailSubject(draft.subject);
         setEmailBody(draft.body);
