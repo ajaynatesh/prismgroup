@@ -25,8 +25,21 @@ import { advisorLocation, adviserStartOnce, observeAdviserView, trackEvent } fro
 // The server-function module must never be imported eagerly: in the static
 // (GitHub Pages) build its module-scope createServerFn chain is unavailable
 // and would crash the whole route chunk. It is loaded on demand, only when a
-// visitor actually submits, and only in the server-hosted build.
-async function callAdviser(challenge: string): Promise<AdviserResult> {
+// visitor actually submits, and only in the server-hosted build. The static
+// build calls the public adviser endpoint on the Lovable-hosted site instead.
+const isStaticBuild = import.meta.env["VITE_PRISM_STATIC"] === "true";
+const STATIC_ADVISER_URL = "https://prismgroup.lovable.app/api/public/adviser";
+
+async function callAdviser(challenge: string, signal: AbortSignal): Promise<AdviserResult> {
+  if (isStaticBuild) {
+    const response = await fetch(STATIC_ADVISER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ challenge }),
+      signal,
+    });
+    return (await response.json()) as AdviserResult;
+  }
   const { recommendChallenge } = await import("@/lib/challenge-adviser.functions");
   return recommendChallenge({ data: { challenge } });
 }
