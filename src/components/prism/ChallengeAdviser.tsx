@@ -20,7 +20,7 @@ import {
   enquiryDraft,
   type Brief,
 } from "@/lib/challenge-adviser";
-import { adviserLocation, adviserStartOnce, observeAdviserView, trackEvent } from "@/lib/analytics";
+import { advisorLocation, adviserStartOnce, observeAdviserView, trackEvent } from "@/lib/analytics";
 
 // The server-function module must never be imported eagerly: in the static
 // (GitHub Pages) build its module-scope createServerFn chain is unavailable
