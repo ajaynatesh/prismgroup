@@ -11,9 +11,9 @@ import { industries, insights, pillars } from "@/lib/prism";
 import { absUrl, breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
 
 
-const title = "Prism Group — Unleash the potential of AI";
+const title = "Prism Group Global | AI Transformation & Applied AI Australia";
 const description =
-  "Prism Group helps organisations turn AI from ambition into measurable business impact — growing revenue, optimising cost and increasing profitability across seven strategic pillars.";
+  "Prism Group Global helps organisations identify, prioritise and implement high-value AI opportunities across growth, operations and customer experience.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
