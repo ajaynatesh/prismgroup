@@ -98,6 +98,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
   const [emailCopied, setEmailCopied] = useState(false);
   const input = useRef<HTMLTextAreaElement>(null);
   const section = useRef<HTMLElement>(null);
+  const discussTracked = useRef(false);
   const isStatic = import.meta.env["VITE_PRISM_STATIC"] === "true";
 
   // GA4: fire opportunity_advisor_view once when the advisor scrolls into view.
@@ -267,6 +268,13 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
                       setChallenge(e.text);
                       setError(null);
                       input.current?.focus();
+                      if (adviserStartOnce()) {
+                        const pagePath = window.location.pathname;
+                        trackEvent("opportunity_advisor_start", {
+                          page_path: pagePath,
+                          advisor_location: adviserLocation(pagePath),
+                        });
+                      }
                     }}
                   >
                     {e.label}
@@ -415,6 +423,8 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
               className="mt-6 h-auto min-h-12 whitespace-normal px-5 py-3"
               onClick={() => {
                 setShowEmail((v) => !v);
+                if (discussTracked.current) return;
+                discussTracked.current = true;
                 const pagePath = window.location.pathname;
                 trackEvent("contact_prism_click", {
                   page_path: pagePath,
