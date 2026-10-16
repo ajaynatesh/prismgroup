@@ -96,7 +96,6 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
   const [emailBody, setEmailBody] = useState("");
   const [emailCopied, setEmailCopied] = useState(false);
   const input = useRef<HTMLTextAreaElement>(null);
-  const generate = useServerFn(recommendChallenge);
   const isStatic = import.meta.env["VITE_PRISM_STATIC"] === "true";
 
   async function submit(event: FormEvent) {
@@ -113,7 +112,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
     setBrief(null);
     setCopied(false);
     try {
-      const response = await generate({ data: parsed.data });
+      const response = await callAdviser(parsed.data.challenge);
       if (response.error) setError(response.error);
       else if (response.brief) {
         setBrief(response.brief);
