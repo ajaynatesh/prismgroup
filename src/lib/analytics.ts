@@ -17,10 +17,13 @@ declare global {
 }
 
 const PRODUCTION_HOSTS = new Set(["prismgroup.au", "www.prismgroup.au"]);
-// GA4 measurement IDs are public by design (visible in every page's source),
-// so this lives in code. The GitHub Pages build may override it via env.
+// The measurement ID comes from the linked Google Analytics connector
+// (synced as a public VITE_ env var — measurement IDs are public by design,
+// visible in every page's source). The GitHub Pages build injects the same
+// value via VITE_GA_MEASUREMENT_ID from GitHub Actions secrets.
 const MEASUREMENT_ID =
-  (import.meta.env["VITE_GA_MEASUREMENT_ID"] as string | undefined) || "G-XXXXXXXXXX";
+  (import.meta.env["VITE_LOVABLE_CONNECTOR_GOOGLE_ANALYTICS_API_KEY"] as string | undefined) ||
+  (import.meta.env["VITE_GA_MEASUREMENT_ID"] as string | undefined);
 
 let initialised = false;
 let started = false;
