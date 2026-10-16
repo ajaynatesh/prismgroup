@@ -24,6 +24,16 @@ export function PillarPage({
   extra?: React.ReactNode;
   lockup?: React.ReactNode;
 }) {
+  // GA4: one capability_view per individual capability/pillar page view.
+  useEffect(() => {
+    const pagePath = window.location.pathname;
+    trackEvent("capability_view", {
+      capability_slug: pagePath.split("/").filter(Boolean).pop() ?? "",
+      capability_title: pillar.name,
+      page_path: pagePath,
+    });
+  }, [pillar.name]);
+
   return (
     <>
       <header className="relative overflow-hidden pt-32 pb-16 md:pt-44 md:pb-24">
