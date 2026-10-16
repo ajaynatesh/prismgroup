@@ -21,6 +21,7 @@ export const briefSchema = z
     nextSteps: z.array(z.string()),
     questions: z.array(z.string()),
     caveat: z.string(),
+    email: z.object({ subject: z.string(), body: z.string() }).strict(),
   })
   .strict();
 
@@ -77,6 +78,24 @@ export function normalizeBrief(brief: Brief): Brief {
       .slice(0, 2)
       .map((s) => concise(s, 35)),
     caveat: concise(brief.caveat, 55),
+    email: {
+      subject: concise(brief.email.subject, 14),
+      body: concise(brief.email.body, 240),
+    },
+  };
+}
+
+// Fallback enquiry draft when a brief predates server-side email drafting.
+export function enquiryDraft(brief: Brief): { subject: string; body: string } {
+  if (brief.email.subject && brief.email.body) return brief.email;
+  const topic = concise(brief.summary, 8).replace(/[.!]+$/, "");
+  const capability = brief.capabilities
+    .map((m) => adviserCapabilities.find((p) => p.id === m.id)?.title)
+    .filter(Boolean)
+    .join(", ");
+  return {
+    subject: `AI Opportunity Discussion – ${topic || "Exploring next steps"}`,
+    body: `Hi Prism team,\n\nI've just completed the Prism AI Opportunity Advisor and would be interested in exploring the opportunity further.\n\nBusiness challenge / opportunity:\n${brief.summary}\n\nPotential AI opportunity identified:\n${capability || "To be shaped together with Prism."}\n\nPotential business impact:\n${brief.nextSteps[0] ?? "To be validated together with Prism."}\n\nI'd appreciate the opportunity to discuss how this could potentially be applied within our organisation and what the next steps might look like.\n\nPlease get in touch when convenient.\n\nKind regards,`,
   };
 }
 
