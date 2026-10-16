@@ -35,6 +35,7 @@ import { Route as VenturesDecisioniqRouteImport } from './routes/ventures.decisi
 import { Route as VenturesPrismDiagnosticsRouteImport } from './routes/ventures.prism-diagnostics'
 import { Route as VenturesSpectraiqRouteImport } from './routes/ventures.spectraiq'
 import { Route as VenturesTradelinkRouteImport } from './routes/ventures.tradelink'
+import { Route as ApiPublicAdviserRouteImport } from './routes/api/public/adviser'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -175,6 +176,11 @@ const VenturesTradelinkRoute = VenturesTradelinkRouteImport.update({
   path: '/ventures/tradelink',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicAdviserRoute = ApiPublicAdviserRouteImport.update({
+  id: '/api/public/adviser',
+  path: '/api/public/adviser',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -203,6 +209,7 @@ export interface FileRoutesByFullPath {
   '/capabilities/': typeof CapabilitiesIndexRoute
   '/case-studies/': typeof CaseStudiesIndexRoute
   '/ventures/': typeof VenturesIndexRoute
+  '/api/public/adviser': typeof ApiPublicAdviserRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -231,6 +238,7 @@ export interface FileRoutesByTo {
   '/capabilities': typeof CapabilitiesIndexRoute
   '/case-studies': typeof CaseStudiesIndexRoute
   '/ventures': typeof VenturesIndexRoute
+  '/api/public/adviser': typeof ApiPublicAdviserRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -260,6 +268,7 @@ export interface FileRoutesById {
   '/capabilities/': typeof CapabilitiesIndexRoute
   '/case-studies/': typeof CaseStudiesIndexRoute
   '/ventures/': typeof VenturesIndexRoute
+  '/api/public/adviser': typeof ApiPublicAdviserRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -290,6 +299,7 @@ export interface FileRouteTypes {
     | '/capabilities/'
     | '/case-studies/'
     | '/ventures/'
+    | '/api/public/adviser'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -318,6 +328,7 @@ export interface FileRouteTypes {
     | '/capabilities'
     | '/case-studies'
     | '/ventures'
+    | '/api/public/adviser'
   id:
     | '__root__'
     | '/'
@@ -346,6 +357,7 @@ export interface FileRouteTypes {
     | '/capabilities/'
     | '/case-studies/'
     | '/ventures/'
+    | '/api/public/adviser'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -375,6 +387,7 @@ export interface RootRouteChildren {
   CapabilitiesIndexRoute: typeof CapabilitiesIndexRoute
   CaseStudiesIndexRoute: typeof CaseStudiesIndexRoute
   VenturesIndexRoute: typeof VenturesIndexRoute
+  ApiPublicAdviserRoute: typeof ApiPublicAdviserRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -561,6 +574,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VenturesTradelinkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/adviser': {
+      id: '/api/public/adviser'
+      path: '/api/public/adviser'
+      fullPath: '/api/public/adviser'
+      preLoaderRoute: typeof ApiPublicAdviserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -595,6 +615,7 @@ const rootRouteChildren: RootRouteChildren = {
   CapabilitiesIndexRoute: CapabilitiesIndexRoute,
   CaseStudiesIndexRoute: CaseStudiesIndexRoute,
   VenturesIndexRoute: VenturesIndexRoute,
+  ApiPublicAdviserRoute: ApiPublicAdviserRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
