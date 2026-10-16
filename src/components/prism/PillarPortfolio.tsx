@@ -20,22 +20,29 @@ function Tag({ children, colour }: { children: string; colour: number }) {
   );
 }
 
-function ExploreLink({ pillar }: { pillar: HomePillar }) {
+function ExploreLink({ pillar, nested }: { pillar: HomePillar; nested?: boolean }) {
   return (
     <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-      <Link
-        to={pillar.href as never}
-        className="group inline-flex items-center gap-2 text-sm font-medium text-foreground"
-      >
-        <span className="link-underline">{pillar.cta}</span>
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-      </Link>
+      {nested ? (
+        <span className="group inline-flex items-center gap-2 text-sm font-medium text-foreground">
+          <span className="link-underline">{pillar.cta}</span>
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </span>
+      ) : (
+        <Link
+          to={pillar.href as never}
+          className="group inline-flex items-center gap-2 text-sm font-medium text-foreground"
+        >
+          <span className="link-underline">{pillar.cta}</span>
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </Link>
+      )}
       {pillar.external ? (
         <a
           href={pillar.external}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
+          className="relative z-10 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
         >
           {pillar.external.replace(/^https?:\/\/|\/$/g, "")}
           <ArrowUpRight className="h-3.5 w-3.5" />
@@ -174,7 +181,12 @@ export function PillarLedger() {
     <div className="hairline">
       {homePillars.map((p, idx) => (
         <Reveal key={p.index} delay={idx * 0.03}>
-          <article className="group grid gap-6 border-b border-border py-10 md:grid-cols-[auto_1fr] md:gap-12 md:py-14">
+          <article className="group relative grid gap-6 border-b border-border py-10 transition-colors hover:bg-surface/50 md:grid-cols-[auto_1fr] md:gap-12 md:py-14">
+            <Link
+              to={p.href as never}
+              aria-label={`${p.name} — ${p.cta}`}
+              className="absolute inset-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            />
             <div className="flex items-start gap-4 md:w-40">
               <span
                 className="mt-2 h-8 w-px shrink-0 transition-all duration-500 md:h-10 md:group-hover:h-16"
@@ -196,7 +208,7 @@ export function PillarLedger() {
                 </p>
                 <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{p.positioning}</p>
                 <div className="mt-6">
-                  <ExploreLink pillar={p} />
+                  <ExploreLink pillar={p} nested />
                 </div>
               </div>
               <div className="space-y-6">
