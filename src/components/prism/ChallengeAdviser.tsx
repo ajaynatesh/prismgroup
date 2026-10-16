@@ -122,7 +122,8 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
         setShowEmail(false);
         setEmailCopied(false);
       }
-    } catch {
+    } catch (cause) {
+      console.error("Adviser request failed:", cause);
       setError(
         "The adviser could not be reached. Please contact Prism directly; your description has been kept here.",
       );
