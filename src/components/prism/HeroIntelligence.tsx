@@ -311,7 +311,7 @@ function MobileCore() {
       />
       <motion.div
         className="relative"
-        animate={reduce ? undefined : { scale: [1, 1.015, 1] }}
+        animate={reduce ? { scale: 1 } : { scale: [1, 1.015, 1] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       >
         <Core />
