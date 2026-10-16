@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AiOpportunityAdvisorRouteImport } from './routes/ai-opportunity-advisor'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -43,6 +44,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiOpportunityAdvisorRoute = AiOpportunityAdvisorRouteImport.update({
+  id: '/ai-opportunity-advisor',
+  path: '/ai-opportunity-advisor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -173,6 +179,7 @@ const VenturesTradelinkRoute = VenturesTradelinkRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ai-opportunity-advisor': typeof AiOpportunityAdvisorRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
@@ -200,6 +207,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ai-opportunity-advisor': typeof AiOpportunityAdvisorRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
@@ -228,6 +236,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ai-opportunity-advisor': typeof AiOpportunityAdvisorRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/ai-opportunity-advisor'
     | '/contact'
     | '/insights'
     | '/privacy'
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/ai-opportunity-advisor'
     | '/contact'
     | '/insights'
     | '/privacy'
@@ -311,6 +322,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/ai-opportunity-advisor'
     | '/contact'
     | '/insights'
     | '/privacy'
@@ -339,6 +351,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AiOpportunityAdvisorRoute: typeof AiOpportunityAdvisorRoute
   ContactRoute: typeof ContactRoute
   InsightsRoute: typeof InsightsRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -378,6 +391,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-opportunity-advisor': {
+      id: '/ai-opportunity-advisor'
+      path: '/ai-opportunity-advisor'
+      fullPath: '/ai-opportunity-advisor'
+      preLoaderRoute: typeof AiOpportunityAdvisorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -547,6 +567,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AiOpportunityAdvisorRoute: AiOpportunityAdvisorRoute,
   ContactRoute: ContactRoute,
   InsightsRoute: InsightsRoute,
   PrivacyRoute: PrivacyRoute,

@@ -28,6 +28,7 @@ const staticPages = [
   "/ventures/alwayson",
   "/ventures/prism-diagnostics",
   "/technology",
+  "/ai-opportunity-advisor",
   "/insights",
   "/contact",
   "/privacy",
