@@ -108,7 +108,14 @@ export function ContactForm() {
       source: "contact_form",
     });
 
-    window.location.href = buildMailto(parsed.data);
+    // A real anchor click is the most reliable way to invoke the mail
+    // handler — assigning window.location.href can be blocked in iframes.
+    const anchor = document.createElement("a");
+    anchor.href = buildMailto(parsed.data);
+    anchor.style.display = "none";
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
     setStatus("sent");
   }
 
