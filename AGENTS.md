@@ -13,4 +13,4 @@
 - Keep public case study URLs synchronized across the case catalogue, static prerender list, server sitemap and static sitemap script so both hosting modes retain deep links.
 - The challenge adviser is a public one-shot server function grounded in the existing pillar and live case catalogues; this prevents invented offerings and broken recommendation links.
 - Keep adviser descriptions and briefs transient, and persist only server-owned AI access blocks; this protects visitor confidentiality and prevents denied calls replaying after reloads.
-- Static builds link the adviser to the Lovable-hosted Contact page instead of calling an absent server; this preserves GitHub Pages navigation without exposing AI secrets.
+- Static (GitHub Pages) builds keep the full interactive adviser and call the Lovable-hosted public endpoint `/api/public/adviser` (CORS-restricted to Prism origins); this gives prismgroup.au the working AI tool without exposing secrets or running a server on Pages.
