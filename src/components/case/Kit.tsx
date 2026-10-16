@@ -91,6 +91,16 @@ export function CaseStudyShell({
   chapters: Chapter[];
   children: ReactNode;
 }) {
+  // GA4: one case_study_view per individual case-study page view.
+  useEffect(() => {
+    const pagePath = window.location.pathname;
+    trackEvent("case_study_view", {
+      case_study_slug: pagePath.split("/").filter(Boolean).pop() ?? "",
+      case_study_title: title,
+      page_path: pagePath,
+    });
+  }, [title]);
+
   return (
     <div style={{ ["--case" as string]: colourVar(colour) }}>
       <section className="relative overflow-hidden pb-12 pt-24 md:pb-20 md:pt-32">

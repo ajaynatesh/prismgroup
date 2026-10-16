@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Reveal } from "@/components/prism/Reveal";
+import { trackEvent } from "@/lib/analytics";
 import {
   CapabilityGroups,
   ExternalCta,
