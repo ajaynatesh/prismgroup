@@ -1,0 +1,213 @@
+import { useRef, useState, type FormEvent } from "react";
+import { Loader2, Send } from "lucide-react";
+import { contactSubmissionSchema, type ContactResult } from "@/lib/contact";
+import { trackEvent } from "@/lib/analytics";
+
+const isStaticBuild = import.meta.env["VITE_PRISM_STATIC"] === "true";
+const STATIC_CONTACT_URL = "https://prismgroup.lovable.app/api/public/contact";
+
+async function submitEnquiry(
+  payload: { name: string; email: string; company?: string | undefined; message: string; website?: string | undefined },
+  signal: AbortSignal,
+): Promise<ContactResult> {
+  try {
+    if (isStaticBuild) {
+      const response = await fetch(STATIC_CONTACT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal,
+      });
+      return (await response.json()) as ContactResult;
+    }
+    const { submitContactEnquiry } = await import("@/lib/contact.functions");
+    return await submitContactEnquiry({ data: payload });
+  } catch (err) {
+    if (err instanceof DOMException && err.name === "AbortError") throw err;
+    return {
+      ok: false,
+      error:
+        "We couldn't send your enquiry just now. Please try again shortly, or email ajay@spectraiq.ai directly.",
+    };
+  }
+}
+
+const inputClass =
+  "w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-colors focus:border-foreground/40";
+
+export function ContactForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [error, setError] = useState<string | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+
+  async function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (status === "sending") return;
+
+    const parsed = contactSubmissionSchema.safeParse({ name, email, company, message, website });
+    if (!parsed.success) {
+      setError(parsed.error.issues[0]?.message ?? "Please check the form and try again.");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("sending");
+    setError(null);
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+    const timeout = window.setTimeout(() => controller.abort(), 30_000);
+
+    try {
+      const result = await submitEnquiry(parsed.data, controller.signal);
+      window.clearTimeout(timeout);
+      if (result.ok) {
+        setStatus("sent");
+        // GA4: behavioural metadata only — never names, emails or message text.
+        trackEvent("contact_form_submit", {
+          page_path: window.location.pathname,
+          message_length: parsed.data.message.length,
+          has_company: parsed.data.company ? "yes" : "no",
+        });
+      } else {
+        setStatus("error");
+        setError(result.error);
+      }
+    } catch {
+      window.clearTimeout(timeout);
+      setStatus("error");
+      setError(
+        "The request timed out. Please try again shortly, or email ajay@spectraiq.ai directly.",
+      );
+    }
+  }
+
+  if (status === "sent") {
+    return (
+      <div className="rounded-2xl border border-border bg-background p-8 text-center">
+        <p className="font-display text-xl font-medium tracking-tight">Thank you — enquiry received.</p>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          We typically respond the same business day. If it's urgent, call{" "}
+          <a href="tel:+61408065993" className="text-foreground underline underline-offset-4">
+            +61 408 065 993
+          </a>
+          .
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} noValidate className="rounded-2xl border border-border bg-background p-6 md:p-8">
+      <div className="grid gap-5 md:grid-cols-2">
+        <div>
+          <label htmlFor="contact-name" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">
+            Name
+          </label>
+          <input
+            id="contact-name"
+            type="text"
+            autoComplete="name"
+            required
+            maxLength={100}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={inputClass}
+            placeholder="Your name"
+          />
+        </div>
+        <div>
+          <label htmlFor="contact-email" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">
+            Email
+          </label>
+          <input
+            id="contact-email"
+            type="email"
+            autoComplete="email"
+            required
+            maxLength={255}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={inputClass}
+            placeholder="you@company.com"
+          />
+        </div>
+      </div>
+      <div className="mt-5">
+        <label htmlFor="contact-company" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">
+          Company <span className="normal-case tracking-normal">(optional)</span>
+        </label>
+        <input
+          id="contact-company"
+          type="text"
+          autoComplete="organization"
+          maxLength={150}
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          className={inputClass}
+          placeholder="Your organisation"
+        />
+      </div>
+      <div className="mt-5">
+        <label htmlFor="contact-message" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">
+          How can we help?
+        </label>
+        <textarea
+          id="contact-message"
+          required
+          maxLength={2000}
+          rows={5}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className={`${inputClass} resize-y`}
+          placeholder="Tell us about the problem you're trying to solve…"
+        />
+      </div>
+
+      {/* Honeypot — hidden from real visitors, catches bots. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
+        <label htmlFor="contact-website">Website</label>
+        <input
+          id="contact-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
+
+      {status === "error" && error ? (
+        <p role="alert" className="mt-4 text-sm text-red-400">
+          {error}
+        </p>
+      ) : null}
+
+      <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-60"
+        >
+          {status === "sending" ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+            </>
+          ) : (
+            <>
+              <Send className="h-4 w-4" /> Send enquiry
+            </>
+          )}
+        </button>
+        <p className="text-xs text-muted-foreground">
+          Your details are only used to respond to your enquiry.
+        </p>
+      </div>
+    </form>
+  );
+}
