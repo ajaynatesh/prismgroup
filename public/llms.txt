@@ -1,0 +1,22 @@
+# Prism Group Global
+
+> Prism Group Global Pty Ltd is an Australian AI transformation company helping organisations identify, prioritise and implement high-value AI opportunities across growth, operations and customer experience.
+
+Prism's areas of expertise include AI transformation, AI strategy, AI opportunity identification and prioritisation, AI implementation, applied AI, AI agents, intelligent automation, workflow automation, customer experience transformation, operational optimisation and growth transformation.
+
+## Key pages
+
+- [Home](https://prismgroup.au/): Prism Group Global — AI transformation and applied AI in Australia
+- [AI Opportunity Advisor](https://prismgroup.au/ai-opportunity-advisor): Interactive assessment that maps a business challenge to relevant Prism capabilities and case studies
+- [About](https://prismgroup.au/about): Who Prism is, leadership and operating philosophy
+- [Capabilities](https://prismgroup.au/capabilities): AI transformation and enterprise technology capabilities
+- [Case Studies](https://prismgroup.au/case-studies): Illustrative solution blueprints across procurement, supply chain, finance, compliance, customer engagement and decision intelligence
+- [Ventures](https://prismgroup.au/ventures): Prism's portfolio of ventures
+- [Technology](https://prismgroup.au/technology): Prism's technology approach
+- [Insights](https://prismgroup.au/insights): Perspectives on AI and transformation
+- [Contact](https://prismgroup.au/contact): Engage Prism — +61 408 065 993, ajay@spectraiq.ai
+
+## Notes
+
+- Case studies are illustrative blueprints using synthetic data, not claims of completed client results.
+- Contact: ajay@spectraiq.ai, +61 408 065 993 (Australia).

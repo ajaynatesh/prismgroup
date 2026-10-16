@@ -15,6 +15,7 @@ const columns = [
     links: [
       { label: "AI Transformation", to: "/capabilities/ai-transformation" },
       { label: "Enterprise Technology", to: "/capabilities/enterprise-technology" },
+      { label: "AI Opportunity Advisor", to: "/ai-opportunity-advisor" },
     ],
   },
   {

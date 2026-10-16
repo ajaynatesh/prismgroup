@@ -3,8 +3,9 @@
  * Twitter tag construction and reusable JSON-LD fragments.
  */
 
-export const SITE_URL = "https://prismgroup.lovable.app";
-export const SITE_NAME = "Prism Group";
+export const SITE_URL = "https://prismgroup.au";
+export const SITE_NAME = "Prism Group Global";
+export const ORG_LEGAL_NAME = "Prism Group Global Pty Ltd";
 export const ORG_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 

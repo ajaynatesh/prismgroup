@@ -88,7 +88,7 @@ export function briefText(brief: Brief) {
     items
       .map((m) => {
         const item = catalogue.find((c) => c.id === m.id);
-        return item ? `${item.title}: ${m.reason}\nhttps://prismgroup.lovable.app${item.href}` : "";
+        return item ? `${item.title}: ${m.reason}\nhttps://prismgroup.au${item.href}` : "";
       })
       .filter(Boolean)
       .join("\n\n");

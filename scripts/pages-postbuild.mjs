@@ -7,7 +7,7 @@ import { join } from "node:path";
 
 const outDir = existsSync("dist/client") ? "dist/client" : "dist";
 const base = (process.env.BASE_PATH ?? "/").replace(/\/+$/, "") || "";
-const siteUrl = (process.env.SITE_URL ?? "https://prismgroup.lovable.app").replace(/\/+$/, "");
+const siteUrl = (process.env.SITE_URL ?? "https://prismgroup.au").replace(/\/+$/, "");
 
 const shell = join(outDir, "404.html");
 if (existsSync(shell)) {
@@ -36,6 +36,7 @@ const pages = [
   ["/ventures/alwayson", "0.8", "monthly"],
   ["/ventures/prism-diagnostics", "0.7", "monthly"],
   ["/technology", "0.7", "monthly"],
+  ["/ai-opportunity-advisor", "0.9", "monthly"],
   ["/insights", "0.6", "weekly"],
   ["/contact", "0.8", "yearly"],
   ["/privacy", "0.3", "yearly"],

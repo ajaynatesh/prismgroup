@@ -28,7 +28,7 @@ const examples = [
   },
 ];
 
-export function ChallengeAdviser() {
+export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boolean }) {
   const [challenge, setChallenge] = useState("");
   const [brief, setBrief] = useState<Brief | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -95,6 +95,16 @@ export function ChallengeAdviser() {
             <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
               AI-generated guidance · Reviewed with you by Prism before any implementation.
             </p>
+            {showPageLink ? (
+              <p className="mt-4 text-sm">
+                <Link
+                  to="/ai-opportunity-advisor"
+                  className="inline-flex items-center gap-1.5 text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+                >
+                  How the AI Opportunity Advisor works <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </p>
+            ) : null}
           </div>
           {isStatic ? (
             <div className="self-center space-y-5">
@@ -102,7 +112,7 @@ export function ChallengeAdviser() {
                 The AI adviser is available on Prism’s main website.
               </p>
               <Button asChild className="min-h-11 h-auto whitespace-normal">
-                <a href="https://prismgroup.lovable.app/contact#challenge-adviser">
+                <a href="https://prismgroup.au/contact#challenge-adviser">
                   Open Prism opportunity adviser <ArrowUpRight />
                 </a>
               </Button>

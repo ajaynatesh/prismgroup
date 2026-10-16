@@ -15,7 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import { ORG_ID, SITE_NAME, SITE_URL, WEBSITE_ID, absUrl, ldScripts } from "@/lib/seo";
+import { ORG_ID, ORG_LEGAL_NAME, SITE_NAME, SITE_URL, WEBSITE_ID, absUrl, ldScripts } from "@/lib/seo";
 
 
 function NotFoundComponent() {
@@ -82,11 +82,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Prism Group — Building intelligent businesses" },
+      { title: "Prism Group Global | AI Transformation & Applied AI Australia" },
       {
         name: "description",
         content:
-          "Prism Group builds and scales intelligent businesses across AI transformation, enterprise technology, decision intelligence and healthcare diagnostics.",
+          "Prism Group Global is an Australian AI transformation company helping organisations identify, prioritise and implement high-value AI opportunities across growth, operations and customer experience.",
       },
       { property: "og:site_name", content: SITE_NAME },
       { property: "og:locale", content: "en_AU" },
@@ -110,9 +110,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         "@type": "Organization",
         "@id": ORG_ID,
         name: SITE_NAME,
-        legalName: "Prism Group",
+        alternateName: "Prism Group",
+        legalName: ORG_LEGAL_NAME,
         description:
-          "Prism Group is an Australia-native technology and innovation group building intelligent solutions across AI transformation, enterprise technology, decision intelligence, mobile-first business platforms, AI-powered customer engagement and healthcare diagnostics.",
+          "Prism Group Global is an Australian AI transformation company helping organisations identify, prioritise and implement high-value AI opportunities across growth, operations and customer experience.",
         url: SITE_URL,
         logo: {
           "@type": "ImageObject",
@@ -120,6 +121,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         },
         foundingLocation: { "@type": "Country", name: "Australia" },
         areaServed: { "@type": "Country", name: "Australia" },
+        founder: {
+          "@type": "Person",
+          name: "Ajay Natesh",
+          jobTitle: "Founder & Managing Director",
+          worksFor: { "@id": ORG_ID },
+        },
         knowsAbout: [
           "Artificial intelligence",
           "AI transformation",
