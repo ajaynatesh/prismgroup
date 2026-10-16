@@ -121,6 +121,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         },
         foundingLocation: { "@type": "Country", name: "Australia" },
         areaServed: { "@type": "Country", name: "Australia" },
+        founder: {
+          "@type": "Person",
+          name: "Ajay Natesh",
+          jobTitle: "Founder & Managing Director",
+          worksFor: { "@id": ORG_ID },
+        },
         knowsAbout: [
           "Artificial intelligence",
           "AI transformation",

@@ -102,7 +102,7 @@ export function ChallengeAdviser() {
                 The AI adviser is available on Prism’s main website.
               </p>
               <Button asChild className="min-h-11 h-auto whitespace-normal">
-                <a href="https://prismgroup.lovable.app/contact#challenge-adviser">
+                <a href="https://prismgroup.au/contact#challenge-adviser">
                   Open Prism opportunity adviser <ArrowUpRight />
                 </a>
               </Button>

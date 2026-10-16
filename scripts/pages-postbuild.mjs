@@ -7,7 +7,7 @@ import { join } from "node:path";
 
 const outDir = existsSync("dist/client") ? "dist/client" : "dist";
 const base = (process.env.BASE_PATH ?? "/").replace(/\/+$/, "") || "";
-const siteUrl = (process.env.SITE_URL ?? "https://prismgroup.lovable.app").replace(/\/+$/, "");
+const siteUrl = (process.env.SITE_URL ?? "https://prismgroup.au").replace(/\/+$/, "");
 
 const shell = join(outDir, "404.html");
 if (existsSync(shell)) {
