@@ -36,14 +36,14 @@ type AdviserResult =
 
 // If the adviser ever fails to render, the rest of the page must survive.
 class AdviserBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
-  state = { failed: false };
+  override state = { failed: false };
   static getDerivedStateFromError() {
     return { failed: true };
   }
-  componentDidCatch(error: unknown) {
+  override componentDidCatch(error: unknown) {
     console.error(error);
   }
-  render() {
+  override render() {
     if (this.state.failed) {
       return (
         <section className="border-y border-border bg-surface/40 py-14 md:py-20">
