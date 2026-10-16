@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { breadcrumbLd, canonical, ldScripts, pageMeta, webPageLd } from "@/lib/seo";
+import { ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 import { Reveal } from "@/components/prism/Reveal";
 import { Section } from "@/components/prism/ui";
 
@@ -49,6 +50,8 @@ function Page() {
           ))}
         </div>
       </Section>
+
+      <ChallengeAdviser />
     </>
   );
 }
