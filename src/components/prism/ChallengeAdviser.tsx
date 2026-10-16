@@ -413,7 +413,15 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
             <Button
               type="button"
               className="mt-6 h-auto min-h-12 whitespace-normal px-5 py-3"
-              onClick={() => setShowEmail((v) => !v)}
+              onClick={() => {
+                setShowEmail((v) => !v);
+                const pagePath = window.location.pathname;
+                trackEvent("contact_prism_click", {
+                  page_path: pagePath,
+                  cta_location: "advisor_brief",
+                  cta_label: "Discuss this brief with Prism",
+                });
+              }}
               aria-expanded={showEmail}
             >
               Discuss this brief with Prism <Mail />
@@ -467,6 +475,14 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
                   <Button asChild className="h-auto min-h-12 whitespace-normal px-5 py-3">
                     <a
                       href={`mailto:ajay@spectraiq.ai?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(signedBody())}`}
+                      onClick={() => {
+                        const pagePath = window.location.pathname;
+                        trackEvent("email_enquiry_opened", {
+                          page_path: pagePath,
+                          source: "opportunity_advisor",
+                          advisor_location: adviserLocation(pagePath),
+                        });
+                      }}
                     >
                       Open email <ArrowRight />
                     </a>
