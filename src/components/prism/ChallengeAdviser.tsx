@@ -335,13 +335,79 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
             <p className="mt-8 max-w-3xl text-xs leading-relaxed text-muted-foreground">
               {brief.caveat}
             </p>
-            <Button asChild className="mt-6 h-auto min-h-12 whitespace-normal px-5 py-3">
-              <a
-                href={`mailto:ajay@spectraiq.ai?subject=${encodeURIComponent("Prism opportunity brief")}&body=${encodeURIComponent(briefText(brief))}`}
-              >
-                Discuss this brief with Prism <ArrowRight />
-              </a>
+            <Button
+              type="button"
+              className="mt-6 h-auto min-h-12 whitespace-normal px-5 py-3"
+              onClick={() => setShowEmail((v) => !v)}
+              aria-expanded={showEmail}
+            >
+              Discuss this brief with Prism <Mail />
             </Button>
+            {showEmail ? (
+              <div className="mt-6 max-w-3xl rounded-2xl border border-border bg-surface/50 p-6 md:p-8">
+                <h4 className="font-display text-xl">Your drafted enquiry</h4>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Review or edit the email below, then open it in your email client — recipient,
+                  subject and body are pre-filled.
+                </p>
+                <div className="mt-5 space-y-4">
+                  <div>
+                    <label htmlFor="enquiry-name" className="text-sm font-medium">
+                      Your name <span className="text-muted-foreground">(optional)</span>
+                    </label>
+                    <Input
+                      id="enquiry-name"
+                      value={senderName}
+                      onChange={(e) => setSenderName(e.target.value)}
+                      maxLength={80}
+                      placeholder="Added to the sign-off"
+                      className="mt-2 bg-background"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="enquiry-subject" className="text-sm font-medium">
+                      Subject
+                    </label>
+                    <Input
+                      id="enquiry-subject"
+                      value={emailSubject}
+                      onChange={(e) => setEmailSubject(e.target.value)}
+                      maxLength={120}
+                      className="mt-2 bg-background"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="enquiry-body" className="text-sm font-medium">
+                      Message
+                    </label>
+                    <Textarea
+                      id="enquiry-body"
+                      value={emailBody}
+                      onChange={(e) => setEmailBody(e.target.value)}
+                      className="mt-2 min-h-64 resize-y bg-background p-4 text-sm leading-relaxed"
+                    />
+                  </div>
+                </div>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Button asChild className="h-auto min-h-12 whitespace-normal px-5 py-3">
+                    <a
+                      href={`mailto:ajay@spectraiq.ai?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(signedBody())}`}
+                    >
+                      Open email <ArrowRight />
+                    </a>
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="min-h-12"
+                    onClick={copyEmail}
+                  >
+                    {emailCopied ? <Check /> : <Copy />}
+                    {emailCopied ? "Copied" : "Copy email"}
+                  </Button>
+                </div>
+              </div>
+            ) : null}
           </div>
         ) : null}
       </div>
