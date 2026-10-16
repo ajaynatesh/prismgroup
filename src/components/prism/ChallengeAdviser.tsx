@@ -175,6 +175,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
 
   return (
     <section
+      ref={section}
       id="challenge-adviser"
       aria-labelledby="adviser-title"
       className="border-y border-border bg-surface/40 py-14 md:py-20"
@@ -228,6 +229,15 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
                 onChange={(e) => {
                   setChallenge(e.target.value);
                   setCopied(false);
+                }}
+                onFocus={() => {
+                  if (adviserStartOnce()) {
+                    const pagePath = window.location.pathname;
+                    trackEvent("opportunity_advisor_start", {
+                      page_path: pagePath,
+                      advisor_location: adviserLocation(pagePath),
+                    });
+                  }
                 }}
                 maxLength={3000}
                 disabled={busy}
