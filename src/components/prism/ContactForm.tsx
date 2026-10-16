@@ -7,7 +7,7 @@ const isStaticBuild = import.meta.env["VITE_PRISM_STATIC"] === "true";
 const STATIC_CONTACT_URL = "https://prismgroup.lovable.app/api/public/contact";
 
 async function submitEnquiry(
-  payload: { name: string; email: string; company?: string; message: string; website?: string },
+  payload: { name: string; email: string; company?: string | undefined; message: string; website?: string | undefined },
   signal: AbortSignal,
 ): Promise<ContactResult> {
   try {
