@@ -69,7 +69,14 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
     try {
       const response = await generate({ data: parsed.data });
       if (response.error) setError(response.error);
-      else setBrief(response.brief);
+      else {
+        setBrief(response.brief);
+        const draft = enquiryDraft(response.brief);
+        setEmailSubject(draft.subject);
+        setEmailBody(draft.body);
+        setShowEmail(false);
+        setEmailCopied(false);
+      }
     } catch {
       setError(
         "The adviser could not be reached. Please contact Prism directly; your description has been kept here.",
@@ -86,6 +93,18 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
       setCopied(true);
     } catch {
       setError("Copy is unavailable in this browser. You can select and copy the brief below.");
+    }
+  }
+
+  const signedBody = () =>
+    senderName.trim() ? `${emailBody.trimEnd()}\n${senderName.trim()}` : emailBody;
+
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText(`Subject: ${emailSubject}\n\n${signedBody()}`);
+      setEmailCopied(true);
+    } catch {
+      setError("Copy is unavailable in this browser. You can select and copy the email below.");
     }
   }
 
