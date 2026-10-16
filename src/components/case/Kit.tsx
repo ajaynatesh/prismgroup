@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { colourVar, type PrismColour } from "@/lib/prism";
 import { caseStudies } from "@/lib/case-studies";
 import { Reveal } from "@/components/prism/Reveal";
+import { trackEvent } from "@/lib/analytics";
 import { ChallengeAdviserSafe as ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 
 /* ---------- DemoBadge ---------- */
@@ -90,6 +91,16 @@ export function CaseStudyShell({
   chapters: Chapter[];
   children: ReactNode;
 }) {
+  // GA4: one case_study_view per individual case-study page view.
+  useEffect(() => {
+    const pagePath = window.location.pathname;
+    trackEvent("case_study_view", {
+      case_study_slug: pagePath.split("/").filter(Boolean).pop() ?? "",
+      case_study_title: title,
+      page_path: pagePath,
+    });
+  }, [title]);
+
   return (
     <div style={{ ["--case" as string]: colourVar(colour) }}>
       <section className="relative overflow-hidden pb-12 pt-24 md:pb-20 md:pt-32">
@@ -385,7 +396,17 @@ export function CaseCta({ heading, copy, cta }: { heading: string; copy: string;
           <p className="eyebrow">Talk to Prism</p>
           <h2 className="display-lg mt-4 max-w-3xl">{heading}</h2>
           <p className="mt-4 max-w-2xl text-muted-foreground">{copy}</p>
-          <Link to="/contact" className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background transition-opacity hover:opacity-90">
+          <Link
+            to="/contact"
+            className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background transition-opacity hover:opacity-90"
+            onClick={() =>
+              trackEvent("contact_prism_click", {
+                page_path: window.location.pathname,
+                cta_location: "case_cta",
+                cta_label: cta,
+              })
+            }
+          >
             {cta} <span aria-hidden="true">→</span>
           </Link>
         </div>

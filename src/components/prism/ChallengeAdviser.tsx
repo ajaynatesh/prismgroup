@@ -1,4 +1,4 @@
-import { Component, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { Component, useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -20,6 +20,7 @@ import {
   enquiryDraft,
   type Brief,
 } from "@/lib/challenge-adviser";
+import { advisorLocation, adviserStartOnce, observeAdviserView, trackEvent } from "@/lib/analytics";
 
 // The server-function module must never be imported eagerly: in the static
 // (GitHub Pages) build its module-scope createServerFn chain is unavailable
@@ -96,7 +97,12 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
   const [emailBody, setEmailBody] = useState("");
   const [emailCopied, setEmailCopied] = useState(false);
   const input = useRef<HTMLTextAreaElement>(null);
+  const section = useRef<HTMLElement>(null);
+  const discussTracked = useRef(false);
   const isStatic = import.meta.env["VITE_PRISM_STATIC"] === "true";
+
+  // GA4: fire opportunity_advisor_view once when the advisor scrolls into view.
+  useEffect(() => observeAdviserView(section.current), []);
 
   async function submit(event: FormEvent) {
     event.preventDefault();
@@ -111,11 +117,25 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
     setError(null);
     setBrief(null);
     setCopied(false);
+    // GA4: behavioural metadata only — never the raw challenge text.
+    const pagePath = window.location.pathname;
+    trackEvent("opportunity_advisor_submit", {
+      page_path: pagePath,
+      advisor_location: advisorLocation(pagePath),
+      input_length: parsed.data.challenge.length,
+    });
+    const startedAt = performance.now();
     try {
       const response = await callAdviser(parsed.data.challenge);
       if (response.error) setError(response.error);
       else if (response.brief) {
         setBrief(response.brief);
+        trackEvent("opportunity_advisor_result", {
+          page_path: pagePath,
+          advisor_location: advisorLocation(pagePath),
+          response_status: "success",
+          response_time_ms: Math.round(performance.now() - startedAt),
+        });
         const draft = enquiryDraft(response.brief);
         setEmailSubject(draft.subject);
         setEmailBody(draft.body);
@@ -156,6 +176,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
 
   return (
     <section
+      ref={section}
       id="challenge-adviser"
       aria-labelledby="adviser-title"
       className="border-y border-border bg-surface/40 py-14 md:py-20"
@@ -210,6 +231,15 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
                   setChallenge(e.target.value);
                   setCopied(false);
                 }}
+                onFocus={() => {
+                  if (adviserStartOnce()) {
+                    const pagePath = window.location.pathname;
+                    trackEvent("opportunity_advisor_start", {
+                      page_path: pagePath,
+                      advisor_location: advisorLocation(pagePath),
+                    });
+                  }
+                }}
                 maxLength={3000}
                 disabled={busy}
                 aria-describedby="challenge-privacy challenge-count"
@@ -238,6 +268,13 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
                       setChallenge(e.text);
                       setError(null);
                       input.current?.focus();
+                      if (adviserStartOnce()) {
+                        const pagePath = window.location.pathname;
+                        trackEvent("opportunity_advisor_start", {
+                          page_path: pagePath,
+                          advisor_location: advisorLocation(pagePath),
+                        });
+                      }
                     }}
                   >
                     {e.label}
@@ -384,7 +421,17 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
             <Button
               type="button"
               className="mt-6 h-auto min-h-12 whitespace-normal px-5 py-3"
-              onClick={() => setShowEmail((v) => !v)}
+              onClick={() => {
+                setShowEmail((v) => !v);
+                if (discussTracked.current) return;
+                discussTracked.current = true;
+                const pagePath = window.location.pathname;
+                trackEvent("contact_prism_click", {
+                  page_path: pagePath,
+                  cta_location: "advisor_brief",
+                  cta_label: "Discuss this brief with Prism",
+                });
+              }}
               aria-expanded={showEmail}
             >
               Discuss this brief with Prism <Mail />
@@ -438,6 +485,14 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
                   <Button asChild className="h-auto min-h-12 whitespace-normal px-5 py-3">
                     <a
                       href={`mailto:ajay@spectraiq.ai?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(signedBody())}`}
+                      onClick={() => {
+                        const pagePath = window.location.pathname;
+                        trackEvent("email_enquiry_opened", {
+                          page_path: pagePath,
+                          source: "opportunity_advisor",
+                          advisor_location: advisorLocation(pagePath),
+                        });
+                      }}
                     >
                       Open email <ArrowRight />
                     </a>
