@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { colourVar, type PrismColour } from "@/lib/prism";
 import { caseStudies } from "@/lib/case-studies";
 import { Reveal } from "@/components/prism/Reveal";
+import { trackEvent } from "@/lib/analytics";
 import { ChallengeAdviserSafe as ChallengeAdviser } from "@/components/prism/ChallengeAdviser";
 
 /* ---------- DemoBadge ---------- */
@@ -385,7 +386,17 @@ export function CaseCta({ heading, copy, cta }: { heading: string; copy: string;
           <p className="eyebrow">Talk to Prism</p>
           <h2 className="display-lg mt-4 max-w-3xl">{heading}</h2>
           <p className="mt-4 max-w-2xl text-muted-foreground">{copy}</p>
-          <Link to="/contact" className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background transition-opacity hover:opacity-90">
+          <Link
+            to="/contact"
+            className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background transition-opacity hover:opacity-90"
+            onClick={() =>
+              trackEvent("contact_prism_click", {
+                page_path: window.location.pathname,
+                cta_location: "case_cta",
+                cta_label: cta,
+              })
+            }
+          >
             {cta} <span aria-hidden="true">→</span>
           </Link>
         </div>
