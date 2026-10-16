@@ -69,7 +69,7 @@ export function ChallengeAdviser({ showPageLink = true }: { showPageLink?: boole
     try {
       const response = await generate({ data: parsed.data });
       if (response.error) setError(response.error);
-      else {
+      else if (response.brief) {
         setBrief(response.brief);
         const draft = enquiryDraft(response.brief);
         setEmailSubject(draft.subject);
